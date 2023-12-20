@@ -1,18 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/background"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/layouticon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:src="@drawable/icon" />
+
+            <TextView
+                android:id="@+id/textjudul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="LOGIN BANK SAMPAH"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textbawahjudul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="Login Untuk Menikmati Layanan Bank Sampah"
+                android:textColor="@color/graytua"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btgoogle"
+                android:layout_width="324dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/bgooglebt"
+                android:drawableStart="@drawable/googleic"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="20dp"
+                android:text="   LOGIN GOOGLE"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/btfacebook"
+                android:layout_width="324dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bgooglebt"
+                android:drawableStart="@drawable/facebook"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="20dp"
+                android:text="   LOGIN FACEBOOK"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/btx"
+                android:layout_width="324dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bgooglebt"
+                android:drawableStart="@drawable/twitter"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="20dp"
+                android:text="   LOGIN X"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/textbawah"
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom|center"
+            android:orientation="vertical"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:id="@+id/textbottom"
+                android:layout_width="282dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Untuk melanjutkan, Google akan membagikan nama, alamat email, pilihan bahasa, dan gambar profil Anda ke BANK SAMPAH. Sebelum menggunakan aplikasi ini, Anda dapat meninjau kebijakan privasi dan persyaratan layanan BANK SAMPAH"
+                android:textAlignment="center"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
