@@ -35,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-black"
+                android:textColor="@color/teks"
+                android:fontFamily="@font/ralewayextrabold"
                 android:gravity="center"
                 android:text="LOGIN BANK SAMPAH"
                 android:textSize="20sp" />
@@ -45,10 +46,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/ralewaymedium"
                 android:gravity="center"
                 android:text="Login Untuk Menikmati Layanan Bank Sampah"
-                android:textColor="@color/graytua"
+                android:textColor="@color/teks"
                 android:textSize="12sp" />
 
 
@@ -66,7 +67,7 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/bgooglebt"
                 android:drawableStart="@drawable/google"
-                android:fontFamily="sans-serif-black"
+                android:fontFamily="@font/ralewaymedium"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="20dp"
                 android:text="   LOGIN GOOGLE"
