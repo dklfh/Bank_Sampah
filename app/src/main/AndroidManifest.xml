@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BankSampah"
         tools:targetApi="31">
         <activity
+            android:name=".DataSatuan"
+            android:exported="false" />
+        <activity
             android:name=".splash_screen"
             android:exported="true">
             <intent-filter>
@@ -23,9 +26,6 @@
         </activity>
         <activity
             android:name=".login"
-            android:exported="false" />
-        <activity
-            android:name=".login_activity"
             android:exported="false" />
         <activity
             android:name=".home"
