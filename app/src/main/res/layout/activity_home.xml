@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".home">
 
 
@@ -33,7 +33,7 @@
                 android:layout_width="356dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="sans-serif-black"
+                android:fontFamily="@font/ralewaysemibold"
                 android:gravity="center"
                 android:text="@string/kalkulator"
                 android:textColor="@color/white" />
@@ -72,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/ralewaymedium"
                         android:text="Nama Bank Sampah"
                         android:textColor="@color/teks" />
 
@@ -81,8 +81,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/textinput_home"
-                        android:fontFamily="sans-serif"
-                        android:hint="NAMA BANK SAMPAH..."
+                        android:fontFamily="@font/ralewaymedium"
+                        android:hint="Nama Bank Sampah. . ."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp"
                         android:textColor="@color/abu"
@@ -102,7 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/ralewaymedium"
                         android:text="Nama Petugas"
                         android:textColor="@color/teks" />
 
@@ -111,8 +111,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/textinput_home"
-                        android:fontFamily="sans-serif"
-                        android:hint="NAMA PETUGAS..."
+                        android:fontFamily="@font/ralewaymedium"
+                        android:hint="Nama Petugas . . ."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp"
                         android:textColor="@color/abu"
@@ -132,7 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/ralewaymedium"
                         android:text="Nama Nasabah"
                         android:textColor="@color/teks" />
 
@@ -141,8 +141,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/textinput_home"
-                        android:fontFamily="sans-serif"
-                        android:hint="NAMA NASABAH..."
+                        android:fontFamily="@font/ralewaymedium"
+                        android:hint="Nama Nasabah. . ."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp"
                         android:textColor="@color/abu"
@@ -162,21 +162,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/ralewaymedium"
                         android:text="Tanggal"
                         android:textColor="@color/teks" />
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/textinput_home"
-                        android:fontFamily="sans-serif"
-                        android:hint="TANGGAL..."
+                        android:fontFamily="@font/ralewaymedium"
+                        android:hint="Tanggal. . ."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp"
                         android:textColor="@color/abu"
                         android:textSize="16sp" />
+
 
                 </LinearLayout>
 
@@ -191,16 +192,46 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/ralewaymedium"
                         android:text="Masukan Data Sampah"
                         android:textColor="@color/teks" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1000dp"
-                        android:layout_marginVertical="10dp"
                         android:background="@drawable/warnahijauhome"
-                        android:orientation="horizontal"></LinearLayout>
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="30dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/teskbank6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:fontFamily="@font/ralewaymedium"
+                                android:text="Tanggal"
+                                android:textColor="@color/white" />
+
+                            <Button
+                                android:id="@+id/button2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/ralewaymedium"
+                                android:textSize="13sp"
+                                android:text="Kategori Samapah. . ."
+                                android:background="@drawable/bgooglebt"
+                                android:gravity="left"
+                                android:padding="20dp"
+                                android:drawableEnd="@drawable/panah"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
