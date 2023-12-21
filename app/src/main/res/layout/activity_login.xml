@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="top"
     tools:context=".login"
-    android:background="">
+    android:background="@color/background">
 
 
     <LinearLayout
@@ -85,9 +85,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            android:textAlignment="center"
-            android:gravity="end"
-            >
+            android:gravity="end">
 
             <Button
                 android:id="@+id/button"
