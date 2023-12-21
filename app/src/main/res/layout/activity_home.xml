@@ -46,158 +46,165 @@
                 android:src="@drawable/logo" />
         </LinearLayout>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="35dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"></LinearLayout>
-
-                <TextView
-                    android:id="@+id/teskbank"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Nama Bank Sampah"
-                    android:textColor="@color/teks" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/textinput_home"
-                    android:fontFamily="sans-serif"
-                    android:hint="NAMA BANK SAMPAH..."
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="15dp"
-                    android:textColor="@color/abu"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="1dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/teskbank2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Nama Petugas"
-                    android:textColor="@color/teks" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/textinput_home"
-                    android:fontFamily="sans-serif"
-                    android:hint="NAMA PETUGAS..."
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="15dp"
-                    android:textColor="@color/abu"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="1dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/teskbank3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Nama Nasabah"
-                    android:textColor="@color/teks" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/textinput_home"
-                    android:fontFamily="sans-serif"
-                    android:hint="NAMA NASABAH..."
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="15dp"
-                    android:textColor="@color/abu"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="1dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/teskbank4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Tanggal"
-                    android:textColor="@color/teks" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/textinput_home"
-                    android:fontFamily="sans-serif"
-                    android:hint="TANGGAL..."
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="15dp"
-                    android:textColor="@color/abu"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="30dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/teskbank5"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Masukan Data Sampah"
-                    android:textColor="@color/teks" />
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="35dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></LinearLayout>
+
+                    <TextView
+                        android:id="@+id/teskbank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Nama Bank Sampah"
+                        android:textColor="@color/teks" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/textinput_home"
+                        android:fontFamily="sans-serif"
+                        android:hint="NAMA BANK SAMPAH..."
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp"
+                        android:textColor="@color/abu"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="1dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/teskbank2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Nama Petugas"
+                        android:textColor="@color/teks" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/textinput_home"
+                        android:fontFamily="sans-serif"
+                        android:hint="NAMA PETUGAS..."
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp"
+                        android:textColor="@color/abu"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="1dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/teskbank3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Nama Nasabah"
+                        android:textColor="@color/teks" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/textinput_home"
+                        android:fontFamily="sans-serif"
+                        android:hint="NAMA NASABAH..."
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp"
+                        android:textColor="@color/abu"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="1dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/teskbank4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Tanggal"
+                        android:textColor="@color/teks" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/textinput_home"
+                        android:fontFamily="sans-serif"
+                        android:hint="TANGGAL..."
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp"
+                        android:textColor="@color/abu"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/warnahijauhome"
-                    android:orientation="horizontal"
-                    android:layout_marginVertical="10dp"></LinearLayout>
-            </LinearLayout>
+                    android:layout_marginHorizontal="30dp"
+                    android:orientation="vertical">
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/teskbank5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Masukan Data Sampah"
+                        android:textColor="@color/teks" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1000dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@drawable/warnahijauhome"
+                        android:orientation="horizontal"></LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 
