@@ -62,11 +62,6 @@
                     android:layout_marginTop="35dp"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"></LinearLayout>
-
                     <TextView
                         android:id="@+id/teskbank"
                         android:layout_width="match_parent"
@@ -334,6 +329,174 @@
                         android:textColor="@color/white" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ralewaymedium"
+                        android:text="Metode Pembayaran" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:src="@drawable/ovo" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:src="@drawable/dana" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:src="@drawable/gopay" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginTop="6dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/bni"
+                            android:layout_marginHorizontal="10dp"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/qris"
+                            android:layout_marginHorizontal="10dp"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/paypal"
+                            android:layout_marginHorizontal="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="@font/ralewaymedium"
+                        android:text="Masukan Username"
+                        android:textColor="@color/teks" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/textinput_home"
+                        android:fontFamily="@font/ralewaymedium"
+                        android:hint="Masukan Username. . ."
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp"
+                        android:textColor="@color/abu"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="3dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/rekening"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="@font/ralewaymedium"
+                        android:text="Masukan Rekening"
+                        android:textColor="@color/teks" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/textinput_home"
+                        android:fontFamily="@font/ralewaymedium"
+                        android:hint="Masukan Rekening. . ."
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp"
+                        android:textColor="@color/abu"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="3dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/notelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:fontFamily="@font/ralewaymedium"
+                        android:text="Masukan Nomer Telepon"
+                        android:textColor="@color/teks" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/textinput_home"
+                        android:fontFamily="@font/ralewaymedium"
+                        android:hint="Masukan Nomer Telepon. . ."
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp"
+                        android:textColor="@color/abu"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/buttonlogin"
+                    android:fontFamily="@font/ralewaybold"
+                    android:text="Bersihkan"
+                    android:textColor="@color/white"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="40dp"/>
+
 
             </LinearLayout>
         </ScrollView>
