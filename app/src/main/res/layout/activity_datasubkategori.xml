@@ -114,7 +114,7 @@
                     android:fontFamily="@font/ralewaymedium"
                     android:gravity="left"
                     android:padding="20dp"
-                    android:text="Putihan (HDPE and jenis lainnya)"
+                    android:text="Putihan (HDPE dan jenis lainnya)"
                     android:textSize="13sp" />
 
                 <LinearLayout
