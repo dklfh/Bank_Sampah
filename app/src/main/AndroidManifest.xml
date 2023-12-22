@@ -16,6 +16,9 @@
             android:name=".datasubkategori"
             android:exported="false" />
         <activity
+            android:name=".DataKategori"
+            android:exported="false" />
+        <activity
             android:name=".DataSatuan"
             android:exported="false" />
         <activity
