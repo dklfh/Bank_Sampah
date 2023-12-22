@@ -198,7 +198,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1000dp"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/warnahijauhome"
                         android:orientation="horizontal">
 
@@ -221,20 +221,20 @@
                                 android:id="@+id/button2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/ralewaymedium"
-                                android:textSize="13sp"
-                                android:text="Kategori Samapah. . ."
                                 android:background="@drawable/bgooglebt"
+                                android:drawableEnd="@drawable/panah"
+                                android:fontFamily="@font/ralewaymedium"
                                 android:gravity="left"
                                 android:padding="20dp"
-                                android:drawableEnd="@drawable/panah"/>
+                                android:text="Kategori Samapah. . ."
+                                android:textSize="13sp" />
 
                             <TextView
                                 android:id="@+id/teskbank7"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
                                 android:layout_marginTop="7sp"
+                                android:layout_marginBottom="10dp"
                                 android:fontFamily="@font/ralewaymedium"
                                 android:text="Sub-Kategori"
                                 android:textColor="@color/white" />
@@ -255,8 +255,8 @@
                                 android:id="@+id/teskbank8"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
                                 android:layout_marginTop="7sp"
+                                android:layout_marginBottom="10dp"
                                 android:fontFamily="@font/ralewaymedium"
                                 android:text="Jumlah"
                                 android:textColor="@color/white" />
@@ -271,23 +271,22 @@
                                     android:id="@+id/imageView3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/minus"
-                                    android:layout_gravity="left"/>
+                                    android:layout_gravity="left"
+                                    android:src="@drawable/minus" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:orientation="horizontal"
-                                    android:gravity="center"
                                     android:background="@drawable/textinput_home"
                                     android:fontFamily="@font/ralewaymedium"
-                                    >
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:hint="ANGKA"/>
+                                        android:hint="ANGKA" />
 
                                 </LinearLayout>
 
@@ -299,30 +298,41 @@
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:gravity="end"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:id="@+id/imageView5"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/minus" />
-
-                                <ImageView
-                                    android:id="@+id/imageView4"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/plus2" />
-                            </LinearLayout>
-
 
                         </LinearLayout>
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/minus" />
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/plus2" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/edit"
+                        android:fontFamily="@font/ralewaybold"
+                        android:text="Bersihkan"
+                        android:textColor="@color/white" />
+
                 </LinearLayout>
 
             </LinearLayout>
