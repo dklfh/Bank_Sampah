@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".DataKategori">
 
-    <LinearLayout
+   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/navbar"
