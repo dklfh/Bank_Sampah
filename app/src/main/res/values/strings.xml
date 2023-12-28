@@ -2,4 +2,7 @@
     <string name="app_name">Bank Sampah</string>
     <string name="kalkulator">KALKULATOR</string>
     <string name="TandaPlus">plus</string>
+
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
 </resources>

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BankSampah"
         tools:targetApi="31">
         <activity
+            android:name=".CobaNavbar"
+            android:exported="false" />
+        <activity
             android:name=".datasubkategori"
             android:exported="false" />
         <activity
