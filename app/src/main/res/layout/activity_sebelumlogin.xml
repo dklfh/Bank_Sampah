@@ -49,15 +49,55 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_height="474dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="338dp"
+                android:layout_height="300dp"
+                android:layout_marginBottom="0dp"
                 android:src="@drawable/banksampahlogo2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@drawable/bawahsebelumlog"
+                android:orientation="vertical"
+                android:paddingHorizontal="35dp"
+                android:outlineAmbientShadowColor="@color/black"
+                android:paddingVertical="35dp">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/ungu"
+                    android:fontFamily="@font/ralewaymedium"
+                    android:text="BELUM PUNYA AKUN?"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/ralewaymedium"
+                    android:text=" CRATE ACCOUNT"
+                    android:textSize="23dp"
+                    android:background="@drawable/strokebutton"
+                    android:paddingHorizontal="20dp"
+                    android:gravity="left|center"
+                    android:drawableStart="@drawable/minilogo2"/>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

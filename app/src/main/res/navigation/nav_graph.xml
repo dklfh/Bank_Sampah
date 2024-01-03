@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_kalkulator">
+
+    <activity
+        android:id="@+id/nav_kalkulator"
+        android:name="com.example.banksampah.home"
+        android:label="home"
+        tools:layout="@layout/activity_home" />
+    <activity
+        android:id="@+id/nav_DatKategori"
+        android:name="com.example.banksampah.DataKategori"
+        android:label="Data Kategori"
+        tools:layout="@layout/activity_data_kategori" />
+    <activity
+        android:id="@+id/nav_DatSatuan"
+        android:name="com.example.banksampah.DataSatuan"
+        android:label="Data Satuan"
+        tools:layout="@layout/activity_data_satuan" />
+    <activity
+        android:id="@+id/nav_DatSub"
+        android:name="com.example.banksampah.datasubkategori"
+        android:label="Data Sub Kategori"
+        tools:layout="@layout/activity_datasubkategori" />
+</navigation>
