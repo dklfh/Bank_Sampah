@@ -4,6 +4,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("C:\\MyKeystore\\keystore.jks")
+            storePassword = "SulihYandeGungDevara"
+            keyAlias = "key0"
+            keyPassword = "SulihYandeGungDevara"
+        }
+    }
     namespace = "com.example.banksampah"
     compileSdk = 34
 
@@ -15,6 +23,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig = signingConfigs.getByName("debug")
     }
 
     buildTypes {
@@ -50,4 +59,10 @@ dependencies {
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.6")
     implementation ("de.hdodenhof:circleimageview:3.0.0")
     implementation ("androidx.drawerlayout:drawerlayout:1.2.0")
+
+    implementation platfrom ("com.google.firebase:firebase-bom:32.7.0")
+    implementation ("com.google.firebase:firebase-analytics-ktx:21.5.0")
+    implementation ("com.google.firebase:firebase-auth-ktx:22.3.0")
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+
 }
