@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 
+@Suppress("DEPRECATION")
 class CobaNavbar : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,8 +19,8 @@ class CobaNavbar : AppCompatActivity() {
         val tempat: DrawerLayout = findViewById(R.id.tempat)
 
         val navController = Navigation.findNavController(this, R.id.kalkulator)
-        val nav_view: com.google.android.material.navigation.NavigationView = findViewById(R.id.nav_view)
-        NavigationUI.setupWithNavController(nav_view, navController)
+        val navView: com.google.android.material.navigation.NavigationView = findViewById(R.id.nav_view)
+        NavigationUI.setupWithNavController(navView, navController)
         NavigationUI.setupActionBarWithNavController(this, navController, tempat)
 
 
@@ -29,12 +30,14 @@ class CobaNavbar : AppCompatActivity() {
         toggle.syncState()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         val tempat: DrawerLayout = findViewById(R.id.tempat)
-        if (tempat.isDrawerOpen(GravityCompat.START)){
+        if (tempat.isDrawerOpen(GravityCompat.START)) {
             tempat.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
     }
+
 }
