@@ -5,4 +5,15 @@
 
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="tanggal_akhir">Tanggal Akhir</string>
+    <string name="tanggal_awal">Tanggal Awal</string>
+    <string name="cari">cari</string>
+    <string name="hapus_filter">hapus filter</string>
+    <string name="simpan_laporan">simpan laporan</string>
+    <string name="total_transaksi">Total Transaksi</string>
+    <string name="total_jumlah">Total Jumlah</string>
+    <string name="rp_0">Rp 0</string>
+    <string name="date">date</string>
+    <string name="menu">menu</string>
+    <string name="logo">logo</string>
 </resources>
