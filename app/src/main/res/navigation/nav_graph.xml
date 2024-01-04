@@ -7,7 +7,7 @@
 
     <activity
         android:id="@+id/nav_kalkulator"
-        android:name="com.example.banksampah.home"
+        android:name="com.example.banksampah.kalkulator"
         android:label="home"
         tools:layout="@layout/activity_home" />
     <activity

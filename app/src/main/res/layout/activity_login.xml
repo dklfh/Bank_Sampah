@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:text="LUPA PASSWORD?"
             android:textStyle="bold"
-            android:textColor="@color/biru"
+            android:textColor="@color/biru"/>
 
         <LinearLayout
             android:layout_width="match_parent"
