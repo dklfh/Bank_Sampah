@@ -60,10 +60,10 @@
 
                 <EditText
                     android:id="@+id/tgl_awal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
                     android:text="@string/tanggal_awal"
-                    android:layout_marginEnd="130dp"
+                    android:layout_marginEnd="80dp"
                     android:textSize="18sp"
                     android:autofillHints="name"
                     android:inputType="date"
@@ -71,8 +71,8 @@
 
                 <EditText
                     android:id="@+id/tgl_akhir"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
                     android:text="@string/tanggal_akhir"
                     android:textSize="18sp"
                     android:autofillHints="name"
@@ -87,12 +87,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="14dp"
                 android:columnCount="2"
-                android:rowCount="2"
                 >
 
                 <Button
                     android:layout_width="160dp"
-                    android:layout_height="37dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="0dp"
                     android:layout_marginEnd="45dp"
                     android:background="@drawable/laporanbutton"
@@ -101,7 +100,7 @@
 
                 <Button
                     android:layout_width="160dp"
-                    android:layout_height="37dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/laporanbutton"
                     android:text="@string/hapus_filter"
                     android:textColor="@color/white" />
@@ -118,7 +117,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
+                android:layout_marginVertical="16dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -146,7 +145,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/total_jumlah"
                         android:textSize="16sp"
-                        android:textColor="#2BA84A"
+                        android:textColor="@color/dasar"
+                        android:textStyle="bold"
                         android:layout_marginStart="0dp"
                         android:layout_marginEnd="210dp"/>
 
