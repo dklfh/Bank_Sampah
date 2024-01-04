@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".laporan_kategori">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/navbar"
+            android:gravity="start"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/meni"
+                android:contentDescription="@string/menu"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="356dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/ralewaysemibold"
+                android:gravity="center"
+                android:text="@string/kalkulator"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:src="@drawable/logo"
+                android:contentDescription="@string/logo"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="23dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/tgl_awal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tanggal_awal"
+                    android:layout_marginEnd="130dp"
+                    android:textSize="18sp"
+                    android:autofillHints="name"
+                    android:inputType="date"
+                    android:labelFor="@id/tgl_awal"/>
+
+                <EditText
+                    android:id="@+id/tgl_akhir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tanggal_akhir"
+                    android:textSize="18sp"
+                    android:autofillHints="name"
+                    android:inputType="date"
+                    android:hint="@string/tanggal_akhir"
+                    android:labelFor="@id/tgl_akhir"/>
+
+            </LinearLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="14dp"
+                android:columnCount="2"
+                android:rowCount="2"
+                >
+
+                <Button
+                    android:layout_width="160dp"
+                    android:layout_height="37dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="45dp"
+                    android:background="@drawable/laporanbutton"
+                    android:text="@string/cari"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:layout_width="160dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/laporanbutton"
+                    android:text="@string/hapus_filter"
+                    android:textColor="@color/white" />
+            </GridLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/laporanbutton"
+                android:text="@string/simpan_laporan"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:src="@drawable/dateicons"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="0dp"
+                    android:contentDescription="@string/date"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_transaksi"
+                    android:textSize="16sp"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_jumlah"
+                        android:textSize="16sp"
+                        android:textColor="#2BA84A"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="210dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rp_0"
+                        android:textColor="#2BA84A"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
