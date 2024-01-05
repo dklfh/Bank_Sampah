@@ -61,6 +61,7 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.0.0")
     implementation ("androidx.drawerlayout:drawerlayout:1.2.0")
 
+    implementation ("com.google.firebase:firebase-bom:32.7.0")
     implementation("com.google.firebase:firebase-analytics-ktx:21.5.0")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.google.firebase:firebase-auth-ktx:22.3.0")

@@ -16,4 +16,5 @@
     <string name="date">date</string>
     <string name="menu">menu</string>
     <string name="logo">logo</string>
+    <string name="default_web_client_id" />
 </resources>

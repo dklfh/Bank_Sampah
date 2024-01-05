@@ -52,7 +52,6 @@
                 android:textColor="@color/teks"
                 android:textSize="12sp" />
 
-
         </LinearLayout>
 
         <LinearLayout
@@ -61,7 +60,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btgoogle"
+                android:id="@+id/btn_google"
                 android:layout_width="324dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="25dp"
@@ -74,7 +73,7 @@
                 android:textColor="@color/black" />
 
             <Button
-                android:id="@+id/btfacebook"
+                android:id="@+id/btn_facebook"
                 android:layout_width="324dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="10dp"
@@ -87,7 +86,7 @@
                 android:textColor="@color/black" />
 
             <Button
-                android:id="@+id/btx"
+                android:id="@+id/btn_twitter"
                 android:layout_width="324dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="10dp"
