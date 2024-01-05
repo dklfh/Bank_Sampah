@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="80dp"
         android:orientation="vertical">
@@ -24,13 +24,13 @@
             android:fontFamily="sans-serif-black"
             android:text="LOGIN"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/biru"
             android:textSize="25sp" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -42,13 +42,13 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="LANJUTKAN LOGIN"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/biru"
                 android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/textwarna"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="38dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="BANK SAMPAH"
@@ -72,6 +72,7 @@
             android:id="@+id/editTextTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/bakcground_edit_text"
             android:ems="10"
             android:hint="Password"
@@ -79,6 +80,13 @@
             android:paddingHorizontal="25dp"
             android:paddingVertical="15dp"
             android:textSize="16sp" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LUPA PASSWORD?"
+            android:textStyle="bold"
+            android:textColor="@color/biru"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,6 +106,46 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:layout_marginBottom="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="INDONESIA"
+                android:textColor="@color/biru"
+                android:textSize="12dp"/>
 
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/arrow_up"
+                android:layout_marginRight="40dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PERSYARATAN"
+                android:textSize="12dp"
+                android:layout_marginRight="15dp"
+                android:textColor="@color/biru"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PRIVASI"
+                android:textSize="12dp"
+                android:layout_marginRight="15dp"
+                android:textColor="@color/biru"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BANTUAN"
+                android:textSize="12dp"
+                android:textColor="@color/biru"/>
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

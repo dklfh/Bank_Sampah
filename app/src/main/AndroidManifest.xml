@@ -13,7 +13,7 @@
         android:theme="@style/Theme.BankSampah"
         tools:targetApi="31">
         <activity
-            android:name=".laporan_kategori"
+            android:name=".profil"
             android:exported="false" />
         <activity
             android:name=".datasubkategori"
@@ -37,15 +37,13 @@
             android:name=".login"
             android:exported="false" />
         <activity
-            android:name=".home"
+            android:name=".kalkulator"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
