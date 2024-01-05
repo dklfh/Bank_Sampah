@@ -95,7 +95,7 @@
                 android:fontFamily="@font/ralewaybold"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="20dp"
-                android:text="   LOGIN X"
+                android:text="    LOGIN X"
                 android:textColor="@color/black" />
         </LinearLayout>
 
