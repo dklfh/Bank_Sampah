@@ -111,24 +111,18 @@
             android:layout_height="match_parent"
             android:gravity="bottom"
             android:layout_marginBottom="40dp">
-            <TextView
+             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="INDONESIA"
                 android:textColor="@color/biru"
-                android:textSize="12dp"/>
-
-            <Button
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/arrow_up"
-                android:layout_marginRight="40dp"/>
+                android:textSize="12sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PERSYARATAN"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 android:layout_marginRight="15dp"
                 android:textColor="@color/biru"/>
 
@@ -136,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PRIVASI"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 android:layout_marginRight="15dp"
                 android:textColor="@color/biru"/>
 
@@ -144,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BANTUAN"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 android:textColor="@color/biru"/>
         </LinearLayout>
     </LinearLayout>

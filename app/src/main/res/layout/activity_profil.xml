@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/profil_login_bg"
     android:orientation="vertical">
 
     <LinearLayout
@@ -64,7 +63,6 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/user"
                     android:layout_marginBottom="22dp"/>
 
                 <TextView
@@ -83,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/textinput_home"
-                android:drawableStart="@drawable/settings"
+                android:drawableStart="@drawable/setting"
                 android:text="   Edit account"
                 android:gravity="center_vertical"
                 android:layout_marginBottom="10dp"/>
@@ -93,7 +91,6 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/textinput_home"
-                android:drawableStart="@drawable/double_person"
                 android:text="   Other account"
                 android:gravity="center_vertical"
                 android:layout_marginBottom="10dp"/>
@@ -103,7 +100,6 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/textinput_home"
-                android:drawableStart="@drawable/share"
                 android:text="   Share"
                 android:gravity="center_vertical"
                 android:layout_marginBottom="10dp"/>
@@ -112,7 +108,6 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp"
                 android:background="@drawable/textinput_home"
-                android:drawableStart="@drawable/question"
                 android:text="   About us"
                 android:gravity="center_vertical"
                 android:layout_marginBottom="10dp"/>
@@ -127,7 +122,6 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="10dp"
                     android:background="@color/white"
-                    android:drawableStart="@drawable/logout"
                     android:text=" Log out"/>
             </LinearLayout>
         </LinearLayout>
