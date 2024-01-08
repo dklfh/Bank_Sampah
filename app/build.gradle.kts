@@ -6,11 +6,10 @@ plugins {
 android {
     signingConfigs {
         getByName("debug") {
-            storeFile =
-                file("C:\\Users\\Lenovo\\AndroidStudioProjects\\BankSampah\\MyKeystore\\keystore.jks")
-            storePassword = "SulihYandeGungDevara"
+            storeFile = file("C:\\Keystore\\keystore.jks")
+            storePassword = "123456"
             keyAlias = "key0"
-            keyPassword = "SulihYandeGungDevara"
+            keyPassword = "123456"
         }
     }
     namespace = "com.example.banksampah"
