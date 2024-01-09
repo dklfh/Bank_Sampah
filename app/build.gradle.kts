@@ -1,13 +1,14 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
     signingConfigs {
         getByName("debug") {
             storeFile =
-                file("G:\\Android\\Android Studio Project\\Bank Sampah\\MyKeystore\\keystore.jks")
+                file("C:\\Users\\warta\\AndroidStudioProjects\\Bank_Sampah\\MyKeystore\\keystore.jks")
             storePassword = "SulihYandeGungDevara"
             keyAlias = "key0"
             keyPassword = "SulihYandeGungDevara"
