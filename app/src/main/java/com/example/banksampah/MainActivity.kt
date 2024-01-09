@@ -73,7 +73,9 @@ class MainActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idtoken, null)
         firebaseAuth.signInWithCredential(credential)
             .addOnSuccessListener {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, kalkulator::class.java))
+                startActivity(intent)
+                finish()
             }
             .addOnFailureListener{ error ->
                 Toast.makeText(this, error.localizedMessage, LENGTH_SHORT).show()
