@@ -1,28 +1,30 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.banksampah
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
 
 class MainActivity : AppCompatActivity() {
-    lateinit var btngoogle : Button
-    lateinit var btnfacebook : Button
-    lateinit var btntwitter : Button
-    lateinit var googleSignInClient : GoogleSignInClient
-    lateinit var progressDialog: ProgressDialog
+    private lateinit var btngoogle : Button
+    private lateinit var btnfacebook : Button
+    private lateinit var btntwitter : Button
+    private lateinit var googleSignInClient : GoogleSignInClient
+    private lateinit var progressDialog: ProgressDialog
 
-    var firebaseAuth = FirebaseAuth.getInstance()
+    private var firebaseAuth = FirebaseAuth.getInstance()
 
     companion object {
         private const val RC_SIGN_IN = 1001
@@ -30,10 +32,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         setContentView(R.layout.activity_main)
         btngoogle = findViewById(R.id.btn_google)
         btnfacebook = findViewById(R.id.btn_facebook)
         btntwitter = findViewById(R.id.btn_twitter)
+
+        FirebaseAuth.getInstance()
 
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Logging")
@@ -51,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -73,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idtoken, null)
         firebaseAuth.signInWithCredential(credential)
             .addOnSuccessListener {
-                startActivity(Intent(this, kalkulator::class.java))
+                startActivity(Intent(this, DataSatuan::class.java))
                 startActivity(intent)
                 finish()
             }
