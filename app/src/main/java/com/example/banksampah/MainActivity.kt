@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idtoken, null)
         firebaseAuth.signInWithCredential(credential)
             .addOnSuccessListener {
-                startActivity(Intent(this, DataSatuan::class.java))
+                startActivity(Intent(this, kalkulator::class.java))
                 startActivity(intent)
                 finish()
             }

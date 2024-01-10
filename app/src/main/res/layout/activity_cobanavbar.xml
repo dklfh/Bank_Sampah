@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/tempat"
     android:fitsSystemWindows="true"
-    tools:context=".CobaNavbar"
+    tools:context=".cobanavbar"
 >
 
     <LinearLayout

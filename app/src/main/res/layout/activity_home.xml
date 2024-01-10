@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".kalkulator">
 
 
@@ -81,7 +81,7 @@
                         android:hint="Nama Bank Sampah. . ."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp"
-                        android:textColor="@color/abu"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -111,7 +111,7 @@
                         android:hint="Nama Petugas . . ."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp"
-                        android:textColor="@color/abu"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -141,7 +141,7 @@
                         android:hint="Nama Nasabah. . ."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp"
-                        android:textColor="@color/abu"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -162,17 +162,35 @@
                         android:text="Tanggal"
                         android:textColor="@color/teks" />
 
-                    <EditText
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/textinput_home"
-                        android:fontFamily="@font/ralewaymedium"
-                        android:hint="Tanggal. . ."
-                        android:paddingHorizontal="15dp"
-                        android:paddingVertical="15dp"
-                        android:textColor="@color/abu"
-                        android:textSize="16sp" />
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        android:background="@drawable/textinput_home">
+                        
+                        <TextView
+                            android:id="@+id/tvDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Tanggal"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+
+                        <Button
+                            android:id="@+id/btnDatePicker"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/clock"
+                            />
+
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -211,8 +229,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:fontFamily="@font/ralewaymedium"
-                                android:text="Tanggal"
-                                android:textColor="@color/white" />
+                                android:text="Kategori"
+                                android:textColor="@color/white"
+                               />
 
                             <Button
                                 android:id="@+id/button2"
@@ -223,7 +242,7 @@
                                 android:fontFamily="@font/ralewaymedium"
                                 android:gravity="left"
                                 android:padding="20dp"
-                                android:text="Kategori Samapah. . ."
+                                android:text="Kategori Sampah. . ."
                                 android:textSize="13sp" />
 
                             <TextView
@@ -425,7 +444,7 @@
                         android:hint="Masukan Username. . ."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp"
-                        android:textColor="@color/abu"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -454,7 +473,7 @@
                         android:hint="Masukan Rekening. . ."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp"
-                        android:textColor="@color/abu"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -483,7 +502,7 @@
                         android:hint="Masukan Nomer Telepon. . ."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp"
-                        android:textColor="@color/abu"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                 </LinearLayout>
