@@ -7,7 +7,7 @@
     android:id="@+id/tempat"
     android:fitsSystemWindows="true"
     tools:context=".cobanavbar"
->
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
