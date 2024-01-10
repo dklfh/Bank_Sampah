@@ -10,7 +10,10 @@ import java.util.Calendar
 import java.util.Locale
 
 class kalkulator : AppCompatActivity() {
-
+    private var currentValue = 0
+    private lateinit var number: TextView
+    private lateinit var btnPlus : Button
+    private lateinit var btnMinus : Button
     private lateinit var tvDatePicker: TextView
     private lateinit var btnDatePicker: Button
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +22,11 @@ class kalkulator : AppCompatActivity() {
 
         tvDatePicker = findViewById(R.id.tvDate)
         btnDatePicker = findViewById(R.id.btnDatePicker)
+        number = findViewById(R.id.number)
+        btnPlus = findViewById(R.id.btnPlus)
+        btnMinus = findViewById(R.id.btnMinus)
+
+        updateTextView()
 
         val myCalendar = Calendar.getInstance()
         val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
@@ -33,6 +41,21 @@ class kalkulator : AppCompatActivity() {
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
+        btnPlus.setOnClickListener {
+            currentValue++
+            updateTextView()
+        }
+
+        btnMinus.setOnClickListener {
+            if (currentValue > 0) {
+                currentValue--
+                updateTextView()
+            }
+        }
+    }
+
+    private fun updateTextView() {
+        number.text = currentValue.toString()
     }
 
     private fun updateLable(myCalendar: Calendar) {
