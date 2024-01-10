@@ -10,7 +10,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 
 @Suppress("DEPRECATION")
-class CobaNavbar : AppCompatActivity() {
+class cobanavbar : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cobanavbar)
