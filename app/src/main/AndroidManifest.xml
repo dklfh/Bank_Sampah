@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BankSampah"
         tools:targetApi="31">
         <activity
+            android:name=".edituserprofile"
+            android:exported="false" />
+        <activity
             android:name=".LOGINTWITTER"
             android:exported="false" />
         <activity
@@ -44,8 +47,7 @@
         </activity>
         <activity
             android:name=".cobanavbar"
-            android:exported="false"/>
-
+            android:exported="false" />
     </application>
 
 </manifest>
