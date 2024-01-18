@@ -98,7 +98,8 @@
                     android:id="@+id/dropdown_list"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:inputType="none"/>
+                    android:inputType="none"
+                    android:contentDescription="@string/dropdown_description"/>
             </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout
                 android:layout_width="wrap_content"

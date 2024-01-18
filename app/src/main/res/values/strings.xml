@@ -17,4 +17,6 @@
     <string name="menu">menu</string>
     <string name="logo">logo</string>
     <string name="default_web_client_id" />
+    <string name="kategori">kategori</string>
+    <string name="dropdown_description">dropdown</string>
 </resources>
