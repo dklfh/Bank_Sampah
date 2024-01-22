@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/tempat"
+    android:fitsSystemWindows="true"
     tools:context=".kalkulator">
 
 
@@ -12,39 +14,37 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toolbar"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:background="@drawable/navbar"
-            android:gravity="start"
-            android:orientation="horizontal"
-            android:paddingHorizontal="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/meni" />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:elevation="4dp">
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="356dp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="@font/ralewaysemibold"
                 android:gravity="center"
-                android:text="@string/kalkulator"
+                android:text="Kalkulator"
                 android:textColor="@color/white" />
 
             <ImageView
                 android:id="@+id/imageView2"
+                android:layout_gravity="end"
                 android:layout_width="60dp"
                 android:layout_height="25dp"
                 android:layout_weight="1"
                 android:src="@drawable/logo" />
-        </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
 
         <ScrollView
             android:layout_width="match_parent"

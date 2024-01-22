@@ -25,9 +25,6 @@
             android:name=".edituserprofile"
             android:exported="false" />
         <activity
-            android:name=".LOGINTWITTER"
-            android:exported="false" />
-        <activity
             android:name=".profil"
             android:exported="false" />
         <activity
