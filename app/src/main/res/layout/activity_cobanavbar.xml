@@ -43,8 +43,14 @@
                 android:layout_height="25dp"
                 android:layout_weight="1"
                 android:src="@drawable/logo" />
-
         </androidx.appcompat.widget.Toolbar>
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_container"
+            app:navGraph="@navigation/nav_graph"
+            android:name="androidx.navigation.fragment.NavHostFragment"/>
 
     </LinearLayout>
 

@@ -9,14 +9,6 @@ class DataKategori : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_kategori)
 
-        findViewById<AutoCompleteTextView>(R.id.dropdown_list)
-        setAccessibilityDelegate()
 
-        val dropdownList = findViewById<AutoCompleteTextView>(R.id.dropdown_list)
-        dropdownList.contentDescription = "Deskripsi dropdown list"
     }
-}
-
-private fun setAccessibilityDelegate() {
-    TODO("Not yet implemented")
 }

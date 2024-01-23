@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".laporanTransaksi">
+    tools:context=".laporantransaksi">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -145,7 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    ?
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -170,25 +170,23 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/strokelayout"
-                    android:alpha="0.5"
-                    android:gravity="center_vertical"
                     android:layout_marginVertical="10dp"
+                    android:background="@drawable/line"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
                     android:padding="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/data_transaksi"
-                        android:fontFamily="@font/ralewayblack"
+                        android:layout_marginEnd="210dp"
+                        android:fontFamily="@font/ralewaysemibold"
+                        android:text="Data Transaksi"
+                        android:textColor="@color/teks"
                         android:textSize="16sp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="5dp"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
-
-
 
             </LinearLayout>
 

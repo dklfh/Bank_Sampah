@@ -50,8 +50,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="23dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="23dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,25 +62,25 @@
                     android:id="@+id/tgl_awal"
                     android:layout_width="140dp"
                     android:layout_height="50dp"
-                    android:text="@string/tanggal_awal"
                     android:layout_marginEnd="80dp"
-                    android:textSize="18sp"
                     android:autofillHints="name"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:inputType="date"
                     android:labelFor="@id/tgl_awal"
-                    android:fontFamily="@font/ralewaysemibold"/>
+                    android:text="@string/tanggal_awal"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/tgl_akhir"
                     android:layout_width="140dp"
                     android:layout_height="50dp"
-                    android:text="@string/tanggal_akhir"
-                    android:textSize="18sp"
                     android:autofillHints="name"
-                    android:inputType="date"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:hint="@string/tanggal_akhir"
+                    android:inputType="date"
                     android:labelFor="@id/tgl_akhir"
-                    android:fontFamily="@font/ralewaysemibold"/>
+                    android:text="@string/tanggal_akhir"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -88,8 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="14dp"
-                android:columnCount="2"
-                >
+                android:columnCount="2">
 
                 <Button
                     android:layout_width="160dp"
@@ -97,27 +96,27 @@
                     android:layout_marginStart="0dp"
                     android:layout_marginEnd="45dp"
                     android:background="@drawable/laporanbutton"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:text="@string/cari"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/ralewaysemibold"/>
+                    android:textColor="@color/white" />
 
                 <Button
                     android:layout_width="160dp"
                     android:layout_height="50dp"
                     android:background="@drawable/laporanbutton"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:text="@string/hapus_filter"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/ralewaysemibold"/>
+                    android:textColor="@color/white" />
             </GridLayout>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/laporanbutton"
+                android:fontFamily="@font/ralewaysemibold"
                 android:text="@string/simpan_laporan"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:fontFamily="@font/ralewaysemibold"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -128,41 +127,42 @@
                 <ImageView
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:src="@drawable/dateicons"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginTop="0dp"
-                    android:contentDescription="@string/date"/>
+                    android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/date"
+                    android:src="@drawable/dateicons" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:text="@string/total_transaksi"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewaysemibold"/>
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-?
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/total_jumlah"
-                        android:textSize="16sp"
-                        android:textColor="@color/dasar"
-                        android:textStyle="bold"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginEnd="210dp"
-                        android:fontFamily="@font/ralewaysemibold"/>
+
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="210dp"
+                        android:fontFamily="@font/ralewaysemibold"
+                        android:text="@string/total_jumlah"
+                        android:textColor="@color/dasar"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/ralewaysemibold"
                         android:text="@string/rp_0"
-                        android:textColor="#2BA84A"
-                        android:fontFamily="@font/ralewaysemibold"/>
+                        android:textColor="#2BA84A" />
 
 
                 </LinearLayout>
@@ -170,25 +170,23 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/strokelayout"
-                    android:alpha="0.5"
-                    android:gravity="center_vertical"
                     android:layout_marginVertical="10dp"
+                    android:background="@drawable/line"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
                     android:padding="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/data_transaksi"
-                        android:fontFamily="@font/ralewayblack"
+                        android:layout_marginEnd="210dp"
+                        android:fontFamily="@font/ralewaysemibold"
+                        android:text="Data Transaksi"
+                        android:textColor="@color/teks"
                         android:textSize="16sp"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="5dp"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
-
-
 
             </LinearLayout>
 

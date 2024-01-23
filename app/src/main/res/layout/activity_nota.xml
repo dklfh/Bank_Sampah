@@ -68,7 +68,7 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/ralewayblack"/>
+                    android:fontFamily="@font/ralewaysemibold"/>
 
                 <View
                     android:layout_width="0dp"
@@ -82,7 +82,7 @@
                     android:text="Tes 1"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/ralewaybold"/>
+                    android:fontFamily="@font/robotoregular"/>
 
             </LinearLayout>
 
@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:text="Nama Petugas"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewayblack"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:layout_marginBottom="5dp"/>
 
                 <View
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:text="Tes 2"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewaybold"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginBottom="5dp"/>
             </LinearLayout>
 
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:text="Nama Nasabah"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewayblack"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:layout_marginBottom="5dp"/>
 
                 <View
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:text="Tes 3"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewaybold"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginBottom="5dp"/>
 
             </LinearLayout>
@@ -154,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tanggal"
-                    android:fontFamily="@font/ralewayblack"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"/>
 
@@ -168,7 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Test 4"
-                    android:fontFamily="@font/ralewaybold"
+                    android:fontFamily="@font/robotoregular"
                     android:textColor="@color/black"
                     android:layout_marginBottom="5dp"/>
             </LinearLayout>
@@ -184,7 +184,7 @@
                     android:layout_height="wrap_content"
                     android:text="Nama Username"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewayblack"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:layout_marginBottom="5dp"/>
 
                 <View
@@ -198,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:text="Tes 5"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewaybold"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginBottom="5dp"/>
 
             </LinearLayout>
@@ -213,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:text="Metode Transaksi"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewayblack"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:layout_marginBottom="5dp"/>
 
                 <View
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:text="Tes 6"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewaybold"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginBottom="5dp"/>
 
             </LinearLayout>
@@ -242,7 +242,7 @@
                     android:layout_height="wrap_content"
                     android:text="No Telepon"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewayblack"
+                    android:fontFamily="@font/ralewaysemibold"
                     android:layout_marginBottom="5dp"/>
 
                 <View
@@ -256,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:text="Tes 7"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/ralewaybold"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginBottom="5dp"/>
 
             </LinearLayout>

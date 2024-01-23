@@ -3,26 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/nav_kalkulator">
+    app:startDestination="@id/nav_DatSatuan">
 
-    <activity
-        android:id="@+id/nav_kalkulator"
-        android:name="com.example.banksampah.kalkulator"
-        android:label="home"
-        tools:layout="@layout/activity_home" />
-    <activity
-        android:id="@+id/nav_DatKategori"
-        android:name="com.example.banksampah.DataKategori"
-        android:label="Data Kategori"
-        tools:layout="@layout/activity_data_kategori" />
-    <activity
+    <fragment
         android:id="@+id/nav_DatSatuan"
-        android:name="com.example.banksampah.DataSatuan"
-        android:label="Data Satuan"
-        tools:layout="@layout/activity_data_satuan" />
-    <activity
+        android:name="com.example.banksampah.coba1"
+        android:label="profile"
+        tools:layout="@layout/fragment_coba1" />
+    <fragment
+        android:id="@+id/nav_DatKategori"
+        android:name="com.example.banksampah.coba2"
+        android:label="message"
+        tools:layout="@layout/fragment_coba2" />
+    <fragment
         android:id="@+id/nav_DatSub"
-        android:name="com.example.banksampah.datasubkategori"
-        android:label="Data Sub Kategori"
-        tools:layout="@layout/activity_datasubkategori" />
+        android:name="com.example.banksampah.coba3"
+        android:label="share"
+        tools:layout="@layout/fragment_coba3" />
 </navigation>

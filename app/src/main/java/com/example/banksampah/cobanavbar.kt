@@ -18,7 +18,7 @@ class cobanavbar : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val tempat: DrawerLayout = findViewById(R.id.tempat)
 
-        val navController = Navigation.findNavController(this, R.id.kalkulator)
+        val navController = Navigation.findNavController(this, R.id.fragment_container)
         val navView: com.google.android.material.navigation.NavigationView = findViewById(R.id.nav_view)
         NavigationUI.setupWithNavController(navView, navController)
         NavigationUI.setupActionBarWithNavController(this, navController, tempat)
