@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,7 +20,8 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/meni" />
+            android:src="@drawable/meni"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/textView3"
@@ -38,7 +38,9 @@
             android:layout_width="60dp"
             android:layout_height="25dp"
             android:layout_weight="1"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"
+            tools:ignore="ImageContrastCheck"
+            android:contentDescription="TODO" />
     </LinearLayout>
 
     <LinearLayout
@@ -61,8 +63,9 @@
                android:id="@+id/namaBank"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="Nama Bank Sampah:"
-               android:textColor="@color/black"
+               android:fontFamily="@font/ralewaybold"
+               android:text="Nama Bank Sampah :"
+               android:textColor="@color/teks"
                android:textStyle="bold"
                android:layout_marginBottom="5dp"/>
 
@@ -70,8 +73,9 @@
                 android:id="@+id/namaPetugas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Nama Petugas :"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"/>
 
@@ -79,8 +83,9 @@
                 android:id="@+id/namaNasabah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Nama Nasabah :"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"/>
 
@@ -88,8 +93,9 @@
                 android:id="@+id/tanggal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Tanggal :"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"/>
 
@@ -97,8 +103,9 @@
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Username :"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"/>
 
@@ -106,35 +113,41 @@
                 android:id="@+id/Tanggal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Tanggal :"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/transkasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Metode Tranksaksi :"
-                android:textColor="@color/black"
+                android:fontFamily="@font/ralewaybold"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"/>
 
             <TextView
                 android:id="@+id/noTelpon"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:layout_height="wrap_content"
                 android:text="No Telepon :"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"/>
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/ralewayblack"
             android:text="Data Sampah"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
+            android:textColor="@color/teks"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -148,17 +161,19 @@
                 android:id="@+id/kategori"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Kategori"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"/>
 
             <TextView
                 android:id="@+id/sub_kategori"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:layout_height="wrap_content"
                 android:text="Sub-Kategori"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"/>
 
@@ -166,8 +181,9 @@
                 android:id="@+id/jumlah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Jumlah"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"/>
 
@@ -175,17 +191,20 @@
                 android:id="@+id/harga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Harga"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewayblack"
                 android:text="Total"
-                android:textColor="#F50A0A"
+                android:textColor="@color/hapus"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -201,17 +220,20 @@
                 android:id="@+id/totjum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Total Jumlah"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tothar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Total Harga"
-                android:textColor="@color/black"
+                android:textColor="@color/teks"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -225,10 +247,12 @@
                 android:id="@+id/cancelbtn"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edit"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Batal"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                android:background="@drawable/edit"/>
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,TextContrastCheck" />
 
             <View
                 android:layout_width="0dp"
@@ -239,6 +263,7 @@
                 android:id="@+id/submitbtn"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaybold"
                 android:text="Kirim"
                 android:textStyle="bold"
                 android:textColor="@color/white"

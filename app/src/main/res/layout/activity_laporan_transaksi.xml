@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".laporan_kategori">
+    tools:context=".laporanTransaksi">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/ralewaysemibold"
                 android:gravity="center"
-                android:text="@string/kalkulator"
+                android:text="Laporan Transaksi"
                 android:textColor="@color/white" />
 
             <ImageView
@@ -145,7 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-?
+                    ?
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
