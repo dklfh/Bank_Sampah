@@ -1,6 +1,11 @@
-package com.example.banksampah;
+package com.example.banksampah
 
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
-public class laporantransaksi extends Activity {
+class laporantransaksi : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_laporan_transaksi)
+    }
 }
