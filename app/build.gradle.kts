@@ -37,6 +37,10 @@ android {
             )
         }
     }
+    buildFeatures{
+        viewBinding=true
+        dataBinding=true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -67,5 +71,9 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx:21.5.0")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
+    implementation ("com.google.firebase:firebase-database:19.2.0")
+
+    //Progress Dialog Library
+    implementation ("com.jpardogo.googleprogressbar:library:1.2.0")
 
 }
