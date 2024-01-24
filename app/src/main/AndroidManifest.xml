@@ -13,13 +13,13 @@
         android:theme="@style/Theme.BankSampah"
         tools:targetApi="31" >
         <activity
-            android:name=".AboutUs"
+            android:name=".aboutus"
             android:exported="false" />
         <activity
-            android:name=".laporanSubkategori"
+            android:name=".laporansubkategori"
             android:exported="false" />
         <activity
-            android:name=".laporanTransaksi"
+            android:name=".laporantransaksi"
             android:exported="false" />
         <activity
             android:name=".edituserprofile"
