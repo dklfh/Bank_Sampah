@@ -15,7 +15,8 @@ class cobanavbar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cobanavbar)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
         val tempat: DrawerLayout = findViewById(R.id.tempat)
 
         val navController = Navigation.findNavController(this, R.id.fragment_container)
