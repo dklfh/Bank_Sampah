@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_kalkulator"
-            android:icon="@drawable/calculator"
-            android:title="Kalkulator"/>
-    </group>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <item android:id="@+id/nav_kalkulator"
+        android:icon="@drawable/calculator"
+        android:title="Kalkulator"/>
 
     <item android:title="Data">
         <menu>
@@ -16,7 +17,7 @@
                 android:title="Data Kategori"/>
             <item android:id="@+id/nav_DatSub"
                 android:icon="@drawable/data"
-                android:title="Data Sub Kategori"/>
+                android:title="Data Sub-Kategori"/>
         </menu>
     </item>
     <item android:title="Laporan">

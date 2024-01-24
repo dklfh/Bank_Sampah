@@ -25,6 +25,16 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:elevation="4dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbar_title"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:fontFamily="@font/ralewaysemibold"/>
+
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_gravity="end"
@@ -34,13 +44,10 @@
                 android:src="@drawable/logo" />
         </androidx.appcompat.widget.Toolbar>
 
-        <fragment
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/fragment_container"
-            app:navGraph="@navigation/nav_graph"
-            app:defaultNavHost="true"
-            android:name="androidx.navigation.fragment.NavHostFragment"/>
+            android:id="@+id/fragment_container"/>
 
     </LinearLayout>
 
