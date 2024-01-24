@@ -42,6 +42,8 @@
         <activity
             android:name=".kalkulator"
             android:exported="false" />
+        <activity android:name=".laporan_kategori"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true" >
