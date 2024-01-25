@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idtoken, null)
         firebaseAuth.signInWithCredential(credential)
             .addOnSuccessListener {
-                startActivity(Intent(this, cobanavbar::class.java))
+                startActivity(Intent(this, DataKategori::class.java))
                 startActivity(intent)
                 finish()
             }
