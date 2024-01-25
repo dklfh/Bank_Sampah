@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -14,14 +13,13 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [datakategorii.newInstance] factory method to
+ * Use the [datasubkategorii.newInstance] factory method to
  * create an instance of this fragment.
  */
-class datakategorii : Fragment() {
+class datasubkategorii : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-//    val player = arrayOf("Ronaldo","messi","siuuuu","MBAPEEEEE")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +34,7 @@ class datakategorii : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_datakategorii, container, false)
+        return inflater.inflate(R.layout.fragment_datasubkategorii, container, false)
     }
 
     companion object {
@@ -46,12 +44,12 @@ class datakategorii : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment datakategorii.
+         * @return A new instance of fragment datasubkategorii.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            datakategorii().apply {
+            datasubkategorii().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
