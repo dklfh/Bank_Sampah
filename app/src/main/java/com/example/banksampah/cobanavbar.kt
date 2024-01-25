@@ -55,7 +55,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             }
             // Data
             R.id.nav_DatSatuan -> {
-                replaceFragment(coba1())
+                replaceFragment(datasatuann())
                 toolbarTitle.text = "Data Satuan"
             }
             R.id.nav_DatKategori -> {
