@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.banksampah.R
@@ -16,6 +17,7 @@ class laporanKategori : Fragment() {
 
     private lateinit var tglAwalTextView: TextView
     private lateinit var tglAkhirTextView: TextView
+    private lateinit var btnhapusfilter : Button
     private val calendar = Calendar.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +27,8 @@ class laporanKategori : Fragment() {
 
         tglAwalTextView = rootView.findViewById(R.id.tgl_awal)
         tglAkhirTextView = rootView.findViewById(R.id.tgl_akhir)
+        btnhapusfilter =  rootView.findViewById(R.id.hapus)
+
 
         // Set click listener to show DatePickerDialog
         tglAwalTextView.setOnClickListener {
@@ -33,6 +37,11 @@ class laporanKategori : Fragment() {
 
         tglAkhirTextView.setOnClickListener {
             showDatePickerDialog(tglAkhirTextView)
+        }
+
+        btnhapusfilter.setOnClickListener{
+            tglAwalTextView.text=null
+            tglAkhirTextView.text=null
         }
 
         return rootView
@@ -63,4 +72,6 @@ class laporanKategori : Fragment() {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         textView.text = dateFormat.format(calendar.time)
     }
+
+
 }

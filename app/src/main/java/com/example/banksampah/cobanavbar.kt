@@ -70,7 +70,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             // Laporan
             R.id.nav_LapTransaksi -> {
                 replaceFragment(laporanTransaksii())
-                toolbarTitle.text = "Laporan Tranasksi"
+                toolbarTitle.text = "Laporan Transaksi"
             }
             R.id.nav_LapKategori -> {
                 replaceFragment(laporanKategori())

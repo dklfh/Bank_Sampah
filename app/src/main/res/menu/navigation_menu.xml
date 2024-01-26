@@ -24,7 +24,7 @@
         <menu>
             <item android:id="@+id/nav_LapTransaksi"
                 android:icon="@drawable/laporan"
-                android:title="Laporan Satuan"/>
+                android:title="Laporan Transaksi"/>
             <item android:id="@+id/nav_LapKategori"
                 android:icon="@drawable/laporan"
                 android:title="Laporan Kategori"/>

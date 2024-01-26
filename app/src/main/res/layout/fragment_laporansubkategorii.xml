@@ -25,57 +25,61 @@
                     android:id="@+id/tgl_awal"
                     android:layout_width="140dp"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="80dp"
                     android:autofillHints="name"
-                    android:fontFamily="@font/ralewaysemibold"
-                    android:labelFor="@id/tgl_awal"
-                    android:text="@string/tanggal_awal"
-                    android:textSize="18sp"
+                    android:background="@drawable/linehijau"
+                    android:fontFamily="@font/robotomedium"
                     android:gravity="center"
-                    android:textColor="@color/black"
-                    android:background="@drawable/linehijau"/>
+                    android:labelFor="@id/tgl_awal"
+                    android:hint="@string/tanggal_awal"
+                    android:textSize="18sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tgl_akhir"
                     android:layout_width="140dp"
                     android:layout_height="50dp"
                     android:autofillHints="name"
-                    android:fontFamily="@font/ralewaysemibold"
+                    android:background="@drawable/linehijau"
+                    android:fontFamily="@font/robotomedium"
+                    android:gravity="center"
                     android:hint="@string/tanggal_akhir"
                     android:labelFor="@id/tgl_akhir"
-                    android:text="@string/tanggal_akhir"
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:background="@drawable/linehijau"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="14dp"
-                android:columnCount="2"
-                >
+                android:layout_marginVertical="14dp">
 
                 <Button
                     android:layout_width="160dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginEnd="45dp"
                     android:background="@drawable/laporanbutton"
+                    android:textSize="14sp"
                     android:text="@string/cari"
                     android:textColor="@color/white"
                     android:fontFamily="@font/ralewaysemibold"/>
 
+                <View android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"/>
+
                 <Button
+                    android:id="@+id/hapus"
                     android:layout_width="160dp"
                     android:layout_height="50dp"
                     android:background="@drawable/laporanbutton"
+                    android:textSize="14sp"
                     android:text="@string/hapus_filter"
                     android:textColor="@color/white"
                     android:fontFamily="@font/ralewaysemibold"/>
-            </GridLayout>
+            </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
@@ -83,6 +87,7 @@
                 android:background="@drawable/laporanbutton"
                 android:text="@string/simpan_laporan"
                 android:textColor="@color/white"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/ralewaysemibold"/>
 
