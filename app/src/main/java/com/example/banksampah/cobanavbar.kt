@@ -41,7 +41,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         toggle.syncState()
 
         if (savedInstanceState == null){
-            replaceFragment(coba1())
+            replaceFragment(calculator())
             toolbarTitle.text = "Kalkulator"
             navigationView.setCheckedItem(R.id.nav_kalkulator)
         }
@@ -50,7 +50,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_kalkulator -> {
-                replaceFragment(coba1())
+                replaceFragment(calculator())
                 toolbarTitle.text = "Kalkulator"
             }
             // Data
