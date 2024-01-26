@@ -77,7 +77,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 toolbarTitle.text = "Laporan Kategori"
             }
             R.id.nav_LapSub -> {
-                replaceFragment(coba3())
+                replaceFragment(laporansubkategorii())
                 toolbarTitle.text = "Laporan Sub-Kategori"
             }
 
