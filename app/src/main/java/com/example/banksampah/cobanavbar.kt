@@ -55,15 +55,15 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             }
             // Data
             R.id.nav_DatSatuan -> {
-                replaceFragment(coba1())
+                replaceFragment(datasatuann())
                 toolbarTitle.text = "Data Satuan"
             }
             R.id.nav_DatKategori -> {
-                replaceFragment(coba2())
+                replaceFragment(datakategorii())
                 toolbarTitle.text = "Data Kategori"
             }
             R.id.nav_DatSub -> {
-                replaceFragment(coba3())
+                replaceFragment(datasubkategorii())
                 toolbarTitle.text = "Data Sub-Kategori"
             }
 
@@ -77,7 +77,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 toolbarTitle.text = "Laporan Kategori"
             }
             R.id.nav_LapSub -> {
-                replaceFragment(coba3())
+                replaceFragment(laporansubkategorii())
                 toolbarTitle.text = "Laporan Sub-Kategori"
             }
 
