@@ -2,9 +2,16 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.BankSampah" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-<!--         <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/dasar</item>
+        <item name="colorPrimary">@color/dasar</item>
+        <item name="colorPrimaryDark">@color/dasar</item>
+        <item name="colorAccent">@color/dasar</item>
+        <item name="colorPrimaryVariant">@color/dasar</item>
 <!--        <item name="android:windowFullscreen">true</item>-->
         <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="Theme.BankSampah" parent="Base.Theme.BankSampah" />
+    <style name="Base.Theme.NavigationDrawer" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/dasar</item>
+    </style>
 </resources>
