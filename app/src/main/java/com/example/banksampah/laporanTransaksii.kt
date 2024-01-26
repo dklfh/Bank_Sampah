@@ -12,19 +12,17 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class laporansubkategorii : Fragment() {
+class laporanTransaksii : Fragment() {
 
     private lateinit var tglAwalTextView: TextView
     private lateinit var tglAkhirTextView: TextView
     private val calendar = Calendar.getInstance()
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_laporansubkategorii, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_laporan_transaksii, container, false)
 
         tglAwalTextView = rootView.findViewById(R.id.tgl_awal)
         tglAkhirTextView = rootView.findViewById(R.id.tgl_akhir)

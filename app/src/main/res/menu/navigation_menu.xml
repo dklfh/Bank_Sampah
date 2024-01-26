@@ -22,7 +22,7 @@
     </item>
     <item android:title="Laporan">
         <menu>
-            <item android:id="@+id/nav_LapSatuan"
+            <item android:id="@+id/nav_LapTransaksi"
                 android:icon="@drawable/laporan"
                 android:title="Laporan Satuan"/>
             <item android:id="@+id/nav_LapKategori"
