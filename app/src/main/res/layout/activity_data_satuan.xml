@@ -40,7 +40,6 @@
                 android:padding="20dp">
 
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,27 +86,13 @@
                         android:text="HAPUS"
                         android:textColor="@color/white"
                         android:fontFamily="@font/ralewaysemibold"/>
+
                 </LinearLayout>
 
 
+
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="bottom|end"
-                android:orientation="vertical">
-
-
-
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:contentDescription="@string/TandaPlus"
-                    android:src="@drawable/plus" />
-            </LinearLayout>
 
         </LinearLayout>
 
