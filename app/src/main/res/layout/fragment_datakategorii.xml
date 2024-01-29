@@ -34,20 +34,20 @@
 
         </LinearLayout>
 
+
+
         <ScrollView
-            android:id="@+id/kategori_sampah"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/search"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/warnahijauhome"
-                android:orientation="vertical"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="20dp">
 
@@ -93,9 +93,26 @@
                         android:text="HAPUS"
                         android:textColor="@color/white" />
                 </LinearLayout>
-            </LinearLayout>
 
+            </LinearLayout>
         </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/openButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@drawable/plus"
+                android:contentDescription="@string/TandaPlus" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
 
