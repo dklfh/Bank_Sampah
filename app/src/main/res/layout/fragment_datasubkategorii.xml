@@ -15,25 +15,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginHorizontal="10dp">
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginVertical="10dp"
                 android:background="@drawable/textinput_home"
                 android:drawableLeft="@drawable/search"
-                android:fontFamily="@font/ralewaymedium"
+                android:fontFamily="@font/ralewayregular"
                 android:hint="Cari Data Satuan"
                 android:paddingVertical="15dp"
                 android:paddingLeft="15dp"
-                android:textColor="@color/abu"
-                android:textSize="16sp" />
+                android:textColor="@color/teks"
+                android:textSize="16sp"
+                android:drawablePadding="10dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
+                android:layout_marginVertical="20dp"
                 android:background="@drawable/warnahijauhome"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -42,49 +43,54 @@
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/ralewaymedium"
                     android:text="Nama Satuan"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
 
                 <Button
                     android:id="@+id/button_kg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/bgooglebt"
+                    android:background="@drawable/textinput_home"
                     android:drawableEnd="@drawable/panah"
                     android:fontFamily="@font/ralewaymedium"
                     android:gravity="left"
                     android:padding="20dp"
                     android:text="Kg"
-                    android:textSize="13sp" />
+                    android:textSize="15sp"
+                    android:textColor="@color/teks"/>
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/ralewaymedium"
                     android:text="Nama Sub-Kategori"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/button_kg4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/bgooglebt"
+                    android:background="@drawable/textinput_home"
                     android:fontFamily="@font/ralewaymedium"
                     android:gravity="left"
                     android:padding="20dp"
                     android:text="Putihan (HDPE dan jenis lainnya)"
-                    android:textSize="13sp" />
+                    android:textSize="15sp"
+                    android:textColor="@color/teks"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -96,26 +102,25 @@
                             android:id="@+id/textView5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:layout_weight="1"
+                            android:layout_marginBottom="5dp"
                             android:fontFamily="@font/ralewaymedium"
                             android:text="Satuan"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:textSize="16sp"/>
 
                         <Button
                             android:id="@+id/button_kg3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/bgooglebt"
+                            android:background="@drawable/textinput_home"
                             android:drawableEnd="@drawable/panah"
                             android:fontFamily="@font/ralewaymedium"
                             android:gravity="left"
                             android:padding="20dp"
                             android:text="Kg"
-                            android:textSize="13sp" />
+                            android:textSize="15sp"
+                            android:textColor="@color/teks"/>
 
                     </LinearLayout>
 
@@ -128,22 +133,23 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginBottom="5dp"
                             android:fontFamily="@font/ralewaymedium"
                             android:text="Harga"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:textSize="16sp"/>
 
                         <TextView
                             android:id="@+id/button_kg2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/bgooglebt"
-                            android:fontFamily="@font/ralewaymedium"
+                            android:background="@drawable/textinput_home"
+                            android:fontFamily="@font/robotomedium"
                             android:gravity="left"
                             android:padding="20dp"
                             android:text="1200"
-                            android:textSize="13sp" />
+                            android:textSize="15sp"
+                            android:textColor="@color/teks"/>
 
                     </LinearLayout>
 
@@ -160,9 +166,9 @@
                         android:id="@+id/button_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="15dp"
                         android:background="@drawable/edit"
-                        android:fontFamily="@font/ralewaysemibold"
+                        android:fontFamily="@font/ralewaybold"
                         android:text="edit"
                         android:textColor="@color/white" />
 
@@ -170,14 +176,25 @@
                         android:id="@+id/button_hapus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
                         android:background="@drawable/hapus"
-                        android:fontFamily="@font/ralewaysemibold"
+                        android:fontFamily="@font/ralewaybold"
                         android:text="HAPUS"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|end"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageButton"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:src="@drawable/plus" />
             </LinearLayout>
 
         </LinearLayout>

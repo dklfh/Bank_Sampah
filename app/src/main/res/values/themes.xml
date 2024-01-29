@@ -12,6 +12,7 @@
     </style>
     <style name="Theme.BankSampah" parent="Base.Theme.BankSampah" />
     <style name="Base.Theme.NavigationDrawer" parent="Theme.Material3.DayNight.NoActionBar">
+        
         <item name="android:statusBarColor">@color/dasar</item>
     </style>
 </resources>

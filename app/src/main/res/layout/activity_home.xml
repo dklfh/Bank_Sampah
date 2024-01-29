@@ -280,7 +280,7 @@
                                     android:id="@+id/btnPlus"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    android:background="@drawable/plus2" />
+                                    android:background="@drawable/plus" />
 
                             </LinearLayout>
 
@@ -306,7 +306,7 @@
                             android:id="@+id/imageView4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/plus2" />
+                            android:src="@drawable/plus" />
                     </LinearLayout>
 
                     <Button
