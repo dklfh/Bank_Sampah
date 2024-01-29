@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import android.app.Activity
+import android.content.Intent
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -21,12 +24,14 @@ class calculator : Fragment() {
     private lateinit var tvDatePicker: TextView
     private lateinit var btnDatePicker: Button
     private lateinit var btnBersihkan: Button
+    private lateinit var btnKirim : Button
     private lateinit var namaBank : EditText
     private lateinit var namaPetugas : EditText
     private lateinit var namaNasabah : EditText
     private lateinit var username : EditText
     private lateinit var rekening : EditText
     private lateinit var noTelp : EditText
+    private val REQUEST_CODE_SECOND_ACTIVITY = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +55,7 @@ class calculator : Fragment() {
         btnPlus = view.findViewById(R.id.btnPlus)
         btnMinus = view.findViewById(R.id.btnMinus)
         btnBersihkan = view.findViewById(R.id.buttonBersihkan)
+        btnKirim = view.findViewById(R.id.btnKirim)
         updateTextView()
 
         val myCalendar = Calendar.getInstance()
@@ -88,8 +94,61 @@ class calculator : Fragment() {
             rekening.text = null
             noTelp.text = null
         }
+
+        btnKirim.setOnClickListener {
+            val inputText1 = namaBank.text.toString().trim()
+            val inputText2 = namaPetugas.text.toString().trim()
+            val inputText3 = namaNasabah.text.toString().trim()
+            val inputText4 = username.text.toString().trim()
+            val inputText5 = rekening.text.toString().trim()
+            val inputText6 = noTelp.text.toString().trim()
+            val inputDate = tvDatePicker.text.toString().trim()
+            var isAllFieldsFilled = true
+            if (inputText1.isEmpty()) {
+                namaBank.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputText2.isEmpty()) {
+                namaPetugas.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputText3.isEmpty()) {
+                namaNasabah.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputText4.isEmpty()) {
+                username.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputText5.isEmpty()) {
+                rekening.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputText6.isEmpty()) {
+                noTelp.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputDate.isEmpty()) {
+                tvDatePicker.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (isAllFieldsFilled) {
+                val intent = Intent(activity, cekData::class.java)
+                startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
+            }
+        }
         return view
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_SECOND_ACTIVITY) {
+            if (resultCode == Activity.RESULT_OK) {
+            }
+        }
+    }
+
 
     private fun updateTextView() {
         number.text = currentValue.toString()
@@ -99,5 +158,6 @@ class calculator : Fragment() {
         val myFormat = "dd-MM-yyyy"
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
         tvDatePicker.setText(sdf.format(myCalendar.time))
+        tvDatePicker.error = null
     }
 }
