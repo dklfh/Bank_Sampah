@@ -198,7 +198,7 @@
                             android:textSize="16sp" />
 
                         <Spinner
-                            android:id="@+id/spinner1"
+                            android:id="@+id/spinner3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/textinput_home"
