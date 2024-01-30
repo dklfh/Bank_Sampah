@@ -12,9 +12,14 @@ import android.widget.TextView
 import android.widget.Toast
 import android.app.Activity
 import android.content.Intent
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+
+
 
 class calculator : Fragment() {
     private var currentValue = 0
@@ -37,11 +42,14 @@ class calculator : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    // Variabel namaKategori
+    private val nKategori = arrayOf("Plastik RIGD/Berbentuk", "Gelasan", "Plastik Fleksibel atau Lembaran"
+            ,"Plastik Kerasan", "Kertas" , "Logam" , "Kaca" , "PET" ,"Lainnya")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_calculator, container, false)
         tvDatePicker = view.findViewById(R.id.tvDate)
         btnDatePicker = view.findViewById(R.id.btnDatePicker)
@@ -135,6 +143,25 @@ class calculator : Fragment() {
             if (isAllFieldsFilled) {
                 val intent = Intent(activity, cekData::class.java)
                 startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
+            }
+
+            // Dropdown menu
+            // Inisialisasi Spinner
+            val spinner = view.findViewById<Spinner>(R.id.spinner1)
+            val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nKategori)
+            spinner.adapter = arrayAdapter
+            spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    Toast.makeText(requireContext(), "Selected Category is = ${nKategori[position]}", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
             }
         }
         return view
