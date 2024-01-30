@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 
 class datakategorii : Fragment() {
 
@@ -32,9 +31,7 @@ class datakategorii : Fragment() {
                 view: View?,
                 position: Int,
                 id: Long
-            ) {
-                Toast.makeText(requireContext(), "Selected player is = ${player[position]}", Toast.LENGTH_SHORT).show()
-            }
+            ) {}
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Not implemented
