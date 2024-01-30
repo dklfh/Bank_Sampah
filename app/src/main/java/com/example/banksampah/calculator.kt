@@ -64,10 +64,12 @@ class calculator : Fragment() {
         btnMinus = view.findViewById(R.id.btnMinus)
         btnBersihkan = view.findViewById(R.id.buttonBersihkan)
         btnKirim = view.findViewById(R.id.btnKirim)
+
+
         updateTextView()
 
         val myCalendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+        val datePicker = DatePickerDialog.OnDateSetListener { View, year, month, dayOfMonth ->
             myCalendar.set(Calendar.YEAR, year)
             myCalendar.set(Calendar.MONTH, month)
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
