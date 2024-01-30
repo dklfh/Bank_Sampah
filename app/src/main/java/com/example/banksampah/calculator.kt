@@ -50,6 +50,7 @@ class calculator : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_datakategorii, container, false)
         val view = inflater.inflate(R.layout.fragment_calculator, container, false)
         tvDatePicker = view.findViewById(R.id.tvDate)
         btnDatePicker = view.findViewById(R.id.btnDatePicker)
@@ -145,25 +146,6 @@ class calculator : Fragment() {
             if (isAllFieldsFilled) {
                 val intent = Intent(activity, cekData::class.java)
                 startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
-            }
-
-            // Dropdown menu
-            // Inisialisasi Spinner
-            val spinner = view.findViewById<Spinner>(R.id.spinner1)
-            val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nKategori)
-            spinner.adapter = arrayAdapter
-            spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    Toast.makeText(requireContext(), "Selected Category is = ${nKategori[position]}", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                }
             }
         }
         return view

@@ -12,7 +12,12 @@
     </style>
     <style name="Theme.BankSampah" parent="Base.Theme.BankSampah" />
     <style name="Base.Theme.NavigationDrawer" parent="Theme.Material3.DayNight.NoActionBar">
-        
+        <item name="android:statusBarColor">@color/dasar</item>
+    </style>
+    <style name="Base.Theme.cekdata" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/dasar</item>
+        <item name="colorPrimaryDark">@color/dasar</item>
+        <item name="colorAccent">@color/dasar</item>
         <item name="android:statusBarColor">@color/dasar</item>
     </style>
 </resources>
