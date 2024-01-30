@@ -14,6 +14,7 @@ import android.app.Activity
 import android.content.Intent
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import android.widget.Spinner
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -52,8 +53,8 @@ class calculator : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_datakategorii, container, false)
         val view = inflater.inflate(R.layout.fragment_calculator, container, false)
+        val btnDatePicker: LinearLayout = view.findViewById(R.id.btnDatePicker)
         tvDatePicker = view.findViewById(R.id.tvDate)
-        btnDatePicker = view.findViewById(R.id.btnDatePicker)
         number = view.findViewById(R.id.number)
         namaBank = view.findViewById(R.id.namaBank)
         namaPetugas = view.findViewById(R.id.namaPetugas)
