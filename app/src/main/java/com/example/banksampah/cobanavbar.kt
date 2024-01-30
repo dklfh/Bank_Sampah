@@ -15,30 +15,31 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 //import androidx.fragment.app.replace
 import com.google.android.material.navigation.NavigationView
+import android.view.ViewGroup
+
 
 class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var tempat:DrawerLayout
     private lateinit var toolbarTitle: TextView
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cobanavbar)
 
-        //versi terbaru
-        tempat = findViewById<DrawerLayout>(R.id.tempat)
-
-        val  toolbar = findViewById<Toolbar>(R.id.toolbar)
+        tempat = findViewById(R.id.tempat)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
+        toolbarTitle = findViewById(R.id.toolbar_title)
 
-        val  navigationView = findViewById<NavigationView>(R.id.nav_view)
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
-        val toggle = ActionBarDrawerToggle(this, tempat, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle = ActionBarDrawerToggle(
+            this, tempat, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
         tempat.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -50,7 +51,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.nav_kalkulator -> {
                 replaceFragment(calculator())
                 toolbarTitle.text = "Kalkulator"
@@ -83,11 +84,11 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 toolbarTitle.text = "Laporan Sub-Kategori"
             }
 
-            // Pengaturan (masih coba2)
             R.id.nav_hapus -> {
-                replaceFragment(coba3())
+                showOverlay()
                 toolbarTitle.text = "judul"
             }
+
             R.id.nav_setting -> {
                 replaceFragment(coba3())
                 toolbarTitle.text = "judul"
@@ -97,19 +98,25 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         return true
     }
 
-    private fun replaceFragment(fragment: Fragment){
+    private fun showOverlay() {
+        val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
+        val overlayView = layoutInflater.inflate(R.layout.perdatasampah, null)
+        parentView.addView(overlayView)
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
         transaction.commit()
     }
 
-    @Deprecated("Deprecated in Java")
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
-        if (tempat.isDrawerOpen(GravityCompat.START)){
+        if (tempat.isDrawerOpen(GravityCompat.START)) {
             tempat.closeDrawer(GravityCompat.START)
         } else {
             onBackPressedDispatcher.onBackPressed()
         }
     }
 }
+
