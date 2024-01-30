@@ -477,13 +477,13 @@
 
                 </LinearLayout>
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/btnKirim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/buttonlogin"
                     android:fontFamily="@font/ralewaybold"
-                    android:text="Bersihkan"
+                    android:text="Kirim"
                     android:textColor="@color/white"
                     android:layout_marginHorizontal="30dp"
                     android:layout_marginBottom="40dp"/>

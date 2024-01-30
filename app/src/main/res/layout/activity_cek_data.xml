@@ -72,6 +72,7 @@
                     android:textColor="@color/teks"
                     android:textStyle="bold" />
 
+
                 <TextView
                     android:id="@+id/namaPetugas"
                     android:layout_width="wrap_content"

@@ -16,6 +16,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.Spinner
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -38,6 +39,17 @@ class calculator : Fragment() {
     private lateinit var rekening : EditText
     private lateinit var noTelp : EditText
     private val REQUEST_CODE_SECOND_ACTIVITY = 1
+
+//    kirim data
+    data class DataTransaksi(
+        val namaBank: String,
+        val namaPetugas: String,
+        val namaNasabah: String,
+        val tanggal: String,
+        val username: String,
+        val rekening: String,
+        val noTelp: String
+    ) : Serializable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +89,16 @@ class calculator : Fragment() {
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updateLable(myCalendar)
         }
+
+        val dataTransaksi = DataTransaksi(
+            namaBank = namaBank.text.toString().trim(),
+            namaPetugas = namaPetugas.text.toString().trim(),
+            namaNasabah = namaNasabah.text.toString().trim(),
+            tanggal = tvDatePicker.text.toString().trim(),
+            username = username.text.toString().trim(),
+            rekening = rekening.text.toString().trim(),
+            noTelp = noTelp.text.toString().trim()
+        )
 
         btnDatePicker.setOnClickListener {
             DatePickerDialog(requireActivity(), datePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
@@ -146,9 +168,31 @@ class calculator : Fragment() {
             }
             if (isAllFieldsFilled) {
                 val intent = Intent(activity, cekData::class.java)
+                intent.putExtra("dataTransaksi", dataTransaksi)
                 startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
             }
         }
+
+        // Dropdown menu
+        // Inisialisasi Spinner
+        val spinner = view.findViewById<Spinner>(R.id.spinner3)
+        val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nKategori)
+        spinner.adapter = arrayAdapter
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                Toast.makeText(requireContext(), "Selected Category is = ${nKategori[position]}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+
+
         return view
     }
 
