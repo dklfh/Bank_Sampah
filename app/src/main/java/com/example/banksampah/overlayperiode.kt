@@ -8,8 +8,9 @@ interface OverlayListener {
     fun onHideOverlay()
 }
 
-class overlayperiode : AppCompatActivity() {
+class OverlayPeriode : AppCompatActivity() {
     private var overlayListener: OverlayListener? = null
+
     fun setOverlayListener(listener: OverlayListener) {
         overlayListener = listener
     }
@@ -23,6 +24,5 @@ class overlayperiode : AppCompatActivity() {
             overlayListener?.onHideOverlay()
             finish()
         }
-
     }
 }
