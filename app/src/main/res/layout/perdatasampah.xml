@@ -5,7 +5,8 @@
     android:background="@android:color/transparent"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".perdatasampah">
+    tools:context=".perdatasampah"
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
