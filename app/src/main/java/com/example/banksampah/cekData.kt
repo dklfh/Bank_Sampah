@@ -23,6 +23,7 @@ class cekData : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cek_data)
+        val submitButton: Button = findViewById(R.id.submitbtn)
         val dataTransaksi = intent.getSerializableExtra("dataTransaksi") as DataTransaksi
         namaBank = findViewById(R.id.namaBank)
         namaPetugas = findViewById(R.id.namaPetugas)
@@ -36,6 +37,11 @@ class cekData : AppCompatActivity() {
         tanggal.text = dataTransaksi.tanggal
         username.text = dataTransaksi.username
         noTelp.text = dataTransaksi.noTelp
+
+        submitButton.setOnClickListener {
+            val intent = Intent(this, nota::class.java)
+            startActivity(intent)
+        }
 
         btnBatal = findViewById(R.id.cancelbtn)
 

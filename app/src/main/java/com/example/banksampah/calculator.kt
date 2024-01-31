@@ -183,9 +183,7 @@ class calculator : Fragment() {
                 view: View?,
                 position: Int,
                 id: Long
-            ) {
-                Toast.makeText(requireContext(), "Selected Category is = ${nKategori[position]}", Toast.LENGTH_SHORT).show()
-            }
+            ) {}
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
