@@ -1,11 +1,11 @@
 package com.example.banksampah
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -13,12 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import android.view.ViewGroup
+import android.view.View
 
+class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OverlayListener {
 
-class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-    private lateinit var tempat:DrawerLayout
+    private lateinit var tempat: DrawerLayout
     private lateinit var toolbarTitle: TextView
+    private var overlayView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +41,15 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         tempat.addDrawerListener(toggle)
         toggle.syncState()
 
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             replaceFragment(calculator())
             toolbarTitle.text = "Kalkulator"
             navigationView.setCheckedItem(R.id.nav_kalkulator)
         }
+    }
+
+    override fun onHideOverlay() {
+        hideOverlay()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -97,8 +102,16 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     private fun showOverlay() {
         val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
-        val overlayView = layoutInflater.inflate(R.layout.activity_overlayperiode, null)
+        overlayView = layoutInflater.inflate(R.layout.activity_overlayperiode, null)
         parentView.addView(overlayView)
+    }
+
+    private fun hideOverlay() {
+        if (overlayView != null) {
+            val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
+            parentView.removeView(overlayView)
+            overlayView = null
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -116,4 +129,3 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         }
     }
 }
-
