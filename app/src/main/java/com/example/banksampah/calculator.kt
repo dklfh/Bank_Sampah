@@ -15,12 +15,13 @@ import android.content.Intent
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
+import android.widget.RadioGroup
 import android.widget.Spinner
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-
+import android.widget.RadioButton
 
 
 class calculator : Fragment() {
@@ -35,10 +36,12 @@ class calculator : Fragment() {
     private lateinit var namaBank : EditText
     private lateinit var namaPetugas : EditText
     private lateinit var namaNasabah : EditText
+    private lateinit var radioGroupPayment : RadioGroup
     private lateinit var username : EditText
     private lateinit var rekening : EditText
     private lateinit var noTelp : EditText
     private val REQUEST_CODE_SECOND_ACTIVITY = 1
+    private var dataTransaksi = DataTransaksi("", "", "", "", "", "", "")
 
 //    kirim data
     data class DataTransaksi(
@@ -71,6 +74,7 @@ class calculator : Fragment() {
         namaBank = view.findViewById(R.id.namaBank)
         namaPetugas = view.findViewById(R.id.namaPetugas)
         namaNasabah = view.findViewById(R.id.namaNasabah)
+        radioGroupPayment = view.findViewById(R.id.radioGroupPayment)
         username = view.findViewById(R.id.username)
         rekening = view.findViewById(R.id.rekening)
         noTelp = view.findViewById(R.id.noTelp)
@@ -89,16 +93,6 @@ class calculator : Fragment() {
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updateLable(myCalendar)
         }
-
-        val dataTransaksi = DataTransaksi(
-            namaBank = namaBank.text.toString().trim(),
-            namaPetugas = namaPetugas.text.toString().trim(),
-            namaNasabah = namaNasabah.text.toString().trim(),
-            tanggal = tvDatePicker.text.toString().trim(),
-            username = username.text.toString().trim(),
-            rekening = rekening.text.toString().trim(),
-            noTelp = noTelp.text.toString().trim()
-        )
 
         btnDatePicker.setOnClickListener {
             DatePickerDialog(requireActivity(), datePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
@@ -130,47 +124,52 @@ class calculator : Fragment() {
         }
 
         btnKirim.setOnClickListener {
-            val inputText1 = namaBank.text.toString().trim()
-            val inputText2 = namaPetugas.text.toString().trim()
-            val inputText3 = namaNasabah.text.toString().trim()
-            val inputText4 = username.text.toString().trim()
-            val inputText5 = rekening.text.toString().trim()
-            val inputText6 = noTelp.text.toString().trim()
-            val inputDate = tvDatePicker.text.toString().trim()
-            var isAllFieldsFilled = true
-            if (inputText1.isEmpty()) {
-                namaBank.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText2.isEmpty()) {
-                namaPetugas.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText3.isEmpty()) {
-                namaNasabah.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText4.isEmpty()) {
-                username.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText5.isEmpty()) {
-                rekening.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText6.isEmpty()) {
-                noTelp.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputDate.isEmpty()) {
-                tvDatePicker.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (isAllFieldsFilled) {
-                val intent = Intent(activity, cekData::class.java)
-                intent.putExtra("dataTransaksi", dataTransaksi)
-                startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
-            }
+            dataTransaksi = DataTransaksi(
+                namaBank = namaBank.text.toString().trim(),
+                namaPetugas = namaPetugas.text.toString().trim(),
+                namaNasabah = namaNasabah.text.toString().trim(),
+                tanggal = tvDatePicker.text.toString().trim(),
+                username = username.text.toString().trim(),
+                rekening = rekening.text.toString().trim(),
+                noTelp = noTelp.text.toString().trim()
+            )
+            val intent = Intent(activity, cekData::class.java)
+            intent.putExtra("dataTransaksi", dataTransaksi)
+            startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
+//            var isAllFieldsFilled = true
+//            if (inputText1.isEmpty()) {
+//                namaBank.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputText2.isEmpty()) {
+//                namaPetugas.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputText3.isEmpty()) {
+//                namaNasabah.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputText4.isEmpty()) {
+//                username.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputText5.isEmpty()) {
+//                rekening.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputText6.isEmpty()) {
+//                noTelp.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputDate.isEmpty()) {
+//                tvDatePicker.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (isAllFieldsFilled) {
+//                val intent = Intent(activity, cekData::class.java)
+//                intent.putExtra("dataTransaksi", dataTransaksi)
+//                startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
+//            }
         }
 
         // Dropdown menu
@@ -204,7 +203,6 @@ class calculator : Fragment() {
             }
         }
     }
-
 
     private fun updateTextView() {
         number.text = currentValue.toString()
