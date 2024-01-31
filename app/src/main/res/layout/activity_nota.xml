@@ -55,6 +55,7 @@
             android:padding="20dp">
 
             <LinearLayout
+                android:id="@+id/struk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
