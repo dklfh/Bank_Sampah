@@ -14,6 +14,9 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import android.view.ViewGroup
 import android.view.View
+import android.view.LayoutInflater
+
+
 
 class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OverlayListener {
 
@@ -102,7 +105,9 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     private fun showOverlay() {
         val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
-        overlayView = layoutInflater.inflate(R.layout.activity_overlayperiode, null)
+        val inflater = LayoutInflater.from(this)
+        val overlayView = inflater.inflate(R.layout.activity_overlayperiode, null, false)
+
         parentView.addView(overlayView)
     }
 
