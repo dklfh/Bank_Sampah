@@ -97,7 +97,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     private fun showOverlay() {
         val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
-        val overlayView = layoutInflater.inflate(R.layout.perdatasampah, null)
+        val overlayView = layoutInflater.inflate(R.layout.activity_overlayperiode, null)
         parentView.addView(overlayView)
     }
 
