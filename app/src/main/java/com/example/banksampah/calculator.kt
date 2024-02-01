@@ -21,11 +21,12 @@ import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import java.math.BigDecimal
 import android.widget.RadioButton
 
 
 class calculator : Fragment() {
-    private var currentValue = 0
+    private var currentValue = BigDecimal("1.0")
     private lateinit var number: TextView
     private lateinit var btnPlus : Button
     private lateinit var btnMinus : Button
@@ -100,19 +101,20 @@ class calculator : Fragment() {
         }
 
         btnPlus.setOnClickListener {
-            currentValue++
+            currentValue = currentValue.add(BigDecimal("0.1"))
             updateTextView()
         }
 
         btnMinus.setOnClickListener {
-            if (currentValue > 0) {
-                currentValue--
+            if (currentValue > BigDecimal("0.1")) {
+                currentValue = currentValue.subtract(BigDecimal("0.1"))
                 updateTextView()
             }
         }
 
+
         btnBersihkan.setOnClickListener {
-            currentValue = 0
+            currentValue = BigDecimal("1.0")
             updateTextView()
             tvDatePicker.text = null
             namaBank.text = null
