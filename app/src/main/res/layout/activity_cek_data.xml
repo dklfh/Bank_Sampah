@@ -1,273 +1,381 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".cekData">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/navbar"
-        android:gravity="start"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:id="@+id/header">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/meni"
-            tools:ignore="ImageContrastCheck" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="356dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="@font/ralewaysemibold"
-            android:gravity="center"
-            android:text="Data Kategori"
-            android:textColor="@color/white" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="60dp"
-            android:layout_height="25dp"
-            android:layout_weight="1"
-            android:src="@drawable/logo"
-            tools:ignore="ImageContrastCheck"
-            android:contentDescription="TODO" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp"
-        android:orientation="vertical"
-        android:layout_below="@+id/header">
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:elevation="8dp"
-            android:background="#FFFFFF"
-            android:padding="10dp"
-            android:layout_marginVertical="15dp">
-
-           <TextView
-               android:id="@+id/namaBank"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:fontFamily="@font/ralewaybold"
-               android:text="Nama Bank Sampah :"
-               android:textColor="@color/teks"
-               android:textStyle="bold"
-               android:layout_marginBottom="5dp"/>
+            android:background="@drawable/navbar"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <TextView
-                android:id="@+id/namaPetugas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Nama Petugas :"
-                android:textColor="@color/teks"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
-
-            <TextView
-                android:id="@+id/namaNasabah"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Nama Nasabah :"
-                android:textColor="@color/teks"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
-
-            <TextView
-                android:id="@+id/tanggal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Tanggal :"
-                android:textColor="@color/teks"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
-
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Username :"
-                android:textColor="@color/teks"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
-
-            <TextView
-                android:id="@+id/Tanggal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Tanggal :"
-                android:textColor="@color/teks"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"
-                tools:ignore="HardcodedText" />
-
-            <TextView
-                android:id="@+id/transkasi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Metode Tranksaksi :"
-                android:fontFamily="@font/ralewaybold"
-                android:textColor="@color/teks"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
-
-            <TextView
-                android:id="@+id/noTelpon"
-                android:layout_width="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:layout_height="wrap_content"
-                android:text="No Telepon :"
-                android:textColor="@color/teks"
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/ralewaysemibold"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="30dp"
+                android:text="Kalkulator"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:contentDescription="@string/logo"
+                android:src="@drawable/logo" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ralewayblack"
-            android:text="Data Sampah"
-            android:textColor="@color/teks"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
             android:orientation="vertical"
-            android:layout_marginVertical="18dp"
-            android:background="@drawable/datsam_bg">
+            android:padding="20dp">
 
-            <TextView
-                android:id="@+id/kategori"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Kategori"
-                android:textColor="@color/teks"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginVertical="15dp"
+                android:background="#FFFFFF"
+                android:elevation="8dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/ralewaybold"
+                        android:text="Nama Bank Sampah :"
+                        android:textColor="@color/teks"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/namaBank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/ralewaybold"
+                        android:text="Nama Petugas :"
+                        android:textColor="@color/teks"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/namaPetugas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/ralewaybold"
+                        android:text="Nama Nasabah :"
+                        android:textColor="@color/teks"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/namaNasabah"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/ralewaybold"
+                        android:text="Tanggal :"
+                        android:textColor="@color/teks"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tanggal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/ralewaybold"
+                        android:text="Username :"
+                        android:textColor="@color/teks"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/ralewaybold"
+                        android:text="Metode Transaksi :"
+                        android:textColor="@color/teks"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/pembayaran"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/ralewaybold"
+                        android:text="No Telepon :"
+                        android:textColor="@color/teks"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/noTelp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/sub_kategori"
-                android:layout_width="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:layout_height="wrap_content"
-                android:text="Sub-Kategori"
-                android:textColor="@color/teks"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
-
-            <TextView
-                android:id="@+id/jumlah"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Jumlah"
-                android:textColor="@color/teks"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
-
-            <TextView
-                android:id="@+id/harga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Harga"
-                android:textColor="@color/teks"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"
-                tools:ignore="HardcodedText" />
-
-            <TextView
-                android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ralewayblack"
-                android:text="Total"
-                android:textColor="@color/hapus"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:background="@drawable/tot_hargabg"
-            android:layout_marginBottom="100dp">
-
-            <TextView
-                android:id="@+id/totjum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Total Jumlah"
+                android:text="Data Sampah"
                 android:textColor="@color/teks"
                 android:textStyle="bold"
-                android:layout_marginBottom="5dp"
                 tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/tothar"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Total Harga"
-                android:textColor="@color/teks"
-                android:textStyle="bold"/>
+                android:layout_marginVertical="18dp"
+                android:background="@drawable/datsam_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/kategori"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/ralewaybold"
+                    android:text="Kategori"
+                    android:textColor="@color/teks"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/sub_kategori"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/ralewaybold"
+                    android:text="Sub-Kategori"
+                    android:textColor="@color/teks"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/jumlah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/ralewaybold"
+                    android:text="Jumlah"
+                    android:textColor="@color/teks"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/harga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/ralewaybold"
+                    android:text="Harga"
+                    android:textColor="@color/teks"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ralewayblack"
+                    android:text="Total"
+                    android:textColor="@color/hapus"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/tot_hargabg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/totjum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/ralewaybold"
+                    android:text="Total Jumlah"
+                    android:textColor="@color/teks"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/tothar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ralewaybold"
+                    android:text="Total Harga"
+                    android:textColor="@color/teks"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cancelbtn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit"
+                    android:fontFamily="@font/ralewaybold"
+                    android:text="Batal"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,TextContrastCheck" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/submitbtn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonlogin"
+                    android:fontFamily="@font/ralewaybold"
+                    android:text="Kirim"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/cancelbtn"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Batal"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,TextContrastCheck" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/submitbtn"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ralewaybold"
-                android:text="Kirim"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:background="@drawable/buttonlogin"/>
-        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

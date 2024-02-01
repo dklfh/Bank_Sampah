@@ -128,30 +128,31 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/btnDatePicker"
                     android:background="@drawable/textinput_home"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="12dp">
+                    android:paddingHorizontal="13dp"
+                    android:paddingVertical="10dp">
 
                     <TextView
                         android:id="@+id/tvDate"
-                        android:layout_width="wrap_content"
+                        android:layout_width="250dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/ralewayregular"
+                        android:fontFamily="@font/robotoregular"
                         android:hint="Tanggal"
                         android:textColor="@color/teks"
-                        android:textSize="15sp" />
+                        android:textSize="16sp" />
 
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1" />
 
-                    <Button
-                        android:id="@+id/btnDatePicker"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/clock"
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/kalender"
                         android:contentDescription="btndate" />
                 </LinearLayout>
 
@@ -197,8 +198,8 @@
                             android:textColor="@color/white"
                             android:textSize="16sp" />
 
-                        <Button
-                            android:id="@+id/button2"
+                        <Spinner
+                            android:id="@+id/spinner3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/textinput_home"
@@ -336,60 +337,73 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/ralewaymedium"
-                    android:text="Metode Pembayaran"
+                    android:text="Metode Transaksi"
                     android:textColor="@color/teks"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/radioGroupPayment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ovo" />
+                        android:layout_marginBottom="10dp">
+                        <RadioButton
+                            android:id="@+id/ovo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ovo"
+                            android:button="@null"/>
 
-                    <ImageView
+                        <RadioButton
+                            android:id="@+id/dana"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/dana"
+                            android:button="@null"
+                            android:layout_marginHorizontal="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/gopay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/gopay"
+                            android:button="@null"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:src="@drawable/dana" />
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/bni"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/bni"
+                            android:button="@null"/>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/gopay" />
+                        <RadioButton
+                            android:id="@+id/qris"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/qris"
+                            android:button="@null"
+                            android:layout_marginHorizontal="10dp"/>
 
-                </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/paypal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/paypal"
+                            android:button="@null"/>
+                    </LinearLayout>
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bni" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:src="@drawable/qris" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/paypal" />
-
-                </LinearLayout>
+                </RadioGroup>
 
             </LinearLayout>
 
@@ -446,6 +460,7 @@
                     android:background="@drawable/textinput_home"
                     android:fontFamily="@font/ralewayregular"
                     android:hint="Masukan Rekening. . ."
+                    android:inputType="number"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp"
                     android:textColor="@color/teks"
@@ -476,6 +491,7 @@
                     android:background="@drawable/textinput_home"
                     android:fontFamily="@font/ralewayregular"
                     android:hint="Masukan Nomer Telepon. . ."
+                    android:inputType="number"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp"
                     android:textColor="@color/teks"

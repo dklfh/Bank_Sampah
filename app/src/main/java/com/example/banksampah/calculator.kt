@@ -12,9 +12,17 @@ import android.widget.TextView
 import android.widget.Toast
 import android.app.Activity
 import android.content.Intent
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.LinearLayout
+import android.widget.RadioGroup
+import android.widget.Spinner
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import android.widget.RadioButton
+
 
 class calculator : Fragment() {
     private var currentValue = 0
@@ -28,27 +36,45 @@ class calculator : Fragment() {
     private lateinit var namaBank : EditText
     private lateinit var namaPetugas : EditText
     private lateinit var namaNasabah : EditText
+    private lateinit var radioGroupPayment : RadioGroup
     private lateinit var username : EditText
     private lateinit var rekening : EditText
     private lateinit var noTelp : EditText
     private val REQUEST_CODE_SECOND_ACTIVITY = 1
+    private var dataTransaksi = DataTransaksi("", "", "", "", "", "", "")
+
+//    kirim data
+    data class DataTransaksi(
+        val namaBank: String,
+        val namaPetugas: String,
+        val namaNasabah: String,
+        val tanggal: String,
+        val username: String,
+        val rekening: String,
+        val noTelp: String
+    ) : Serializable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
+    // Variabel namaKategori
+    private val nKategori = arrayOf("Plastik RIGD/Berbentuk", "Gelasan", "Plastik Fleksibel atau Lembaran"
+            ,"Plastik Kerasan", "Kertas" , "Logam" , "Kaca" , "PET" ,"Lainnya")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        val rootView = inflater.inflate(R.layout.fragment_datakategorii, container, false)
         val view = inflater.inflate(R.layout.fragment_calculator, container, false)
+        val btnDatePicker: LinearLayout = view.findViewById(R.id.btnDatePicker)
         tvDatePicker = view.findViewById(R.id.tvDate)
-        btnDatePicker = view.findViewById(R.id.btnDatePicker)
         number = view.findViewById(R.id.number)
         namaBank = view.findViewById(R.id.namaBank)
         namaPetugas = view.findViewById(R.id.namaPetugas)
         namaNasabah = view.findViewById(R.id.namaNasabah)
+        radioGroupPayment = view.findViewById(R.id.radioGroupPayment)
         username = view.findViewById(R.id.username)
         rekening = view.findViewById(R.id.rekening)
         noTelp = view.findViewById(R.id.noTelp)
@@ -56,10 +82,12 @@ class calculator : Fragment() {
         btnMinus = view.findViewById(R.id.btnMinus)
         btnBersihkan = view.findViewById(R.id.buttonBersihkan)
         btnKirim = view.findViewById(R.id.btnKirim)
+
+
         updateTextView()
 
         val myCalendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+        val datePicker = DatePickerDialog.OnDateSetListener { View, year, month, dayOfMonth ->
             myCalendar.set(Calendar.YEAR, year)
             myCalendar.set(Calendar.MONTH, month)
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -96,47 +124,72 @@ class calculator : Fragment() {
         }
 
         btnKirim.setOnClickListener {
-            val inputText1 = namaBank.text.toString().trim()
-            val inputText2 = namaPetugas.text.toString().trim()
-            val inputText3 = namaNasabah.text.toString().trim()
-            val inputText4 = username.text.toString().trim()
-            val inputText5 = rekening.text.toString().trim()
-            val inputText6 = noTelp.text.toString().trim()
-            val inputDate = tvDatePicker.text.toString().trim()
-            var isAllFieldsFilled = true
-            if (inputText1.isEmpty()) {
-                namaBank.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText2.isEmpty()) {
-                namaPetugas.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText3.isEmpty()) {
-                namaNasabah.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText4.isEmpty()) {
-                username.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText5.isEmpty()) {
-                rekening.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText6.isEmpty()) {
-                noTelp.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputDate.isEmpty()) {
-                tvDatePicker.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (isAllFieldsFilled) {
-                val intent = Intent(activity, cekData::class.java)
-                startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
+            dataTransaksi = DataTransaksi(
+                namaBank = namaBank.text.toString().trim(),
+                namaPetugas = namaPetugas.text.toString().trim(),
+                namaNasabah = namaNasabah.text.toString().trim(),
+                tanggal = tvDatePicker.text.toString().trim(),
+                username = username.text.toString().trim(),
+                rekening = rekening.text.toString().trim(),
+                noTelp = noTelp.text.toString().trim()
+            )
+            val intent = Intent(activity, cekData::class.java)
+            intent.putExtra("dataTransaksi", dataTransaksi)
+            startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
+//            var isAllFieldsFilled = true
+//            if (inputText1.isEmpty()) {
+//                namaBank.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputText2.isEmpty()) {
+//                namaPetugas.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputText3.isEmpty()) {
+//                namaNasabah.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputText4.isEmpty()) {
+//                username.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputText5.isEmpty()) {
+//                rekening.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputText6.isEmpty()) {
+//                noTelp.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (inputDate.isEmpty()) {
+//                tvDatePicker.error = "Kolom harus diisi!"
+//                isAllFieldsFilled = false
+//            }
+//            if (isAllFieldsFilled) {
+//                val intent = Intent(activity, cekData::class.java)
+//                intent.putExtra("dataTransaksi", dataTransaksi)
+//                startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
+//            }
+        }
+
+        // Dropdown menu
+        // Inisialisasi Spinner
+        val spinner = view.findViewById<Spinner>(R.id.spinner3)
+        val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nKategori)
+        spinner.adapter = arrayAdapter
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {}
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
+
+
         return view
     }
 
@@ -148,7 +201,6 @@ class calculator : Fragment() {
             }
         }
     }
-
 
     private fun updateTextView() {
         number.text = currentValue.toString()
