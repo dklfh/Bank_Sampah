@@ -14,9 +14,11 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import android.view.ViewGroup
 import android.view.View
-import android.view.LayoutInflater
 
 
+interface OverlayListener {
+    fun onHideOverlay()
+}
 
 class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OverlayListener {
 
@@ -24,10 +26,13 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     private lateinit var toolbarTitle: TextView
     private var overlayView: View? = null
 
+    override fun onHideOverlay() {
+        hideOverlay()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cobanavbar)
-
         tempat = findViewById(R.id.tempat)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -51,10 +56,6 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         }
     }
 
-    override fun onHideOverlay() {
-        hideOverlay()
-    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_kalkulator -> {
@@ -74,7 +75,6 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 replaceFragment(datasubkategorii())
                 toolbarTitle.text = "Data Sub-Kategori"
             }
-
             // Laporan
             R.id.nav_LapTransaksi -> {
                 replaceFragment(laporanTransaksii())
@@ -88,12 +88,9 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 replaceFragment(laporansubkategorii())
                 toolbarTitle.text = "Laporan Sub-Kategori"
             }
-
             R.id.nav_hapus -> {
                 showOverlay()
-                toolbarTitle.text = "judul"
             }
-
             R.id.nav_setting -> {
                 replaceFragment(coba3())
                 toolbarTitle.text = "judul"
@@ -103,12 +100,14 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         return true
     }
 
-    private fun showOverlay() {
-        val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
-        val inflater = LayoutInflater.from(this)
-        val overlayView = inflater.inflate(R.layout.activity_overlayperiode, null, false)
 
+    private fun showOverlay() {
+        tempat.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+
+        val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
+        overlayView = layoutInflater.inflate(R.layout.fragment_periode_sampah, parentView, false)
         parentView.addView(overlayView)
+
     }
 
     private fun hideOverlay() {
@@ -116,6 +115,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
             parentView.removeView(overlayView)
             overlayView = null
+            tempat.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         }
     }
 
