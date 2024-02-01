@@ -42,8 +42,10 @@ class calculator : Fragment() {
     private lateinit var rekening : EditText
     private lateinit var noTelp : EditText
     private lateinit var spinner2 : Spinner
+    private lateinit var btnTransaksi: LinearLayout
     private val REQUEST_CODE_SECOND_ACTIVITY = 1
     private var dataTransaksi = DataTransaksi("", "", "", "", "", "", "")
+    private var isSwitchActive = false
 
 //    kirim data
     data class DataTransaksi(
@@ -89,7 +91,6 @@ class calculator : Fragment() {
         namaBank = view.findViewById(R.id.namaBank)
         namaPetugas = view.findViewById(R.id.namaPetugas)
         namaNasabah = view.findViewById(R.id.namaNasabah)
-        radioGroupPayment = view.findViewById(R.id.radioGroupPayment)
         username = view.findViewById(R.id.username)
         rekening = view.findViewById(R.id.rekening)
         noTelp = view.findViewById(R.id.noTelp)
@@ -108,6 +109,23 @@ class calculator : Fragment() {
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updateLable(myCalendar)
         }
+
+        val btnTransaksi = view.findViewById<LinearLayout>(R.id.btnTransaksi)
+
+        btnTransaksi.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                if (isSwitchActive) {
+                    // Jika sudah aktif, nonaktifkan
+                    btnTransaksi.setBackgroundResource(R.drawable.inactive)
+                } else {
+                    // Jika tidak aktif, aktifkan
+                    btnTransaksi.setBackgroundResource(R.drawable.active)
+                }
+
+                // Ubah status aktif atau tidak aktif
+                isSwitchActive = !isSwitchActive
+            }
+        })
 
         btnDatePicker.setOnClickListener {
             DatePickerDialog(requireActivity(), datePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),

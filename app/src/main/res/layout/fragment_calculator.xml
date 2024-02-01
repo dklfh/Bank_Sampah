@@ -341,8 +341,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginVertical="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -355,67 +354,102 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <RadioGroup
-                    android:id="@+id/radioGroupPayment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp">
-                        <RadioButton
-                            android:id="@+id/ovo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/ovo"
-                            android:button="@null"/>
+                        android:background="@drawable/inactive"
+                        android:id="@+id/btnTransaksi"
+                        android:clickable="true">
 
-                        <RadioButton
-                            android:id="@+id/dana"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/dana"
-                            android:button="@null"
-                            android:layout_marginHorizontal="10dp"/>
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/ovo"
+                            android:contentDescription="ovo"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/inactive"
 
-                        <RadioButton
-                            android:id="@+id/gopay"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/gopay"
-                            android:button="@null"/>
+                        android:clickable="true"
+                        android:layout_marginHorizontal="10dp">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/dana"
+                            android:contentDescription="dana"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/inactive"
+
+                        android:clickable="true">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/gopay"
+                            android:contentDescription="gopay"/>
                     </LinearLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <RadioButton
-                            android:id="@+id/bni"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/bni"
-                            android:button="@null"/>
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/inactive"
 
-                        <RadioButton
-                            android:id="@+id/qris"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/qris"
-                            android:button="@null"
-                            android:layout_marginHorizontal="10dp"/>
+                        android:clickable="true">
 
-                        <RadioButton
-                            android:id="@+id/paypal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/paypal"
-                            android:button="@null"/>
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/bni"
+                            android:contentDescription="bni"/>
                     </LinearLayout>
-                </RadioGroup>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/inactive"
+
+                        android:clickable="true"
+                        android:layout_marginHorizontal="10dp">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/qris"
+                            android:contentDescription="qris"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/inactive"
+
+                        android:clickable="true">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/paypal"
+                            android:contentDescription="paypal"/>
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
