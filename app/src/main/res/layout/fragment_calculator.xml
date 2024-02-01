@@ -198,18 +198,25 @@
                             android:textColor="@color/white"
                             android:textSize="16sp" />
 
-                        <Spinner
-                            android:id="@+id/spinner3"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/textinput_home"
-                            android:drawableEnd="@drawable/panah"
-                            android:fontFamily="@font/ralewayregular"
-                            android:gravity="left"
-                            android:hint="Kategori Sampah. . ."
-                            android:padding="15dp"
-                            android:textColor="@color/teks"
-                            android:textSize="15sp" />
+                            android:background="@drawable/textinput_home">
+
+                            <Spinner
+                                android:id="@+id/spinner3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableEnd="@drawable/panah"
+                                android:fontFamily="@font/ralewayregular"
+                                android:gravity="left"
+                                android:paddingHorizontal="10dp"
+                                android:hint="Kategori Sampah. . ."
+                                android:textColor="@color/teks"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
 
                         <TextView
                             android:id="@+id/teskbank7"
@@ -222,18 +229,24 @@
                             android:textColor="@color/white"
                             android:textSize="16sp" />
 
-                        <Button
-                            android:id="@+id/button3"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/textinput_home"
-                            android:drawableEnd="@drawable/panah"
-                            android:fontFamily="@font/ralewayregular"
-                            android:gravity="left"
-                            android:hint="Sub-kategori. . ."
-                            android:padding="15dp"
-                            android:textColor="@color/teks"
-                            android:textSize="15sp" />
+                            android:background="@drawable/textinput_home">
+
+                            <Spinner
+                                android:id="@+id/spinner2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableEnd="@drawable/panah"
+                                android:fontFamily="@font/ralewayregular"
+                                android:gravity="left"
+                                android:paddingHorizontal="10dp"
+                                android:hint="Sub Kategori Sampah. . ."
+                                android:textColor="@color/teks"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
 
                         <TextView
                             android:id="@+id/teskbank8"
@@ -274,7 +287,7 @@
                                     android:id="@+id/number"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="0"
+                                    android:text="1"
                                     android:textColor="@color/black" />
 
                             </LinearLayout>
@@ -402,7 +415,6 @@
                             android:drawableStart="@drawable/paypal"
                             android:button="@null"/>
                     </LinearLayout>
-
                 </RadioGroup>
 
             </LinearLayout>

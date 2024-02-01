@@ -21,11 +21,12 @@ import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import java.math.BigDecimal
 import android.widget.RadioButton
 
 
 class calculator : Fragment() {
-    private var currentValue = 0
+    private var currentValue = BigDecimal("1.0")
     private lateinit var number: TextView
     private lateinit var btnPlus : Button
     private lateinit var btnMinus : Button
@@ -40,6 +41,7 @@ class calculator : Fragment() {
     private lateinit var username : EditText
     private lateinit var rekening : EditText
     private lateinit var noTelp : EditText
+    private lateinit var spinner2 : Spinner
     private val REQUEST_CODE_SECOND_ACTIVITY = 1
     private var dataTransaksi = DataTransaksi("", "", "", "", "", "", "")
 
@@ -60,7 +62,20 @@ class calculator : Fragment() {
 
     // Variabel namaKategori
     private val nKategori = arrayOf("Plastik RIGD/Berbentuk", "Gelasan", "Plastik Fleksibel atau Lembaran"
-            ,"Plastik Kerasan", "Kertas" , "Logam" , "Kaca" , "PET" ,"Lainnya")
+        ,"Plastik Kerasan", "Kertas" , "Logam" , "Kaca" , "PET" ,"Lainnya")
+
+    // Properti subKategoriMap
+    private val subKategoriMap = mapOf(
+        "Plastik RIGD/Berbentuk" to arrayOf("Putihan (HDPE & Jenis Lainnya)", "Jerigen Bening Bersih / Jerigen minyak", "Jerigen warna / bening tapi mangkak", "Tutup PET (HDPE)", "Tutup Galon (LDPE)", "Tutup Campur", "PP Emberan Campur","PP Emberan Warna", "PP Emberan Hitam", "PC Galon UTUH / BIJI", "PC Galon PECAH / KG"),
+        "Gelasan" to arrayOf("Aqua Gelas Kotor", "Aqua Gelas Bersih", "Mountea/Sablon"),
+        "Plastik Fleksibel atau Lembaran" to arrayOf("Plastik Bening PE & PP", "HD Kresek", "Kresek Campur", "LLDPE Pouch", "PP Sablon Lembaran", "Multi Layer"),
+        "Plastik Kerasan" to arrayOf("Kerasan / PS / ABS", "PVC"),
+        "Kertas" to arrayOf("Buku Tulis/Buku Pelajaran", "HVS", "Kertas Buram/LKS/warna", "Majalah", "Koran", "Duplek", "Kardus", "Kertas Campur"),
+        "Logam" to arrayOf("Besi Kaleng (Omplong)", "Besi B (Tipis)", "Besi A (Tebal & Padat)", "Seng / paku", "Aluminium Kaleng/tipis", "Aluminium Tebal", "Tembaga", "Logam Campur"),
+        "Kaca" to arrayOf("Botol Bir Bintang Besar/biji", "Botol Bir Bintang Kecil/biji", "Botol Kaca Campur"),
+        "PET" to arrayOf("Rongsok Campur", "PET KW 2", "PET Bersih Bening", "PET Bersih Biru Muda", "PET Bersih Warna", "PET Bersih Campur"),
+        "Lainnya" to arrayOf("Net & PE Foam", "Tetra Pack", "Accu per kg", "Minyak Jelantah", "Sponge/Sepatu/Sandal Bekas", "Tray Telur", "Yakult", "Kelapa Daksina", "Kulit kabel", "Boncos", "Krat")
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,19 +115,20 @@ class calculator : Fragment() {
         }
 
         btnPlus.setOnClickListener {
-            currentValue++
+            currentValue = currentValue.add(BigDecimal("0.1"))
             updateTextView()
         }
 
         btnMinus.setOnClickListener {
-            if (currentValue > 0) {
-                currentValue--
+            if (currentValue > BigDecimal("0.1")) {
+                currentValue = currentValue.subtract(BigDecimal("0.1"))
                 updateTextView()
             }
         }
 
+
         btnBersihkan.setOnClickListener {
-            currentValue = 0
+            currentValue = BigDecimal("1.0")
             updateTextView()
             tvDatePicker.text = null
             namaBank.text = null
@@ -131,7 +147,7 @@ class calculator : Fragment() {
                 tanggal = tvDatePicker.text.toString().trim(),
                 username = username.text.toString().trim(),
                 rekening = rekening.text.toString().trim(),
-                noTelp = noTelp.text.toString().trim()
+                noTelp = noTelp.text.toString().trim(),
             )
             val intent = Intent(activity, cekData::class.java)
             intent.putExtra("dataTransaksi", dataTransaksi)
@@ -174,21 +190,18 @@ class calculator : Fragment() {
 
         // Dropdown menu
         // Inisialisasi Spinner
-        val spinner = view.findViewById<Spinner>(R.id.spinner3)
-        val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nKategori)
-        spinner.adapter = arrayAdapter
-        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {}
+        val spinnerKategori = view.findViewById<Spinner>(R.id.spinner3)
+        val arrayAdapterKategori = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nKategori)
+        spinnerKategori.adapter = arrayAdapterKategori
+        spinnerKategori.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedKategori = nKategori[position]
+                updateSubKategoriSpinner(selectedKategori)
+            }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
-
 
         return view
     }
@@ -211,5 +224,16 @@ class calculator : Fragment() {
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
         tvDatePicker.setText(sdf.format(myCalendar.time))
         tvDatePicker.error = null
+    }
+
+    private fun updateSubKategoriSpinner(selectedKategori: String) {
+        spinner2 = view?.findViewById(R.id.spinner2) ?: return
+
+        val subKategoriArray = subKategoriMap[selectedKategori]
+
+        if (subKategoriArray != null) {
+            val arrayAdapterSubKategori = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, subKategoriArray)
+            spinner2.adapter = arrayAdapterSubKategori
+        }
     }
 }
