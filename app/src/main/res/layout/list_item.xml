@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:background="@drawable/warnahijauhome"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/ralewaymedium"
+        android:text="Nama Satuan"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/button_kg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/textinput_home"
+            android:fontFamily="@font/ralewaymedium"
+            android:gravity="left"
+            android:padding="15dp"
+            android:hint="Kg"
+            android:textSize="15sp"
+            android:textColor="@color/teks"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="end">
+            <Button
+                android:id="@+id/button_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit"
+                android:layout_marginRight="15dp"
+                android:text="edit"
+                android:textColor="@color/white"
+                android:fontFamily="@font/ralewaybold"/>
+            <Button
+                android:id="@+id/button_hapus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/hapus"
+                android:text="HAPUS"
+                android:textColor="@color/white"
+                android:fontFamily="@font/ralewaybold"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

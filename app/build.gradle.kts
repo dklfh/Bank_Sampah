@@ -8,7 +8,7 @@ android {
     signingConfigs {
         getByName("debug") {
             storeFile =
-                file("C:\\Users\\Lenovo\\AndroidStudioProjects\\Bank_Sampah\\MyKeystore\\keystore.jks")
+                file("C:\\Users\\warta\\AndroidStudioProjects\\Bank_Sampah\\MyKeystore\\keystore.jks")
             storePassword = "SulihYandeGungDevara"
             keyAlias = "key0"
             keyPassword = "SulihYandeGungDevara"
@@ -74,5 +74,7 @@ dependencies {
 
     //Progress Dialog Library
     implementation ("com.jpardogo.googleprogressbar:library:1.2.0")
+
+    implementation ("androidx.recyclerview:recyclerview:1.1.0")
 
 }

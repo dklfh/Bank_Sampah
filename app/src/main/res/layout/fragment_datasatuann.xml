@@ -6,10 +6,21 @@
     tools:context=".datasatuann">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addingbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:contentDescription="rr"
+            android:src="@android:drawable/ic_input_add" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,17 +59,16 @@
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
-                <Button
-                    android:id="@+id/button_kg"
+                <TextView
+                    android:id="@+id/mtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/textinput_home"
-                    android:drawableEnd="@drawable/panah"
                     android:fontFamily="@font/ralewaymedium"
                     android:gravity="left"
                     android:padding="15dp"
-                    android:text="Kg"
+                    android:hint="Kg"
                     android:textSize="15sp"
                     android:textColor="@color/teks"/>
 
@@ -91,21 +101,19 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="bottom|end"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imageButton"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:src="@drawable/plus" />
-            </LinearLayout>
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
 
-    </LinearLayout>
+
+
+    </RelativeLayout>
 
 </FrameLayout>
