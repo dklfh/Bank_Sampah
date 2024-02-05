@@ -20,7 +20,6 @@ class datasatuann : Fragment() {
     private lateinit var recy:RecyclerView
     private lateinit var userList:ArrayList<UserData>
     private lateinit var userAdapter:UserAdapter
-    private lateinit var editText: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,15 +33,11 @@ class datasatuann : Fragment() {
         recy.layoutManager=LinearLayoutManager(requireActivity())
         recy.adapter=userAdapter
         addsBtn.setOnClickListener { addInfo() }
-        editText=rootView.findViewById(R.id.recyler)
 
 
 
         return rootView
     }
-
-
-
 
 
     @SuppressLint("NotifyDataSetChanged")
