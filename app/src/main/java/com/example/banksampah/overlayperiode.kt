@@ -8,17 +8,14 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 
-interface OverlayListener {
-    fun onHideOverlay()
-}
+//interface OverlayListener {
+//    fun onHideOverlay()
+//}
 
 class OverlayPeriode : AppCompatActivity() {
     private var overlayListener: OverlayListener? = null
     private val periode = arrayOf("1 Bulan", "6 Bulan", "1 Tahun")
 
-    fun setOverlayListener(listener: OverlayListener) {
-        overlayListener = listener
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
