@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="0dp"
     app:cardElevation="8dp"
     app:cardMaxElevation="5dp">
 
@@ -24,8 +24,8 @@
         android:textColor="@color/white"
         android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/button_kg"
+        <TextView
+            android:id="@+id/mtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
