@@ -21,7 +21,6 @@ class PeriodeSampah : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_periode_sampah, container, false)
 
-        // Inisialisasi overlayListener dengan activity yang meng-host fragment ini
         overlayListener = activity as? OverlayListener
 
         val batalButton: Button = view.findViewById(R.id.batal)
@@ -45,5 +44,4 @@ class PeriodeSampah : Fragment() {
         return view
     }
 
-    // ...
 }

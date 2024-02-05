@@ -3,9 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".datasatuann">
 
     <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,10 +23,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
             android:clickable="true"
             android:contentDescription="rr"
-            android:src="@android:drawable/ic_input_add" />
+            android:src="@drawable/addbutton" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,73 +49,25 @@
                 android:textSize="16sp"
                 android:drawablePadding="10dp"/>
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp"
-                android:background="@drawable/warnahijauhome"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/ralewaymedium"
-                    android:text="Nama Satuan"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/mtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/textinput_home"
-                    android:fontFamily="@font/ralewaymedium"
-                    android:gravity="left"
-                    android:padding="15dp"
-                    android:hint="Kg"
-                    android:textSize="15sp"
-                    android:textColor="@color/teks"/>
+                android:layout_height="match_parent" >
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/button_edit"
-                        android:layout_width="wrap_content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyler"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit"
-                        android:layout_marginRight="15dp"
-                        android:text="edit"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/ralewaybold"/>
+                        android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/button_hapus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/hapus"
-                        android:text="HAPUS"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/ralewaybold"/>
+
+                    </androidx.recyclerview.widget.RecyclerView>
                 </LinearLayout>
-
-
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-
-            </androidx.recyclerview.widget.RecyclerView>
+            </ScrollView>
 
         </LinearLayout>
 
