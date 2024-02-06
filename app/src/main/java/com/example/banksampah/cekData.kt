@@ -25,6 +25,7 @@ class cekData : AppCompatActivity() {
     private lateinit var subkategori : TextView
     private lateinit var jumlah : TextView
     private lateinit var harga : TextView
+    private lateinit var subtotal : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +45,7 @@ class cekData : AppCompatActivity() {
         subkategori = findViewById(R.id.subkategori)
         jumlah = findViewById(R.id.jumlah)
         harga = findViewById(R.id.harga)
+        subtotal = findViewById(R.id.subtotal)
         judulpembayaran.text = if (metodePembayaran in listOf("BRI", "BNI", "BCA")) {
             "No Rekening"
         } else {
@@ -58,8 +60,9 @@ class cekData : AppCompatActivity() {
         pembayaran.text = dataTransaksi.pembayaran
         kategori.text = dataTransaksi.kategori
         subkategori.text = dataTransaksi.subkategori
-        jumlah.text = dataTransaksi.jumlah
-        harga.text = dataTransaksi.hargaSubKategori?.toString() ?: "0.0"
+        jumlah.text = "${dataTransaksi.jumlah} kg"
+        harga.text = "Rp. " + (dataTransaksi.hargaSubKategori?.toInt() ?: 0) + " /kg"
+        subtotal.text = "Rp. ${dataTransaksi.subtotal?.toInt() ?: 0}"
 
         submitButton.setOnClickListener {
             val intent = Intent(this, nota::class.java)

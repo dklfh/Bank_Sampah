@@ -8,7 +8,7 @@ android {
     signingConfigs {
         getByName("debug") {
             storeFile =
-                file("C:\\Users\\warta\\AndroidStudioProjects\\Bank_Sampah\\MyKeystore\\keystore.jks")
+                file("C:\\Users\\Lenovo\\AndroidStudioProjects\\Bank_Sampah\\MyKeystore\\keystore.jks")
             storePassword = "SulihYandeGungDevara"
             keyAlias = "key0"
             keyPassword = "SulihYandeGungDevara"
@@ -76,5 +76,8 @@ dependencies {
     implementation ("com.jpardogo.googleprogressbar:library:1.2.0")
 
     implementation ("androidx.recyclerview:recyclerview:1.1.0")
+
+    //PDF
+    implementation ("com.itextpdf:itext7-core:7.1.16")
 
 }
