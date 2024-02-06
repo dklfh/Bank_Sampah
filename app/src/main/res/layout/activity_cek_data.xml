@@ -376,7 +376,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:fontFamily="@font/ralewaybold"
-                        android:text="Total :"
+                        android:text="Sub-Total :"
                         android:textColor="@color/hapus"
                         android:textStyle="bold" />
 
@@ -386,7 +386,7 @@
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:id="@+id/total"
+                        android:id="@+id/subtotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""

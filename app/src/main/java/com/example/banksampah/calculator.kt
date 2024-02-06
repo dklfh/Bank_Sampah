@@ -39,14 +39,14 @@ class calculator : Fragment() {
     private lateinit var namaNasabah : EditText
     private lateinit var username : EditText
     private lateinit var rekening : EditText
-    private lateinit var pembayaran : String
+    private var pembayaran: String = ""
     private lateinit var judulRekening : TextView
     private var hargaSubKategori: Double? = null
     private var selectedKategori: String = ""
     private var selectedSubKategori: String = ""
     private lateinit var spinner2 : Spinner
     private val REQUEST_CODE_SECOND_ACTIVITY = 1
-    private var dataTransaksi = DataTransaksi("", "", "", "", "", "", "", "", "", "", 0.0)
+    private var dataTransaksi = DataTransaksi("", "", "", "", "", "", "", "", "", 0.0, 0.0,0.0)
     private var isSwitchActive = false
 
 //    kirim data
@@ -60,8 +60,9 @@ class calculator : Fragment() {
         val pembayaran: String,
         val kategori: String,
         val subkategori: String,
-        val jumlah: String,
-        val hargaSubKategori : Double?
+        val jumlah: Double?,
+        val hargaSubKategori : Double?,
+        val subtotal : Double?
     ) : Serializable
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,8 +70,15 @@ class calculator : Fragment() {
     }
 
     private val hargaSubKategoriMap = mapOf(
-        "Putihan (HDPE & Jenis Lainnya)" to 1200.0,
-        "Jerigen Bening Bersih / Jerigen minyak" to 3250.0,
+        "Putihan (HDPE & Jenis Lainnya)" to 1200.0, "Jerigen Bening Bersih / Jerigen minyak" to 3250.0, "Jerigen warna / bening tapi mangkak" to 1860.0, "Tutup PET (HDPE)" to  2650.0, "Tutup Galon (LDPE)" to 2650.0, "Tutup Campur" to 1750.0, "PP Emberan Campur" to 1000.0, "PP Emberan Warna" to 400.0, "PP Emberan Hitam" to 400.0, "PC Galon UTUH / BIJI" to 3250.0, "PC Galon PECAH / KG" to 150.0,
+        "Aqua Gelas Kotor" to 1000.0, "Aqua Gelas Bersih" to 2700.0, "Mountea/Sablon" to 500.0,
+        "Plastik Bening PE & PP" to 500.0, "HD Kresek" to 300.0, "Kresek Campur" to 150.0, "LLDPE Pouch" to 150.0, "PP Sablon Lembaran" to 200.0, "Multi Layer" to 50.0,
+        "Kerasan / PS / ABS" to 700.0, "PVC" to 600.0,
+        "Buku Tulis/Buku Pelajaran" to 900.0, "HVS" to 500.0, "Kertas Buram/LKS/warna" to 500.0, "Majalah" to 350.0, "Koran" to 1750.0, "Duplek" to 700.0, "Kardus" to 700.0, "Kertas Campur" to 650.0,
+        "Besi Kaleng (Omplong)" to 800.0, "Besi B (Tipis)" to 1000.0, "Besi A (Tebal & Padat)" to 2000.0, "Seng / paku" to 150.0, "Aluminium Kaleng/tipis" to 7500.0, "Aluminium Tebal" to 9500.0, "Tembaga" to 28000.0, "Logam Campur" to 600.0,
+        "Botol Bir Bintang Besar/biji" to 600.0, "Botol Bir Bintang Kecil/biji" to 150.0, "Botol Kaca Campur" to 100.0,
+        "Rongsok Campur" to 1000.0, "PET KW 2" to 1500.0, "PET Bersih Bening" to 600.0, "PET Bersih Biru Muda" to 3150.0, "PET Bersih Warna" to 2650.0, "PET Bersih Campur" to 2000.0,
+        "Net & PE Foam" to 350.0, "Tetra Pack" to 350.0, "Accu per kg" to 3700.0, "Minyak Jelantah" to 2700.0, "Sponge/Sepatu/Sandal Bekas" to 0.0, "Tray Telur" to 50.0, "Yakult" to 450.0, "Kelapa Daksina" to 650.0, "Kulit kabel" to 100.0, "Boncos" to 550.0, "Krat" to 3250.0
     )
 
     // Variabel namaKategori
@@ -284,6 +292,8 @@ class calculator : Fragment() {
         }
 
         btnKirim.setOnClickListener {
+            val jumlah = number.text.toString().toDoubleOrNull() ?: 0.0
+            val subtotal = hargaSubKategori?.times(jumlah) ?: 0.0
             dataTransaksi = DataTransaksi(
                 namaBank = namaBank.text.toString().trim(),
                 namaPetugas = namaPetugas.text.toString().trim(),
@@ -294,8 +304,9 @@ class calculator : Fragment() {
                 pembayaran = pembayaran,
                 kategori = selectedKategori,
                 subkategori = selectedSubKategori,
-                jumlah = number.text.toString().trim(),
-                hargaSubKategori = hargaSubKategori
+                jumlah = jumlah,
+                hargaSubKategori = hargaSubKategori,
+                subtotal = subtotal
             )
             val intent = Intent(activity, cekData::class.java)
             intent.putExtra("dataTransaksi", dataTransaksi)
