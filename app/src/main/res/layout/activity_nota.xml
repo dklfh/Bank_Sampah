@@ -101,7 +101,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/robotoregular"
-                            android:text="Tes 1"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -125,12 +124,11 @@
                             android:layout_weight="1" />
 
                         <TextView
-                            android:id="@+id/namaPetugas"
+                            android:id="@+id/namaPetugasNota"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/robotoregular"
-                            android:text="Tes 2"
                             android:textColor="@color/black" />
                     </LinearLayout>
 
@@ -158,7 +156,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/robotoregular"
-                            android:text="Tes 3"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -187,7 +184,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/robotoregular"
-                            android:text="Tes 4"
                             android:textColor="@color/black" />
                     </LinearLayout>
 
@@ -215,7 +211,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/robotoregular"
-                            android:text="Tes 5"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -239,12 +234,11 @@
                             android:layout_weight="1" />
 
                         <TextView
-                            android:id="@+id/metodetransaksi"
+                            android:id="@+id/metodeTransaksiNota"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/robotoregular"
-                            android:text="Tes 6"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -273,7 +267,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/robotoregular"
-                            android:text="Tes 7"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -299,11 +292,11 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/katSampahNota"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="7dp"
                         android:fontFamily="@font/ralewaysemibold"
-                        android:text="Kategori Sampah"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -314,11 +307,11 @@
                         android:layout_marginStart="10dp">
 
                         <TextView
+                            android:id="@+id/subKatSampah"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/ralewayregular"
-                            android:text="Sub-Kategori Sampah"
                             android:textColor="@color/black" />
 
                         <LinearLayout
@@ -327,6 +320,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/hargaSatuanNota"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/robotoregular"
@@ -339,6 +333,7 @@
                                 android:layout_weight="1" />
 
                             <TextView
+                                android:id="@+id/jumlahNota"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/robotoregular"
@@ -351,6 +346,7 @@
                                 android:layout_weight="1" />
 
                             <TextView
+                                android:id="@+id/totHarga"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/robotoregular"
