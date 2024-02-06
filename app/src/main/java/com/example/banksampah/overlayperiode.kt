@@ -13,7 +13,7 @@ import android.widget.Spinner
 //}
 
 class OverlayPeriode : AppCompatActivity() {
-    private var overlayListener: OverlayListener? = null
+//    private var overlayListener: OverlayListener? = null
     private val periode = arrayOf("1 Bulan", "6 Bulan", "1 Tahun")
 
 
@@ -23,7 +23,7 @@ class OverlayPeriode : AppCompatActivity() {
 
         val batalButton: Button = findViewById(R.id.batal)
         batalButton.setOnClickListener {
-            overlayListener?.onHideOverlay()
+//            overlayListener?.onHideOverlay()
             finish()
         }
 

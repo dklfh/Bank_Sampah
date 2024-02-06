@@ -1,49 +1,48 @@
 package com.example.banksampah
 
-import android.app.Activity
 import android.os.Bundle
-import android.widget.Button
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.view.ViewGroup
+import android.widget.Button
+//import android.widget.AdapterView
+//import android.widget.ArrayAdapter
+//import android.widget.Spinner
+import androidx.fragment.app.Fragment
+import android.content.Context
 
-//interface OverlayListener {
-//    fun onHideOverlay()
-//}
-class PerdataSampah : Activity() {
+interface OnPerdataSampahEventListener {
+    fun onBatalClicked()
+}
 
-    private var overlayListener: OverlayListener? = null
-    private val periode = arrayOf("1 Bulan", "6 Bulan", "1 Tahun")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.perdatasampah)
+class PerdataSampah : Fragment() {
+    private lateinit var eventListener: OnPerdataSampahEventListener
 
-        // Inisialisasi overlayListener dengan objek cobanavbar
-        val overlayManager = cobanavbar()
-        overlayListener = overlayManager
-
-        val batalButton: Button = findViewById(R.id.batal)
-        batalButton.setOnClickListener {
-            overlayListener?.onHideOverlay()
-            finish()
-        }
-
-        // Inisialisasi Spinner
-        val spinner = findViewById<Spinner>(R.id.periode)
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, periode)
-        spinner.adapter = arrayAdapter
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {}
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Not implemented
-            }
-        }
+    fun setEventListener(listener: OnPerdataSampahEventListener) {
+        eventListener = listener
     }
 
-//    private fun tutupOverlay() {
-//        // Tambahkan kode untuk menutup overlay di sini
-//        finish() // Ini akan menutup activity dan menghapus overlay dari tumpukan tampilan
-//    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.perdatasampah, container, false)
+
+        val batalButton = view.findViewById<Button>(R.id.cancel)
+
+        batalButton.setOnClickListener {
+            eventListener.onBatalClicked()
+        }
+
+        return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnPerdataSampahEventListener) {
+            eventListener = context
+        } else {
+            throw RuntimeException("$context must implement OnPerdataSampahEventListener")
+        }
+    }
 }
