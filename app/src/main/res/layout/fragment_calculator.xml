@@ -211,7 +211,7 @@
                                 android:fontFamily="@font/ralewayregular"
                                 android:gravity="left"
                                 android:paddingHorizontal="10dp"
-                                android:hint="Kategori Sampah. . ."
+                                android:prompt="@string/prompt_kategori_sampah"
                                 android:textColor="@color/teks"
                                 android:textSize="15sp" />
 
@@ -242,7 +242,7 @@
                                 android:fontFamily="@font/ralewayregular"
                                 android:gravity="left"
                                 android:paddingHorizontal="10dp"
-                                android:hint="Sub Kategori Sampah. . ."
+                                android:prompt="@string/prompt_sub_kategori_sampah"
                                 android:textColor="@color/teks"
                                 android:textSize="15sp" />
 
@@ -300,8 +300,6 @@
                                 android:contentDescription="plus" />
 
                         </LinearLayout>
-
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -364,7 +362,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/inactive"
-                        android:id="@+id/btnTransaksi"
+                        android:id="@+id/btnOvo"
                         android:clickable="true">
 
                         <ImageView
@@ -377,7 +375,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/inactive"
-
+                        android:id="@+id/btnDana"
                         android:clickable="true"
                         android:layout_marginHorizontal="10dp">
 
@@ -391,7 +389,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/inactive"
-
+                        android:id="@+id/btnGopay"
                         android:clickable="true">
 
                         <ImageView
@@ -412,7 +410,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/inactive"
-
+                        android:id="@+id/btnBni"
                         android:clickable="true">
 
                         <ImageView
@@ -425,7 +423,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/inactive"
-
+                        android:id="@+id/btnBri"
                         android:clickable="true"
                         android:layout_marginHorizontal="10dp">
 
@@ -433,20 +431,20 @@
                             android:layout_width="100dp"
                             android:layout_height="70dp"
                             android:background="@drawable/qris"
-                            android:contentDescription="qris"/>
+                            android:contentDescription="bri"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/inactive"
-
+                        android:id="@+id/btnBca"
                         android:clickable="true">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="70dp"
                             android:background="@drawable/paypal"
-                            android:contentDescription="paypal"/>
+                            android:contentDescription="bca"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -490,11 +488,12 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/judulRekening"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/ralewaymedium"
-                    android:text="Masukan Rekening"
+                    android:text="Masukan No Telepon"
                     android:textColor="@color/teks"
                     android:textSize="16sp" />
 
@@ -505,7 +504,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/textinput_home"
                     android:fontFamily="@font/ralewayregular"
-                    android:hint="Masukan Rekening. . ."
+                    android:hint="Masukan No Telepon. . ."
                     android:inputType="number"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp"
@@ -514,36 +513,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="3dp"
-                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/ralewaymedium"
-                    android:text="Masukan Nomer Telepon"
-                    android:textColor="@color/teks"
-                    android:textSize="16sp" />
-
-                <EditText
-                    android:id="@+id/noTelp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/textinput_home"
-                    android:fontFamily="@font/ralewayregular"
-                    android:hint="Masukan Nomer Telepon. . ."
-                    android:inputType="number"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="15dp"
-                    android:textColor="@color/teks"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
 
             <Button
                 android:id="@+id/btnKirim"
