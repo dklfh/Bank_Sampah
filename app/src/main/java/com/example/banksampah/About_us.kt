@@ -8,20 +8,20 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 
-class Setting : Fragment() {
-    private lateinit var aboutus: Button
-
+class About_us : Fragment() {
+    private lateinit var back: Button
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_setting, container, false)
-        aboutus = view.findViewById(R.id.aboutus)
-        aboutus.setOnClickListener {
-            // Menggunakan NavHost Controller untuk menavigasi ke fragment lain
-            findNavController().navigate(R.id.action_setting_to_about_us)
+        val view = inflater.inflate(R.layout.fragment_about_us, container, false)
+        back = view.findViewById(R.id.back)
+        back.setOnClickListener {
+            findNavController().navigate(R.id.action_about_us_to_setting)
         }
         return view
     }
+
+
 }
