@@ -15,11 +15,9 @@ class Setting : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_setting, container, false)
         aboutus = view.findViewById(R.id.aboutus)
         aboutus.setOnClickListener {
-            // Menggunakan NavHost Controller untuk menavigasi ke fragment lain
             findNavController().navigate(R.id.action_setting_to_about_us)
         }
         return view
