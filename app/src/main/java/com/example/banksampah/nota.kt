@@ -49,6 +49,10 @@ class nota : AppCompatActivity() {
         setContentView(R.layout.activity_nota)
         val dataTransaksi = intent.getSerializableExtra("dataTransaksi") as calculator.DataTransaksi
         val metodePembayaran = dataTransaksi.pembayaran
+        val namaNasabahBersih = dataTransaksi.namaNasabah.replace("[^a-zA-Z0-9]".toRegex(), "_")
+        val tanggalDibuatBersih = dataTransaksi.tanggal.replace("[^a-zA-Z0-9]".toRegex(), "_")
+        val fileName = "Nota-Sampah-$namaNasabahBersih-$tanggalDibuatBersih.pdf"
+        val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName)
         namaBank = findViewById(R.id.namaBank)
         namaPetugas = findViewById(R.id.namaPetugas)
         namaNasabah = findViewById(R.id.namaNasabah)
@@ -89,7 +93,7 @@ class nota : AppCompatActivity() {
         submitButton.setOnClickListener{
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_GRANTED) {
-                convertXMLtoPDF()
+                convertXMLtoPDF(file)
             } else {
                 requestPermission()
             }
@@ -97,7 +101,7 @@ class nota : AppCompatActivity() {
     }
 
     @Suppress("DEPRECATION")
-    private fun convertXMLtoPDF() {
+    private fun convertXMLtoPDF(file: File) {
         val rootLayout = this.findViewById<ViewGroup>(R.id.struk)
         val displayMetrics = DisplayMetrics()
         this.windowManager.defaultDisplay.getMetrics(displayMetrics)
@@ -136,17 +140,13 @@ class nota : AppCompatActivity() {
         canvas.restore()
         layout.draw(canvas)
         document.finishPage(page)
-        val downloadsDir =
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        val fileName = "contoh_XML_${System.currentTimeMillis()}.pdf"
-        val file = File(downloadsDir, fileName)
         try {
             val fos = FileOutputStream(file)
             document.writeTo(fos)
             document.close()
             fos.close()
             Log.d("PDF Generation", "PDF berhasil dibuat dan disimpan di: ${file.absolutePath}")
-            Toast.makeText(this, "PDF sudah dibuat!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "PDF sudah dibuat! disimpan di DOWNLOADS", Toast.LENGTH_SHORT).show()
         } catch (e: FileNotFoundException) {
             Log.d("mylog", "Error while writing $e")
             throw RuntimeException(e)
@@ -184,7 +184,13 @@ class nota : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                convertXMLtoPDF()
+                val dataTransaksi = intent.getSerializableExtra("dataTransaksi") as calculator.DataTransaksi
+                val namaNasabahBersih = dataTransaksi.namaNasabah.replace("[^a-zA-Z0-9]".toRegex(), "_")
+                val tanggalDibuatBersih = dataTransaksi.tanggal.replace("[^a-zA-Z0-9]".toRegex(), "_")
+                val fileName = "Nota-Sampah-$namaNasabahBersih-$tanggalDibuatBersih.pdf"
+                val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName)
+
+                convertXMLtoPDF(file)
             } else {
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
             }
