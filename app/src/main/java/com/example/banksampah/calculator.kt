@@ -285,12 +285,6 @@ class calculator : Fragment() {
             btnBca.setBackgroundResource(R.drawable.inactive)
         }
 
-        rekening.setOnClickListener {
-            if (!isSwitchActive) {
-                rekening.error = "Pilih Metode Transaksi Terlebih Dahulu"
-            }
-        }
-
         btnKirim.setOnClickListener {
             val jumlah = number.text.toString().toDoubleOrNull() ?: 0.0
             val subtotal = hargaSubKategori?.times(jumlah) ?: 0.0
@@ -308,43 +302,48 @@ class calculator : Fragment() {
                 hargaSubKategori = hargaSubKategori,
                 subtotal = subtotal
             )
-            val intent = Intent(activity, cekData::class.java)
-            intent.putExtra("dataTransaksi", dataTransaksi)
-            startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
-//            var isAllFieldsFilled = true
-//            if (inputText1.isEmpty()) {
-//                namaBank.error = "Kolom harus diisi!"
-//                isAllFieldsFilled = false
-//            }
-//            if (inputText2.isEmpty()) {
-//                namaPetugas.error = "Kolom harus diisi!"
-//                isAllFieldsFilled = false
-//            }
-//            if (inputText3.isEmpty()) {
-//                namaNasabah.error = "Kolom harus diisi!"
-//                isAllFieldsFilled = false
-//            }
-//            if (inputText4.isEmpty()) {
-//                username.error = "Kolom harus diisi!"
-//                isAllFieldsFilled = false
-//            }
-//            if (inputText5.isEmpty()) {
-//                rekening.error = "Kolom harus diisi!"
-//                isAllFieldsFilled = false
-//            }
-//            if (inputText6.isEmpty()) {
-//                noTelp.error = "Kolom harus diisi!"
-//                isAllFieldsFilled = false
-//            }
-//            if (inputDate.isEmpty()) {
-//                tvDatePicker.error = "Kolom harus diisi!"
-//                isAllFieldsFilled = false
-//            }
-//            if (isAllFieldsFilled) {
-//                val intent = Intent(activity, cekData::class.java)
-//                intent.putExtra("dataTransaksi", dataTransaksi)
-//                startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
-//            }
+            var isAllFieldsFilled = true
+            val inputText1 = namaBank.text.toString().trim()
+            val inputText2 = namaPetugas.text.toString().trim()
+            val inputText3 = namaNasabah.text.toString().trim()
+            val inputText4 = username.text.toString().trim()
+            val inputText5 = rekening.text.toString().trim()
+            val inputDate = tvDatePicker.text.toString().trim()
+            if (inputText1.isEmpty()) {
+                namaBank.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputText2.isEmpty()) {
+                namaPetugas.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputText3.isEmpty()) {
+                namaNasabah.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputText4.isEmpty()) {
+                username.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputText5.isEmpty()) {
+                rekening.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (inputDate.isEmpty()) {
+                tvDatePicker.error = "Kolom harus diisi!"
+                isAllFieldsFilled = false
+            }
+            if (!isSwitchActive) {
+                rekening.error = "Pilih Metode Transaksi Terlebih Dahulu"
+            } else {
+                if (isSwitchActive && rekening.text.isNullOrBlank()) {
+                    rekening.error = "Masukkan No Telepon atau No Rekening tergantung dari metode pembayaran"
+                } else if (isAllFieldsFilled) {
+                    val intent = Intent(activity, cekData::class.java)
+                    intent.putExtra("dataTransaksi", dataTransaksi)
+                    startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
+                }
+            }
         }
 
 

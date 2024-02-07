@@ -96,7 +96,7 @@
                             android:layout_weight="1" />
 
                         <TextView
-                            android:id="@+id/banksampah"
+                            android:id="@+id/namaBank"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -124,7 +124,7 @@
                             android:layout_weight="1" />
 
                         <TextView
-                            android:id="@+id/namaPetugasNota"
+                            android:id="@+id/namaPetugas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -234,7 +234,7 @@
                             android:layout_weight="1" />
 
                         <TextView
-                            android:id="@+id/metodeTransaksiNota"
+                            android:id="@+id/pembayaran"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -249,6 +249,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/judulpembayaran"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -262,7 +263,7 @@
                             android:layout_weight="1" />
 
                         <TextView
-                            android:id="@+id/noTelpon"
+                            android:id="@+id/noTelp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -292,7 +293,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/katSampahNota"
+                        android:id="@+id/kategori"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="7dp"
@@ -307,7 +308,7 @@
                         android:layout_marginStart="10dp">
 
                         <TextView
-                            android:id="@+id/subKatSampah"
+                            android:id="@+id/subkategori"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -320,11 +321,11 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/hargaSatuanNota"
+                                android:id="@+id/harga"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/robotoregular"
-                                android:text="0/kg"
+                                android:text="0"
                                 android:textColor="@color/black" />
 
                             <View
@@ -333,11 +334,11 @@
                                 android:layout_weight="1" />
 
                             <TextView
-                                android:id="@+id/jumlahNota"
+                                android:id="@+id/jumlah"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/robotoregular"
-                                android:text="x0"
+                                android:text="0"
                                 android:textColor="@color/black" />
 
                             <View
@@ -346,11 +347,11 @@
                                 android:layout_weight="1" />
 
                             <TextView
-                                android:id="@+id/totHarga"
+                                android:id="@+id/subtotal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/robotoregular"
-                                android:text="Rp 0"
+                                android:text="0"
                                 android:textColor="@color/black" />
 
                         </LinearLayout>

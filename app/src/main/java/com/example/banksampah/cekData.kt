@@ -66,6 +66,7 @@ class cekData : AppCompatActivity() {
 
         submitButton.setOnClickListener {
             val intent = Intent(this, nota::class.java)
+            intent.putExtra("dataTransaksi", dataTransaksi)
             startActivity(intent)
         }
 
