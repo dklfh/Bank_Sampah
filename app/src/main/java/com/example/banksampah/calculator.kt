@@ -48,6 +48,9 @@ class calculator : Fragment() {
     private val REQUEST_CODE_SECOND_ACTIVITY = 1
     private var dataTransaksi = DataTransaksi("", "", "", "", "", "", "", "", "", 0.0, 0.0,0.0)
     private var isSwitchActive = false
+    private lateinit var plus : Button
+    private lateinit var minus : Button
+    private var dataSampahLayout: LinearLayout? = null
 
 //    kirim data
     data class DataTransaksi(
@@ -117,6 +120,9 @@ class calculator : Fragment() {
         btnMinus = view.findViewById(R.id.btnMinus)
         btnBersihkan = view.findViewById(R.id.buttonBersihkan)
         btnKirim = view.findViewById(R.id.btnKirim)
+        plus = view.findViewById(R.id.plus)
+        minus = view.findViewById(R.id.minus)
+        dataSampahLayout = view.findViewById(R.id.list)
 
 
         updateTextView()
@@ -346,6 +352,9 @@ class calculator : Fragment() {
             }
         }
 
+        plus!!.setOnClickListener{ addLayout() }
+        minus!!.setOnClickListener{ removeLastLayout() }
+
 
         // Dropdown menu
         // Inisialisasi Spinner
@@ -400,5 +409,26 @@ class calculator : Fragment() {
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
         tvDatePicker.setText(sdf.format(myCalendar.time))
         tvDatePicker.error = null
+    }
+
+    private fun addLayout() {
+        val inflater = layoutInflater
+        val newLayout = inflater.inflate(R.layout.datasampah, null)
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        newLayout.layoutParams = layoutParams
+
+        val layoutContainer = view?.findViewById<LinearLayout>(R.id.list)
+        layoutContainer?.addView(newLayout)
+    }
+    private fun removeLastLayout() {
+        val layoutContainer = view?.findViewById<LinearLayout>(R.id.list)
+        val childCount = layoutContainer?.childCount
+
+        if (childCount != null && childCount > 0) {
+            layoutContainer.removeViewAt(childCount - 1)
+        }
     }
 }

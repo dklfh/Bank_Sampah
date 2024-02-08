@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/kalculator"
     tools:context=".calculator">
 
     <!-- TODO: Update blank fragment layout -->
@@ -177,9 +178,9 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/DataSampah"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/DataSampah"
                     android:background="@drawable/warnahijauhome"
                     android:orientation="horizontal">
 
@@ -302,7 +303,13 @@
 
                         </LinearLayout>
                     </LinearLayout>
+                </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                 </LinearLayout>
 
                 <LinearLayout
