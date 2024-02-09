@@ -126,11 +126,15 @@ class nota : AppCompatActivity() {
 
         Log.d("PDF Generation", "Isi view setelah menggambar: $view")
 
-        val pageInfo = PdfDocument.PageInfo.Builder(viewWidth, viewHeight, 1).create()
+        val marginLeft = 60
+        val marginTop = 20
+        val marginBottom = 20
+
+        val pageInfo = PdfDocument.PageInfo.Builder(viewWidth + marginLeft , viewHeight + marginTop + marginBottom, 1).create()
         val page = document.startPage(pageInfo)
         val canvas = page.canvas
-        val xOffset = (pageInfo.pageWidth - viewWidth) / 2f
-        val yOffset = (pageInfo.pageHeight - viewHeight) / 2f
+        val xOffset = (pageInfo.pageWidth - viewWidth) / 2f + marginLeft
+        val yOffset = (pageInfo.pageHeight - viewHeight) / 2f + marginTop
         canvas.save()
         canvas.translate(xOffset, yOffset)
         val bitmap = Bitmap.createBitmap(viewWidth, viewHeight, Bitmap.Config.ARGB_8888)
