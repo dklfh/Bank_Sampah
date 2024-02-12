@@ -34,8 +34,6 @@ class datasatuann : Fragment() {
         recy.adapter=userAdapter
         addsBtn.setOnClickListener { addInfo() }
 
-
-
         return rootView
     }
 
