@@ -59,6 +59,7 @@
                 android:layout_marginVertical="14dp">
 
                 <Button
+                    android:id="@+id/cari_laptran"
                     android:layout_width="160dp"
                     android:layout_height="50dp"
                     android:background="@drawable/laporanbutton"
@@ -84,6 +85,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/simpan_laptran"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/laporanbutton"
@@ -94,6 +96,7 @@
                 android:fontFamily="@font/ralewaybold"/>
 
             <LinearLayout
+                android:id="@+id/laporan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
@@ -112,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/total_transaksi"
                     android:textSize="16sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/teks"
                     android:fontFamily="@font/ralewaysemibold"/>
 
                 <LinearLayout
@@ -137,15 +140,15 @@
                         android:layout_height="wrap_content"
                         android:text="@string/rp_0"
                         android:textStyle="bold"
-                        android:textColor="#2BA84A"
+                        android:textColor="@color/dasar"
                         android:fontFamily="@font/robotomedium"/>
-
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
+                    android:layout_marginVertical="10dp"
                     android:background="@drawable/line"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
@@ -160,7 +163,6 @@
                         android:textColor="@color/teks"
                         android:textSize="16sp"
                         android:textStyle="bold" />
-
                 </LinearLayout>
 
             </LinearLayout>

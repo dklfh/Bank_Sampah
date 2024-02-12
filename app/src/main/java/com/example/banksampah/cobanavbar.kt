@@ -15,18 +15,12 @@ import com.google.android.material.navigation.NavigationView
 import android.view.ViewGroup
 import android.view.View
 
-
-interface OverlayListener {
-    fun onHideOverlay()
-}
-
-class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OverlayListener {
-
+class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OnPerdataSampahEventListener {
     private lateinit var tempat: DrawerLayout
     private lateinit var toolbarTitle: TextView
     private var overlayView: View? = null
 
-    override fun onHideOverlay() {
+    override fun onBatalClicked() {
         hideOverlay()
     }
 
@@ -40,7 +34,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
         toolbarTitle = findViewById(R.id.toolbar_title)
 
-        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        val navigationView = findViewById<NavigationView>(R.        id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
         val toggle = ActionBarDrawerToggle(
@@ -62,7 +56,8 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 replaceFragment(calculator())
                 toolbarTitle.text = "Kalkulator"
             }
-            // Data
+
+        // Data
             R.id.nav_DatSatuan -> {
                 replaceFragment(datasatuann())
                 toolbarTitle.text = "Data Satuan"
@@ -75,7 +70,8 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 replaceFragment(datasubkategorii())
                 toolbarTitle.text = "Data Sub-Kategori"
             }
-            // Laporan
+
+        // Laporan
             R.id.nav_LapTransaksi -> {
                 replaceFragment(laporanTransaksii())
                 toolbarTitle.text = "Laporan Transaksi"
@@ -92,32 +88,39 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 showOverlay()
             }
             R.id.nav_setting -> {
-                replaceFragment(coba3())
-                toolbarTitle.text = "judul"
+                replaceFragment(Setting())
+                toolbarTitle.text = "Setting"
             }
         }
         tempat.closeDrawer(GravityCompat.START)
         return true
     }
 
-
     private fun showOverlay() {
         tempat.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
+        this.window.decorView.findViewById<View>(android.R.id.content).isEnabled = false
+
         val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
-        overlayView = layoutInflater.inflate(R.layout.fragment_periode_sampah, parentView, false)
+        overlayView = layoutInflater.inflate(R.layout.perdatasampah, parentView, false)
         parentView.addView(overlayView)
 
+        val perdataSampahFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as? PerdataSampah
+        perdataSampahFragment?.setEventListener(this)
     }
 
     private fun hideOverlay() {
         if (overlayView != null) {
-            val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
+            val parentView = this.window.decorView.findViewById<ViewGroup>(android.R.id.content)
             parentView.removeView(overlayView)
             overlayView = null
             tempat.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+
+            // Aktifkan kembali interaksi dengan elemen-elemen UI di halaman
+            window.decorView.findViewById<View>(android.R.id.content).isEnabled = true
         }
     }
+
 
     private fun replaceFragment(fragment: Fragment) {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
@@ -125,12 +128,12 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         transaction.commit()
     }
 
-    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         if (tempat.isDrawerOpen(GravityCompat.START)) {
             tempat.closeDrawer(GravityCompat.START)
         } else {
-            onBackPressedDispatcher.onBackPressed()
+            super.onBackPressed()
         }
     }
 }
+

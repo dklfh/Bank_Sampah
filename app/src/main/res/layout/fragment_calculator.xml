@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/kalculator"
     tools:context=".calculator">
 
     <!-- TODO: Update blank fragment layout -->
@@ -126,9 +127,9 @@
                     android:textSize="16sp" />
 
                 <LinearLayout
+                    android:id="@+id/btnDatePicker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnDatePicker"
                     android:background="@drawable/textinput_home"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -178,7 +179,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/DataSampah"
                     android:background="@drawable/warnahijauhome"
                     android:orientation="horizontal">
 
@@ -211,7 +213,7 @@
                                 android:fontFamily="@font/ralewayregular"
                                 android:gravity="left"
                                 android:paddingHorizontal="10dp"
-                                android:hint="Kategori Sampah. . ."
+                                android:prompt="@string/prompt_kategori_sampah"
                                 android:textColor="@color/teks"
                                 android:textSize="15sp" />
 
@@ -242,7 +244,7 @@
                                 android:fontFamily="@font/ralewayregular"
                                 android:gravity="left"
                                 android:paddingHorizontal="10dp"
-                                android:hint="Sub Kategori Sampah. . ."
+                                android:prompt="@string/prompt_sub_kategori_sampah"
                                 android:textColor="@color/teks"
                                 android:textSize="15sp" />
 
@@ -300,10 +302,14 @@
                                 android:contentDescription="plus" />
 
                         </LinearLayout>
-
-
                     </LinearLayout>
+                </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                 </LinearLayout>
 
                 <LinearLayout
@@ -313,18 +319,18 @@
                     android:gravity="end"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/imageView5"
+                    <Button
+                        android:id="@+id/minus"
                         android:layout_width="65dp"
                         android:layout_height="65dp"
-                        android:src="@drawable/minus" />
+                        android:background="@drawable/minus" />
 
-                    <ImageView
-                        android:id="@+id/imageView4"
+                    <Button
+                        android:id="@+id/plus"
                         android:layout_width="65dp"
                         android:layout_height="65dp"
                         android:layout_marginLeft="15dp"
-                        android:src="@drawable/plus" />
+                        android:background="@drawable/plus" />
                 </LinearLayout>
 
                 <Button
@@ -357,48 +363,50 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp">
 
                     <LinearLayout
+                        android:id="@+id/btnOvo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/inactive"
-                        android:id="@+id/btnTransaksi"
                         android:clickable="true">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="70dp"
                             android:background="@drawable/ovo"
-                            android:contentDescription="ovo"/>
+                            android:contentDescription="ovo" />
                     </LinearLayout>
+
                     <LinearLayout
+                        android:id="@+id/btnDana"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
                         android:background="@drawable/inactive"
-
-                        android:clickable="true"
-                        android:layout_marginHorizontal="10dp">
+                        android:clickable="true">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="70dp"
                             android:background="@drawable/dana"
-                            android:contentDescription="dana"/>
+                            android:contentDescription="dana" />
                     </LinearLayout>
+
                     <LinearLayout
+                        android:id="@+id/btnGopay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/inactive"
-
                         android:clickable="true">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="70dp"
                             android:background="@drawable/gopay"
-                            android:contentDescription="gopay"/>
+                            android:contentDescription="gopay" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -409,44 +417,46 @@
                     android:layout_gravity="center">
 
                     <LinearLayout
+                        android:id="@+id/btnBni"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/inactive"
-
                         android:clickable="true">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="70dp"
                             android:background="@drawable/bni"
-                            android:contentDescription="bni"/>
+                            android:contentDescription="bni" />
                     </LinearLayout>
+
                     <LinearLayout
+                        android:id="@+id/btnBri"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
                         android:background="@drawable/inactive"
-
-                        android:clickable="true"
-                        android:layout_marginHorizontal="10dp">
-
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="70dp"
-                            android:background="@drawable/qris"
-                            android:contentDescription="qris"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/inactive"
-
                         android:clickable="true">
 
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="70dp"
-                            android:background="@drawable/paypal"
-                            android:contentDescription="paypal"/>
+                            android:background="@drawable/bri"
+                            android:contentDescription="bri" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btnBca"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/inactive"
+                        android:clickable="true">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/bca"
+                            android:contentDescription="bca" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -490,11 +500,12 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/judulRekening"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/ralewaymedium"
-                    android:text="Masukan Rekening"
+                    android:text="Masukan No Telepon"
                     android:textColor="@color/teks"
                     android:textSize="16sp" />
 
@@ -505,7 +516,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/textinput_home"
                     android:fontFamily="@font/ralewayregular"
-                    android:hint="Masukan Rekening. . ."
+                    android:hint="Masukan No Telepon. . ."
                     android:inputType="number"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp"
@@ -514,36 +525,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="3dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/ralewaymedium"
-                    android:text="Masukan Nomer Telepon"
-                    android:textColor="@color/teks"
-                    android:textSize="16sp" />
-
-                <EditText
-                    android:id="@+id/noTelp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/textinput_home"
-                    android:fontFamily="@font/ralewayregular"
-                    android:hint="Masukan Nomer Telepon. . ."
-                    android:inputType="number"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="15dp"
-                    android:textColor="@color/teks"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
 
             <Button
                 android:id="@+id/btnKirim"

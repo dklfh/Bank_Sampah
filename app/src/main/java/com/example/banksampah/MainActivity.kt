@@ -17,7 +17,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
-class MainActivity : AppCompatActivity(), OverlayListener {
+class MainActivity : AppCompatActivity() {
     private lateinit var btngoogle : Button
     private lateinit var btnfacebook : Button
     private lateinit var btntwitter : Button
@@ -29,12 +29,7 @@ class MainActivity : AppCompatActivity(), OverlayListener {
     companion object {
         private const val RC_SIGN_IN = 1001
     }
-    override fun onHideOverlay() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, PeriodeSampah(), "PeriodeSampah")
-            .addToBackStack(null)
-            .commit()
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)

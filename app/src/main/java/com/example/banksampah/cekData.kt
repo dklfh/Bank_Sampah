@@ -19,27 +19,54 @@ class cekData : AppCompatActivity() {
     private lateinit var username : TextView
     private lateinit var noTelp : TextView
     private lateinit var tanggal : TextView
+    private lateinit var pembayaran : TextView
+    private lateinit var judulpembayaran : TextView
+    private lateinit var kategori: TextView
+    private lateinit var subkategori : TextView
+    private lateinit var jumlah : TextView
+    private lateinit var harga : TextView
+    private lateinit var subtotal : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cek_data)
         val submitButton: Button = findViewById(R.id.submitbtn)
         val dataTransaksi = intent.getSerializableExtra("dataTransaksi") as DataTransaksi
+        val metodePembayaran = dataTransaksi.pembayaran
         namaBank = findViewById(R.id.namaBank)
         namaPetugas = findViewById(R.id.namaPetugas)
         namaNasabah = findViewById(R.id.namaNasabah)
         tanggal = findViewById(R.id.tanggal)
         username = findViewById(R.id.username)
         noTelp = findViewById(R.id.noTelp)
+        pembayaran = findViewById(R.id.pembayaran)
+        judulpembayaran = findViewById(R.id.judulpembayaran)
+        kategori = findViewById(R.id.kategori)
+        subkategori = findViewById(R.id.subkategori)
+        jumlah = findViewById(R.id.jumlah)
+        harga = findViewById(R.id.harga)
+        subtotal = findViewById(R.id.subtotal)
+        judulpembayaran.text = if (metodePembayaran in listOf("BRI", "BNI", "BCA")) {
+            "No Rekening"
+        } else {
+            "No Telepon"
+        }
         namaBank.text = dataTransaksi.namaBank
         namaPetugas.text = dataTransaksi.namaPetugas
         namaNasabah.text = dataTransaksi.namaNasabah
         tanggal.text = dataTransaksi.tanggal
         username.text = dataTransaksi.username
-        noTelp.text = dataTransaksi.noTelp
+        noTelp.text = dataTransaksi.rekening
+        pembayaran.text = dataTransaksi.pembayaran
+        kategori.text = dataTransaksi.kategori
+        subkategori.text = dataTransaksi.subkategori
+        jumlah.text = "${dataTransaksi.jumlah} kg"
+        harga.text = "Rp. " + (dataTransaksi.hargaSubKategori?.toInt() ?: 0) + " /kg"
+        subtotal.text = "Rp. ${dataTransaksi.subtotal?.toInt() ?: 0}"
 
         submitButton.setOnClickListener {
             val intent = Intent(this, nota::class.java)
+            intent.putExtra("dataTransaksi", dataTransaksi)
             startActivity(intent)
         }
 

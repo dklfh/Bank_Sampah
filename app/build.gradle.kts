@@ -7,8 +7,7 @@ plugins {
 android {
     signingConfigs {
         getByName("debug") {
-            storeFile =
-                file("C:\\Users\\warta\\AndroidStudioProjects\\Bank_Sampah\\MyKeystore\\keystore.jks")
+            storeFile = file("D:\\Users\\LENOVO\\Bank_Sampah2\\MyKeystore\\keystore.jks")
             storePassword = "SulihYandeGungDevara"
             keyAlias = "key0"
             keyPassword = "SulihYandeGungDevara"
@@ -36,6 +35,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+
+
     }
     buildFeatures{
         viewBinding=true
@@ -66,6 +68,8 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.0.0")
     implementation ("androidx.drawerlayout:drawerlayout:1.2.0")
 
+//    Firebase
+    implementation ("com.google.firebase:firebase-database-ktx:20.0.1")
     implementation ("com.google.firebase:firebase-bom:32.7.0")
     implementation("com.google.firebase:firebase-analytics-ktx:21.5.0")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
@@ -76,5 +80,8 @@ dependencies {
     implementation ("com.jpardogo.googleprogressbar:library:1.2.0")
 
     implementation ("androidx.recyclerview:recyclerview:1.1.0")
+
+    //PDF
+    implementation ("com.itextpdf:itext7-core:7.1.16")
 
 }

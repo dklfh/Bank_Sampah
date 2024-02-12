@@ -13,7 +13,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="23dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -58,15 +59,17 @@
                 android:layout_marginVertical="14dp">
 
                 <Button
+                    android:id="@+id/cari_lapsub"
                     android:layout_width="160dp"
                     android:layout_height="50dp"
                     android:background="@drawable/laporanbutton"
                     android:textSize="14sp"
                     android:text="@string/cari"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/ralewaysemibold"/>
+                    android:fontFamily="@font/ralewaybold"/>
 
-                <View android:layout_height="match_parent"
+                <View
+                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:layout_weight="1"/>
 
@@ -78,10 +81,11 @@
                     android:textSize="14sp"
                     android:text="@string/hapus_filter"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/ralewaysemibold"/>
+                    android:fontFamily="@font/ralewaybold"/>
             </LinearLayout>
 
             <Button
+                android:id="@+id/simpan_lapsub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/laporanbutton"
@@ -89,9 +93,10 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/ralewaysemibold"/>
+                android:fontFamily="@font/ralewaybold"/>
 
             <LinearLayout
+                android:id="@+id/laporan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
@@ -116,7 +121,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,15 +133,15 @@
                         android:textStyle="bold"
                         android:layout_marginStart="0dp"
                         android:layout_marginEnd="210dp"
-                        android:fontFamily="@font/ralewaysemibold"/>
+                        android:fontFamily="@font/robotomedium"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/rp_0"
-                        android:textColor="#2BA84A"
-                        android:fontFamily="@font/ralewaysemibold"/>
-
+                        android:textStyle="bold"
+                        android:textColor="@color/dasar"
+                        android:fontFamily="@font/robotomedium"/>
 
                 </LinearLayout>
 
@@ -157,11 +163,11 @@
                         android:textColor="@color/teks"
                         android:textSize="16sp"
                         android:textStyle="bold" />
-
                 </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
+
 </FrameLayout>
