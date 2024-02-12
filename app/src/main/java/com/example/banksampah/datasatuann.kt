@@ -13,19 +13,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.model.UserData
 import com.example.banksampah.view.UserAdapter
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.SearchView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.Locale
 
 class datasatuann : Fragment() {
     private lateinit var addsBtn:FloatingActionButton
     private lateinit var recy:RecyclerView
     private lateinit var userList:ArrayList<UserData>
     private lateinit var userAdapter:UserAdapter
+    private lateinit var search: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_datasatuann, container, false)
+        search = rootView.findViewById(R.id.search)
         addsBtn= rootView.findViewById(R.id.addingbutton)
         recy= rootView.findViewById(R.id.recyler)
         userList= ArrayList()
@@ -33,6 +37,30 @@ class datasatuann : Fragment() {
         recy.layoutManager=LinearLayoutManager(requireActivity())
         recy.adapter=userAdapter
         addsBtn.setOnClickListener { addInfo() }
+
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                search.clearFocus()
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val searchText = newText?.lowercase(Locale.getDefault()) ?: ""
+                userList.clear()
+                if (searchText.isNotEmpty()){
+                    userList.forEach{
+                        if (it.userName.toLowerCase(Locale.getDefault()).contains(searchText)) {
+                            userList.add(it)
+                        }
+                    }
+                    recy.adapter!!.notifyDataSetChanged()
+                } else {
+                    userList.clear()
+                    userList.addAll(userList)
+                    recy.adapter!!.notifyDataSetChanged()
+                }
+                return true
+            }
+        })
 
         return rootView
     }
@@ -44,6 +72,7 @@ class datasatuann : Fragment() {
         val v = inflter.inflate(R.layout.add_item, null)
         val userName = v.findViewById<EditText>(R.id.userName)
         val addDialog = AlertDialog.Builder(requireActivity())
+
 
 
         addDialog.setView(v)

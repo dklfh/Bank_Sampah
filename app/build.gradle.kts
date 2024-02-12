@@ -7,7 +7,8 @@ plugins {
 android {
     signingConfigs {
         getByName("debug") {
-            storeFile = file("D:\\Users\\LENOVO\\Bank_Sampah2\\MyKeystore\\keystore.jks")
+            storeFile =
+                file("C:\\Users\\Lenovo\\AndroidStudioProjects\\Bank_Sampah\\MyKeystore\\keystore.jks")
             storePassword = "SulihYandeGungDevara"
             keyAlias = "key0"
             keyPassword = "SulihYandeGungDevara"
@@ -63,23 +64,23 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation ("com.google.android.material:material:1.11.0")
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.6")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.7.6")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation ("de.hdodenhof:circleimageview:3.0.0")
     implementation ("androidx.drawerlayout:drawerlayout:1.2.0")
 
 //    Firebase
-    implementation ("com.google.firebase:firebase-database-ktx:20.0.1")
-    implementation ("com.google.firebase:firebase-bom:32.7.0")
-    implementation("com.google.firebase:firebase-analytics-ktx:21.5.0")
+    implementation ("com.google.firebase:firebase-database-ktx:20.3.0")
+    implementation ("com.google.firebase:firebase-bom:32.7.2")
+    implementation("com.google.firebase:firebase-analytics-ktx:21.5.1")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
-    implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
-    implementation ("com.google.firebase:firebase-database:19.2.0")
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
+    implementation ("com.google.firebase:firebase-database:20.3.0")
 
     //Progress Dialog Library
     implementation ("com.jpardogo.googleprogressbar:library:1.2.0")
 
-    implementation ("androidx.recyclerview:recyclerview:1.1.0")
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
 
     //PDF
     implementation ("com.itextpdf:itext7-core:7.1.16")

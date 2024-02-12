@@ -17,7 +17,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.banksampah.R
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
