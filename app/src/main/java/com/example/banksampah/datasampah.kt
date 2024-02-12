@@ -13,7 +13,7 @@ class datasampah : Fragment() {
     private lateinit var selectedKategori: String
     private lateinit var selectedSubKategori: String
     private var hargaSubKategori: Double = 0.0
-    private lateinit var spinner2: Spinner  // Add this line for lateinit initialization
+    private lateinit var spinner2: Spinner
 
     private val hargaSubKategoriMap = mapOf(
         "Putihan (HDPE & Jenis Lainnya)" to 1200.0, "Jerigen Bening Bersih / Jerigen minyak" to 3250.0, "Jerigen warna / bening tapi mangkak" to 1860.0, "Tutup PET (HDPE)" to  2650.0, "Tutup Galon (LDPE)" to 2650.0, "Tutup Campur" to 1750.0, "PP Emberan Campur" to 1000.0, "PP Emberan Warna" to 400.0, "PP Emberan Hitam" to 400.0, "PC Galon UTUH / BIJI" to 3250.0, "PC Galon PECAH / KG" to 150.0,
@@ -66,11 +66,13 @@ class datasampah : Fragment() {
             }
         }
 
+        // Inisialisasi Spinner SubKategori
+        spinner2 = view.findViewById(R.id.spinnerSampah)
+
         return view
     }
 
     private fun updateSubKategoriSpinner(selectedKategori: String) {
-        spinner2 = view?.findViewById(R.id.spinnerSampah) ?: return
         val subKategoriArray = subKategoriMap[selectedKategori]
         if (subKategoriArray != null) {
             val arrayAdapterSubKategori = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, subKategoriArray)

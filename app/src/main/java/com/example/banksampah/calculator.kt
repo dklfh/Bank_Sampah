@@ -44,6 +44,7 @@ class calculator : Fragment() {
     private var hargaSubKategori: Double? = null
     private var selectedKategori: String = ""
     private var selectedSubKategori: String = ""
+    private val currentValueList: MutableList<BigDecimal> = mutableListOf(BigDecimal("1.0"))
     private lateinit var spinner2 : Spinner
     private val REQUEST_CODE_SECOND_ACTIVITY = 1
     private var dataTransaksi = DataTransaksi("", "", "", "", "", "", "", "", "", 0.0, 0.0,0.0)
@@ -272,7 +273,6 @@ class calculator : Fragment() {
             }
         }
 
-
         btnBersihkan.setOnClickListener {
             currentValue = BigDecimal("1.0")
             updateTextView()
@@ -400,8 +400,13 @@ class calculator : Fragment() {
         }
     }
 
-    private fun updateTextView() {
-        number.text = currentValue.toString()
+    private fun updateTextView(layoutIndex: Int? = null) {
+        val numberTextView = if (layoutIndex != null) {
+            dataSampahLayout?.getChildAt(layoutIndex)?.findViewById<TextView>(R.id.number)
+        } else {
+            number
+        }
+        numberTextView?.text = currentValue.toString()
     }
 
     private fun updateLable(myCalendar: Calendar) {
@@ -419,9 +424,82 @@ class calculator : Fragment() {
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
         newLayout.layoutParams = layoutParams
-
         val layoutContainer = view?.findViewById<LinearLayout>(R.id.list)
         layoutContainer?.addView(newLayout)
+        val newSelectedSubKategoriList: MutableList<String> = mutableListOf()
+        updateSubKategoriSpinner(selectedKategori, newSelectedSubKategoriList, newLayout)
+        val newIndex = currentValueList.size
+        val newCurrentValue = BigDecimal("1.0")
+        currentValueList.add(newCurrentValue)
+//        spinner kategori
+        val spinnerKategori = newLayout.findViewById<Spinner>(R.id.spinnerData)
+        val arrayAdapterKategori = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nKategori)
+        spinnerKategori.adapter = arrayAdapterKategori
+        spinnerKategori.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedKategori = nKategori[position]
+                updateSubKategoriSpinner(selectedKategori, newSelectedSubKategoriList, newLayout)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+//        spinner sub kategori
+        val spinner2 = newLayout.findViewById<Spinner>(R.id.spinnerSampah)
+        val subKategoriArray = subKategoriMap[selectedKategori]
+        if (subKategoriArray != null) {
+            val arrayAdapterSubKategori = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, subKategoriArray)
+            spinner2.adapter = arrayAdapterSubKategori
+            spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    selectedSubKategori = subKategoriMap[selectedKategori]?.get(position) ?: ""
+                    hargaSubKategori = hargaSubKategoriMap[selectedSubKategori] ?: 0.0
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+            }
+        }
+
+//        number
+        currentValueList.add(BigDecimal("1.0"))
+        newLayout.findViewById<TextView>(R.id.number).apply {
+            text = newCurrentValue.toString()
+        }
+        updateTextView()
+
+//        button plus
+        newLayout.findViewById<Button>(R.id.btnPlus).setOnClickListener {
+            currentValueList[newIndex] = currentValueList[newIndex].add(BigDecimal("0.1"))
+            updateTextView(newIndex)
+        }
+
+//        button minus
+        newLayout.findViewById<Button>(R.id.btnMinus).setOnClickListener {
+            if (currentValueList[newIndex] > BigDecimal("0.1")) {
+                currentValueList[newIndex] = currentValueList[newIndex].subtract(BigDecimal("0.1"))
+                updateTextView(newIndex)
+            }
+        }
+    }
+
+    private fun updateSubKategoriSpinner(selectedKategori: String, selectedSubKategoriList: MutableList<String>, newLayout: View) {
+        val spinner2 = newLayout.findViewById<Spinner>(R.id.spinnerSampah)
+        val subKategoriArray = subKategoriMap[selectedKategori]
+
+        if (subKategoriArray != null) {
+            val arrayAdapterSubKategori = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, subKategoriArray)
+            spinner2.adapter = arrayAdapterSubKategori
+            spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    val selectedSubKategori = subKategoriMap[selectedKategori]?.get(position) ?: ""
+                    val hargaSubKategori = hargaSubKategoriMap[selectedSubKategori] ?: 0.0
+                    selectedSubKategoriList.clear()
+                    selectedSubKategoriList.add(selectedSubKategori)
+                }
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+            }
+        }
     }
     private fun removeLastLayout() {
         val layoutContainer = view?.findViewById<LinearLayout>(R.id.list)
@@ -429,6 +507,10 @@ class calculator : Fragment() {
 
         if (childCount != null && childCount > 0) {
             layoutContainer.removeViewAt(childCount - 1)
+            if (currentValueList.isNotEmpty()) {
+                currentValueList.removeAt(currentValueList.size - 1)
+            }
         }
+        updateTextView()
     }
 }
