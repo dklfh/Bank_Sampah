@@ -3,117 +3,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".datakategorii">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".datasatuann">
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/search1"
-            android:layout_width="match_parent"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addingbuttonkat"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/header"
-            android:layout_marginHorizontal="20dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/textinput_home"
-                android:drawableLeft="@drawable/search"
-                android:fontFamily="@font/ralewaymedium"
-                android:hint="Cari Data Kategori"
-                android:paddingVertical="15dp"
-                android:paddingLeft="15dp"
-                android:textColor="@color/abu"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/warnahijauhome"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/ralewaymedium"
-                    android:text="Nama Kategori"
-                    android:textColor="@color/white" />
-
-
-                <Spinner
-                    android:id="@+id/spinner1"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginVertical="10dp"
-                    android:background="@drawable/bgooglebt" />
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/button_edit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/edit"
-                        android:fontFamily="@font/ralewaysemibold"
-                        android:text="edit"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/button_hapus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/hapus"
-                        android:fontFamily="@font/ralewaysemibold"
-                        android:text="HAPUS"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:contentDescription="ini button"
+            android:src="@drawable/addbutton" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="end"
-            android:padding="10dp">
+            android:layout_marginVertical="20dp"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/openButton"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="bottom|center_horizontal"
-                android:background="@drawable/plus"
-                android:contentDescription="@string/TandaPlus" />
+            <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchkategori"
+                app:iconifiedByDefault="false"
+                app:searchHintIcon="@null"
+                app:queryHint="Search. . ."
+                android:focusable="true"
+                app:closeIcon="@drawable/clear"
+                app:searchIcon="@drawable/search"
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/textinput_home"
+                android:clickable="true"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewKat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+            </ScrollView>
+
         </LinearLayout>
 
-
-    </LinearLayout>
-
-
+    </RelativeLayout>
 </FrameLayout>
