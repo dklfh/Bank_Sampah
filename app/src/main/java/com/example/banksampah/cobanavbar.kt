@@ -1,8 +1,8 @@
 package com.example.banksampah
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,17 +12,14 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
-import android.view.ViewGroup
-import android.view.View
+import android.widget.Button
+import android.widget.Spinner
+import androidx.appcompat.app.AlertDialog
 
-class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OnPerdataSampahEventListener {
+class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var tempat: DrawerLayout
     private lateinit var toolbarTitle: TextView
-    private var overlayView: View? = null
-
-    override fun onBatalClicked() {
-        hideOverlay()
-    }
+    private var overlayAlertDialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +31,7 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
         toolbarTitle = findViewById(R.id.toolbar_title)
 
-        val navigationView = findViewById<NavigationView>(R.        id.nav_view)
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
         val toggle = ActionBarDrawerToggle(
@@ -85,7 +82,30 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 toolbarTitle.text = "Laporan Sub-Kategori"
             }
             R.id.nav_hapus -> {
-                showOverlay()
+                val alertDialogBuilder = AlertDialog.Builder(this)
+                val inflater = this.layoutInflater
+                val dialogView = inflater.inflate(R.layout.perdatasampah, null)
+                alertDialogBuilder.setView(dialogView)
+
+                val spinner: Spinner = dialogView.findViewById(R.id.periode)
+                val periodeArray = resources.getStringArray(R.array.periode_array)
+                val adapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, periodeArray)
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
+
+                // Mengatur tindakan yang diperlukan pada elemen-elemen dalam layout overlay
+                val cancelButton = dialogView.findViewById<Button>(R.id.cancel)
+                cancelButton.setOnClickListener {
+                    overlayAlertDialog?.dismiss()
+                }
+
+                val simpanButton = dialogView.findViewById<Button>(R.id.simpan)
+                simpanButton.setOnClickListener {
+                    // Tindakan yang akan dilakukan saat tombol "SIMPAN" diklik
+                }
+
+                overlayAlertDialog = alertDialogBuilder.create()
+                overlayAlertDialog?.show()
             }
             R.id.nav_setting -> {
                 replaceFragment(Setting())
@@ -94,31 +114,6 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         }
         tempat.closeDrawer(GravityCompat.START)
         return true
-    }
-
-    private fun showOverlay() {
-        tempat.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-
-        this.window.decorView.findViewById<View>(android.R.id.content).isEnabled = false
-
-        val parentView = window.decorView.findViewById<ViewGroup>(android.R.id.content)
-        overlayView = layoutInflater.inflate(R.layout.perdatasampah, parentView, false)
-        parentView.addView(overlayView)
-
-        val perdataSampahFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as? PerdataSampah
-        perdataSampahFragment?.setEventListener(this)
-    }
-
-    private fun hideOverlay() {
-        if (overlayView != null) {
-            val parentView = this.window.decorView.findViewById<ViewGroup>(android.R.id.content)
-            parentView.removeView(overlayView)
-            overlayView = null
-            tempat.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-
-            // Aktifkan kembali interaksi dengan elemen-elemen UI di halaman
-            window.decorView.findViewById<View>(android.R.id.content).isEnabled = true
-        }
     }
 
 

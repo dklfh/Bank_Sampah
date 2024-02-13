@@ -22,4 +22,9 @@
     <string name="dropdown_description">dropdown</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="periode_array">
+        <item>1 Bulan</item>
+        <item>6 Bulan</item>
+        <item>1 Tahun</item>
+    </string-array>
 </resources>
