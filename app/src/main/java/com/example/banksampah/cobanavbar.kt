@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
 class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -93,7 +94,6 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spinner.adapter = adapter
 
-                // Mengatur tindakan yang diperlukan pada elemen-elemen dalam layout overlay
                 val cancelButton = dialogView.findViewById<Button>(R.id.cancel)
                 cancelButton.setOnClickListener {
                     overlayAlertDialog?.dismiss()
@@ -101,7 +101,9 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
                 val simpanButton = dialogView.findViewById<Button>(R.id.simpan)
                 simpanButton.setOnClickListener {
-                    // Tindakan yang akan dilakukan saat tombol "SIMPAN" diklik
+                    val selectedPeriode = spinner.selectedItem.toString()
+                    Toast.makeText(this, "Periode berhasil diubah, data akan dihapus setiap $selectedPeriode", Toast.LENGTH_SHORT).show()
+                    overlayAlertDialog?.dismiss()
                 }
 
                 overlayAlertDialog = alertDialogBuilder.create()
