@@ -1,5 +1,7 @@
 package com.example.banksampah
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ArrayAdapter
@@ -16,6 +18,9 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var tempat: DrawerLayout
@@ -83,29 +88,35 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 toolbarTitle.text = "Laporan Sub-Kategori"
             }
             R.id.nav_hapus -> {
-                val alertDialogBuilder = AlertDialog.Builder(this)
+                val alertDialogBuilder = AlertDialog.Builder(this, R.style.AppTheme_Dialog)
                 val inflater = this.layoutInflater
                 val dialogView = inflater.inflate(R.layout.perdatasampah, null)
-                alertDialogBuilder.setView(dialogView)
-
+                val tanggalDataTextView = dialogView.findViewById<TextView>(R.id.tanggalData)
+                val currentDate = SimpleDateFormat("dd MMMM yyyy", Locale("id")).format(Date())
                 val spinner: Spinner = dialogView.findViewById(R.id.periode)
                 val periodeArray = resources.getStringArray(R.array.periode_array)
                 val adapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, periodeArray)
+                val cancelButton = dialogView.findViewById<Button>(R.id.cancel)
+                val simpanButton = dialogView.findViewById<Button>(R.id.simpan)
+
+                alertDialogBuilder.setView(dialogView)
+
+                tanggalDataTextView.text = currentDate
+
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spinner.adapter = adapter
 
-                val cancelButton = dialogView.findViewById<Button>(R.id.cancel)
                 cancelButton.setOnClickListener {
                     overlayAlertDialog?.dismiss()
                 }
 
-                val simpanButton = dialogView.findViewById<Button>(R.id.simpan)
                 simpanButton.setOnClickListener {
                     val selectedPeriode = spinner.selectedItem.toString()
                     Toast.makeText(this, "Periode berhasil diubah, data akan dihapus setiap $selectedPeriode", Toast.LENGTH_SHORT).show()
                     overlayAlertDialog?.dismiss()
                 }
 
+                overlayAlertDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 overlayAlertDialog = alertDialogBuilder.create()
                 overlayAlertDialog?.show()
             }
@@ -133,4 +144,3 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         }
     }
 }
-

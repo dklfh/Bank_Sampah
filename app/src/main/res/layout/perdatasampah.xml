@@ -1,93 +1,105 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".perdatasampah"
-    android:gravity="center">
+    android:gravity="top"
+    app:cardBackgroundColor="@color/dasar"
+    app:cardCornerRadius="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@drawable/buttonlogin">
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/nama_bank_sampah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:fontFamily="@font/ralewaysemibold"
             android:text="Periode Waktu"
             android:textColor="@color/white"
-            android:fontFamily="@font/robotomedium"/>
-
-
-        <Spinner
-            android:id="@+id/periode"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/textinput_home"/>
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:gravity="center">
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/textinput_home">
 
-            <TextView
-                android:layout_width="180dp"
+            <Spinner
+                android:id="@+id/periode"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" akan dihapus terhitung tanggal"
-                android:textSize="14sp"
-                android:textColor="@color/white"/>
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="tanggal"
-                android:textSize="14sp"
-                android:textColor="@color/white"/>
+                android:fontFamily="@font/ralewayregular"
+                android:gravity="left"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:textColor="@color/teks"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewaymedium"
+                android:text="Data akan dihapus terhitung tanggal:"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tanggalData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/robotoregular"
+                android:text="tanggal"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="end"
-            android:layout_marginVertical="15dp">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BATAL"
-                android:background="@drawable/batal"
                 android:layout_marginEnd="10dp"
-                android:textColor="@color/black"/>
+                android:background="@drawable/batal"
+                android:text="BATAL"
+                android:textColor="@color/teks"/>
 
             <Button
                 android:id="@+id/simpan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SIMPAN"
-                android:textColor="@color/white"
                 android:background="@drawable/edit"
-                android:textStyle="bold"/>
+                android:text="SIMPAN"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
