@@ -7,8 +7,7 @@ plugins {
 android {
     signingConfigs {
         getByName("debug") {
-            storeFile =
-                file("C:\\Users\\Lenovo\\AndroidStudioProjects\\Bank_Sampah\\MyKeystore\\keystore.jks")
+            storeFile = file("D:\\Users\\LENOVO\\Bank_Sampah2\\MyKeystore\\keystore.jks")
             storePassword = "SulihYandeGungDevara"
             keyAlias = "key0"
             keyPassword = "SulihYandeGungDevara"
@@ -85,4 +84,6 @@ dependencies {
     //PDF
     implementation ("com.itextpdf:itext7-core:7.1.16")
 
+//    Data local
+    implementation ("com.google.code.gson:gson:2.8.8")
 }

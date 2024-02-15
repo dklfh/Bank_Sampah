@@ -1,6 +1,6 @@
 package com.example.banksampah
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,7 +15,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import com.example.banksampah.view.UserAdapterKat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.*
 import java.util.Locale
+import android.content.SharedPreferences
+
+
 
 class datakategorii : Fragment() {
     private lateinit var addsBtn: FloatingActionButton
@@ -23,6 +29,7 @@ class datakategorii : Fragment() {
     private lateinit var userList: ArrayList<UserDataKat>
     private lateinit var userAdapter: UserAdapterKat
     private lateinit var search: SearchView
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +45,9 @@ class datakategorii : Fragment() {
         recy.adapter = userAdapter
         addsBtn.setOnClickListener { addInfo() }
 
+        sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+
+        loadData()
 
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -47,19 +57,12 @@ class datakategorii : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 val searchText = newText?.lowercase(Locale.getDefault()) ?: ""
-                userList.clear()
-                if (searchText.isNotEmpty()) {
-                    userList.forEach {
-                        if (it.userNameKat.toLowerCase(Locale.getDefault()).contains(searchText)) {
-                            userList.add(it)
-                        }
-                    }
-                    recy.adapter!!.notifyDataSetChanged()
-                } else {
-                    userList.clear()
-                    userList.addAll(userList)
-                    recy.adapter!!.notifyDataSetChanged()
+                val filteredList = userList.filter {
+                    it.userNameKat.toLowerCase(Locale.getDefault()).contains(searchText)
                 }
+                userAdapter.userList.clear()
+                userAdapter.userList.addAll(filteredList)
+                userAdapter.notifyDataSetChanged()
                 return true
             }
         })
@@ -67,13 +70,11 @@ class datakategorii : Fragment() {
         return rootView
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun addInfo() {
         val inflter = LayoutInflater.from(requireActivity())
         val v = inflter.inflate(R.layout.add_item_kategori, null)
         val userName = v.findViewById<EditText>(R.id.userNameKat)
         val addDialog = AlertDialog.Builder(requireActivity())
-
 
         addDialog.setView(v)
         addDialog.setPositiveButton("Ok") { dialog, _ ->
@@ -81,6 +82,7 @@ class datakategorii : Fragment() {
 
             userList.add(UserDataKat("$name"))
             userAdapter.notifyDataSetChanged()
+            saveData()
             Toast.makeText(requireActivity(), "Adding User Information Success", Toast.LENGTH_SHORT)
                 .show()
             dialog.dismiss()
@@ -88,14 +90,27 @@ class datakategorii : Fragment() {
         }
         addDialog.setNegativeButton("Cancel") { dialog, _ ->
             dialog.dismiss()
-
             Toast.makeText(requireActivity(),"Cancel",Toast.LENGTH_SHORT).show()
-
         }
-        addDialog.create()
-        addDialog.show()
-
-
-        }
+        addDialog.create().show()
     }
 
+    private fun saveData() {
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(userList)
+        editor.putString("user_list", json)
+        editor.apply()
+    }
+
+    private fun loadData() {
+        val gson = Gson()
+        val json = sharedPreferences.getString("user_list", null)
+        val type = object : TypeToken<ArrayList<UserDataKat>>() {}.type
+        userList.clear()
+        if (!json.isNullOrBlank()) {
+            userList.addAll(gson.fromJson(json, type))
+        }
+        userAdapter.notifyDataSetChanged()
+    }
+}
