@@ -3,17 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="0dp"
-    app:cardElevation="8dp"
-    app:cardMaxElevation="5dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".list_item"
+    app:cardBackgroundColor="@color/dasar"
+    app:cardCornerRadius="20dp"
+    android:layout_marginHorizontal="30dp"
+    android:layout_marginTop="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
-        android:background="@drawable/warnahijauhome"
         android:orientation="vertical"
-        android:layout_marginHorizontal="30dp"
         android:padding="20dp">
 
     <TextView
@@ -29,7 +29,7 @@
             android:id="@+id/mtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/textinput_home"
             android:fontFamily="@font/ralewaymedium"
             android:gravity="left"
@@ -53,7 +53,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/ralewaybold"/>
             <Button
-                android:id="@+id/button_hapus"
+                android:id="@+id/button_hapus_satuan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/hapus"
