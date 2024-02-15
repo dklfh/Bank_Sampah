@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.R
@@ -16,20 +18,44 @@ class UserAdapter(val c: Context, val userList:ArrayList<UserData>):RecyclerView
 
     inner class UserViewHolder(val v:View):RecyclerView.ViewHolder(v){
         var name:TextView
-        val button_hapus = v.findViewById<Button>(R.id.button_hapus)
+        val button_hapus_satuan = v.findViewById<Button>(R.id.button_hapus_satuan)
 
         init {
             name = v.findViewById<TextView>(R.id.mtitle)
-            button_hapus.setOnClickListener {
+            button_hapus_satuan.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    userList.removeAt(position)
-                    notifyItemRemoved(position)
+                    showDeleteDialog(position)
                 }
             }
 
     }
 
+    }
+
+    private fun showDeleteDialog(position: Int) {
+        val builder = AlertDialog.Builder(c, R.style.AppTheme_Dialog)
+        val inflater = LayoutInflater.from(c)
+        val dialogLayout = inflater.inflate(R.layout.metodehapus, null)
+
+        val buttonTidak = dialogLayout.findViewById<Button>(R.id.tidak)
+        val buttonYa = dialogLayout.findViewById<Button>(R.id.ya)
+
+        builder.setView(dialogLayout)
+        val dialog = builder.create()
+
+        buttonTidak.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        buttonYa.setOnClickListener {
+            userList.removeAt(position)
+            notifyItemRemoved(position)
+            (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
+            dialog.dismiss()
+            Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
+        }
+        dialog.show()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {

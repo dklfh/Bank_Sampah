@@ -46,7 +46,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -88,7 +88,8 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/batal"
                 android:text="BATAL"
-                android:textColor="@color/teks"/>
+                android:textColor="@color/teks"
+                android:fontFamily="@font/ralewaybold"/>
 
             <Button
                 android:id="@+id/simpan"
@@ -96,7 +97,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit"
                 android:text="SIMPAN"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:fontFamily="@font/ralewaybold"/>
 
         </LinearLayout>
 
