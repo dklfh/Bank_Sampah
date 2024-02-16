@@ -27,7 +27,7 @@ class datakategorii : Fragment() {
     private lateinit var addsBtn: FloatingActionButton
     private lateinit var recy: RecyclerView
     private lateinit var userList: ArrayList<UserDataKat>
-    private lateinit var userAdapter: UserAdapterKat
+    private lateinit var userAdapterKat: UserAdapterKat
     private lateinit var search: SearchView
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -40,9 +40,9 @@ class datakategorii : Fragment() {
         addsBtn = rootView.findViewById(R.id.addingbuttonkat)
         recy = rootView.findViewById(R.id.recyclerViewKat)
         userList = ArrayList()
-        userAdapter = UserAdapterKat(requireActivity(), userList)
+        userAdapterKat = UserAdapterKat(requireActivity(), userList)
         recy.layoutManager = LinearLayoutManager(requireActivity())
-        recy.adapter = userAdapter
+        recy.adapter = userAdapterKat
         addsBtn.setOnClickListener { addInfo() }
 
         sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
@@ -60,9 +60,9 @@ class datakategorii : Fragment() {
                 val filteredList = userList.filter {
                     it.userNameKat.toLowerCase(Locale.getDefault()).contains(searchText)
                 }
-                userAdapter.userList.clear()
-                userAdapter.userList.addAll(filteredList)
-                userAdapter.notifyDataSetChanged()
+                userAdapterKat.userList.clear()
+                userAdapterKat.userList.addAll(filteredList)
+                userAdapterKat.notifyDataSetChanged()
                 return true
             }
         })
@@ -85,7 +85,7 @@ class datakategorii : Fragment() {
 
             if (name.isNotEmpty()) {
                 userList.add(UserDataKat("$name"))
-                userAdapter.notifyDataSetChanged()
+                userAdapterKat.notifyDataSetChanged()
                 saveData()
                 alertDialog.dismiss()
                 Toast.makeText(requireActivity(), "Adding User Information Success", Toast.LENGTH_SHORT).show()
@@ -115,6 +115,6 @@ class datakategorii : Fragment() {
         if (!json.isNullOrBlank()) {
             userList.addAll(gson.fromJson(json, type))
         }
-        userAdapter.notifyDataSetChanged()
+        userAdapterKat.notifyDataSetChanged()
     }
 }
