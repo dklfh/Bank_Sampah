@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addingbutton"
+            android:id="@+id/addingbuttonsubkategori"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -19,38 +19,27 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
             android:clickable="true"
-            android:contentDescription="rr"
+            android:contentDescription="ini button"
             android:src="@drawable/addbutton" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginVertical="20dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchsubkategori"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginVertical="20dp">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/textinput_home"
-                    android:drawableLeft="@drawable/search"
-                    android:fontFamily="@font/ralewayregular"
-                    android:hint="Cari Data Satuan"
-                    android:paddingVertical="15dp"
-                    android:paddingLeft="15dp"
-                    android:textColor="@color/teks"
-                    android:textSize="16sp"
-                    android:drawablePadding="10dp"/>
-            </LinearLayout>
+                android:background="@drawable/textinput_home"
+                android:clickable="true"
+                android:focusable="true" />
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -58,19 +47,18 @@
                     android:orientation="vertical">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyler"
+                        android:id="@+id/recylersubkategori"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
+
                     </androidx.recyclerview.widget.RecyclerView>
-
                 </LinearLayout>
-
             </ScrollView>
 
         </LinearLayout>
 
+
     </RelativeLayout>
-
-
 </FrameLayout>
