@@ -20,7 +20,7 @@ import com.google.gson.reflect.TypeToken
 import java.io.*
 import java.util.Locale
 import android.content.SharedPreferences
-
+import android.widget.Button
 
 
 class datakategorii : Fragment() {
@@ -73,26 +73,30 @@ class datakategorii : Fragment() {
     private fun addInfo() {
         val inflter = LayoutInflater.from(requireActivity())
         val v = inflter.inflate(R.layout.add_item_kategori, null)
-        val userName = v.findViewById<EditText>(R.id.userNameKat)
-        val addDialog = AlertDialog.Builder(requireActivity())
+        val userNameKat = v.findViewById<EditText>(R.id.userNameKat)
+        val addDialog = AlertDialog.Builder(requireActivity(), R.style.AppTheme_Dialog)
+        val okButton = v.findViewById<Button>(R.id.ok_item)
+        val cancelButton = v.findViewById<Button>(R.id.cancel_item)
 
         addDialog.setView(v)
-        addDialog.setPositiveButton("Ok") { dialog, _ ->
-            val name = userName.text.toString()
+        val alertDialog = addDialog.create()
+        okButton.setOnClickListener {
+            val name = userNameKat.text.toString()
 
-            userList.add(UserDataKat("$name"))
-            userAdapter.notifyDataSetChanged()
-            saveData()
-            Toast.makeText(requireActivity(), "Adding User Information Success", Toast.LENGTH_SHORT)
-                .show()
-            dialog.dismiss()
-
+            if (name.isNotEmpty()) {
+                userList.add(UserDataKat("$name"))
+                userAdapter.notifyDataSetChanged()
+                saveData()
+                alertDialog.dismiss()
+                Toast.makeText(requireActivity(), "Adding User Information Success", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireActivity(), "Nam  e cannot be empty", Toast.LENGTH_SHORT).show()
+            }
         }
-        addDialog.setNegativeButton("Cancel") { dialog, _ ->
-            dialog.dismiss()
-            Toast.makeText(requireActivity(),"Cancel",Toast.LENGTH_SHORT).show()
+        cancelButton.setOnClickListener {
+            alertDialog.dismiss()
         }
-        addDialog.create().show()
+        alertDialog.show()
     }
 
     private fun saveData() {

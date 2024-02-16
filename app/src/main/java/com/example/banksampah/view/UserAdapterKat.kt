@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.R
 import com.example.banksampah.model.UserData
@@ -15,20 +17,44 @@ class UserAdapterKat(val c: Context, val userList: ArrayList<UserDataKat>) : Rec
 
     inner class UserViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
         var name: TextView
-        val buttonHapus: Button
+        val buttonHapusKat: Button
 
         init {
             name = v.findViewById<TextView>(R.id.mtitlekat)
-            buttonHapus = v.findViewById<Button>(R.id.button_hapus_kat)
+            buttonHapusKat = v.findViewById<Button>(R.id.button_hapus_kat)
 
-            buttonHapus.setOnClickListener {
+            buttonHapusKat.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    userList.removeAt(position)
-                    notifyItemRemoved(position)
+                    showDeleteDialog(position)
                 }
             }
         }
+    }
+
+    private fun showDeleteDialog(position: Int) {
+        val builder = AlertDialog.Builder(c, R.style.AppTheme_Dialog)
+        val inflater = LayoutInflater.from(c)
+        val dialogLayout = inflater.inflate(R.layout.metodehapus, null)
+
+        val buttonTidak = dialogLayout.findViewById<Button>(R.id.tidak)
+        val buttonYa = dialogLayout.findViewById<Button>(R.id.ya)
+
+        builder.setView(dialogLayout)
+        val dialog = builder.create()
+
+        buttonTidak.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        buttonYa.setOnClickListener {
+            userList.removeAt(position)
+            notifyItemRemoved(position)
+            (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
+            dialog.dismiss()
+            Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
+        }
+        dialog.show()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
