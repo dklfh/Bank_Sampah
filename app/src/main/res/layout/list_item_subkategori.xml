@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="30dp"
         android:background="@drawable/warnahijauhome"
         android:orientation="vertical"
         android:padding="20dp">
@@ -23,9 +24,10 @@
             android:textColor="@color/white"
             android:textSize="16sp"/>
 
-        <Spinner
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/mtitlesubkategori"
             android:layout_marginBottom="10dp"
             android:background="@drawable/textinput_home"
             android:drawableEnd="@drawable/panah"
@@ -45,8 +47,8 @@
             android:textColor="@color/white"
             android:textSize="16sp"/>
 
-        <EditText
-            android:id="@+id/button_kg4"
+        <TextView
+            android:id="@+id/MtitleNamaSubKategori"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -80,17 +82,16 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
 
-                <Spinner
-                    android:id="@+id/button_kg3"
+                <TextView
+                    android:id="@+id/MtitleSatuanSubKategori"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:background="@drawable/textinput_home"
-                    android:drawableEnd="@drawable/panah"
                     android:fontFamily="@font/ralewaymedium"
                     android:gravity="left"
+                    android:layout_marginRight="10dp"
                     android:padding="20dp"
-                    android:text="Kg"
+                    android:hint="KG"
                     android:textSize="15sp"
                     android:textColor="@color/teks"/>
 
@@ -111,8 +112,8 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
 
-                <EditText
-                    android:id="@+id/button_kg2"
+                <TextView
+                    android:id="@+id/MtitlrHargaSubKategori"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/textinput_home"
@@ -141,9 +142,10 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"/>
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/MtitleKeteranganSubKategori"
                 android:background="@drawable/textinput_home"
                 android:fontFamily="@font/ralewaymedium"
                 android:gravity="left"
@@ -171,7 +173,7 @@
                 android:textColor="@color/white" />
 
             <Button
-                android:id="@+id/button_hapus"
+                android:id="@+id/button_hapus_subkategori"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/hapus"

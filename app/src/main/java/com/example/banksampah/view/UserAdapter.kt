@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.R
 import com.example.banksampah.model.UserData
@@ -18,19 +17,19 @@ class UserAdapter(val c: Context, val userList:ArrayList<UserData>):RecyclerView
 
     inner class UserViewHolder(val v:View):RecyclerView.ViewHolder(v){
         var name:TextView
-        val button_hapus_satuan = v.findViewById<Button>(R.id.button_hapus_satuan)
+        val button_hapus_satuan : Button
 
         init {
             name = v.findViewById<TextView>(R.id.mtitle)
+            button_hapus_satuan = v.findViewById<Button>(R.id.button_hapus_satuan)
+
             button_hapus_satuan.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     showDeleteDialog(position)
                 }
             }
-
-    }
-
+        }
     }
 
     private fun showDeleteDialog(position: Int) {

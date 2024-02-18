@@ -1,77 +1,116 @@
 package com.example.banksampah
 
+import com.example.banksampah.view.UserAdapterSubKategori
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.banksampah.model.UserData
+import com.example.banksampah.model.UserDataKat
+import com.example.banksampah.model.UserDataSubKategori
+import com.example.banksampah.view.UserAdapter
+import com.example.banksampah.view.UserAdapterKat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-//import com.malkinfo.editingrecyclerview.model.UserData
-//import com.malkinfo.editingrecyclerview.view.UserAdapter
-//
-//class datasubkategorii : Fragment() {
-//
-//    private lateinit var addsBtn: FloatingActionButton
-//    private lateinit var recv: RecyclerView
-//    private lateinit var userList: ArrayList<UserData>
-//    private lateinit var userAdapter: UserAdapter
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        val view = inflater.inflate(R.layout.fragment_datasubkategorii, container, false)
-//
-//        /** Set List */
-//        userList = ArrayList()
-//
-//        /** Set find Id */
-//        addsBtn = view.findViewById(R.id.addingBtn)
-//        recv = view.findViewById(R.id.recycler)
-//
-//        /** Set Adapter */
-//        userAdapter = UserAdapter(requireContext(), userList)
-//
-//        /** Set Recycler view Adapter */
-//        recv.layoutManager = LinearLayoutManager(requireContext())
-//        recv.adapter = userAdapter
-//
-//        /** Set Dialog */
-//        addsBtn.setOnClickListener { addInfo() }
-//
-//        return view
-//    }
-//
-//    private fun addInfo() {
-//        val inflter = LayoutInflater.from(requireContext())
-//        val v = inflter.inflate(R.layout.add_item, null)
-//
-//        /** Set view */
-//        val userName = v.findViewById<EditText>(R.id.userName)
-//        val userNo = v.findViewById<EditText>(R.id.userNo)
-//
-//        val addDialog = AlertDialog.Builder(requireContext())
-//
-//        addDialog.setView(v)
-//        addDialog.setPositiveButton("Ok") { dialog, _ ->
-//            val names = userName.text.toString()
-//            val number = userNo.text.toString()
-//            userList.add(UserData("Name: $names", "Mobile No. : $number"))
-//            userAdapter.notifyDataSetChanged()
-//            Toast.makeText(requireContext(), "Adding User Information Success", Toast.LENGTH_SHORT).show()
-//            dialog.dismiss()
-//        }
-//        addDialog.setNegativeButton("Cancel") { dialog, _ ->
-//            dialog.dismiss()
-//            Toast.makeText(requireContext(), "Cancel", Toast.LENGTH_SHORT).show()
-//
-//        }
-//        addDialog.create()
-//        addDialog.show()
-//    }
-//}
+import java.util.Locale
+
+class datasubkategorii : Fragment() {
+    private lateinit var addsBtn: FloatingActionButton
+    private lateinit var recy: RecyclerView
+    private lateinit var userList: ArrayList<UserDataSubKategori>
+    private lateinit var userAdapter: UserAdapterSubKategori
+    private lateinit var search: SearchView
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_datasubkategorii, container, false)
+        search = rootView.findViewById(R.id.searchsubkategori)
+        addsBtn = rootView.findViewById(R.id.addingbuttonsubkategori)
+        recy = rootView.findViewById(R.id.recylersubkategori)
+        userList = ArrayList()
+        userAdapter = UserAdapterSubKategori(requireActivity(), userList)
+        recy.layoutManager = LinearLayoutManager(requireActivity())
+        recy.adapter = userAdapter
+        addsBtn.setOnClickListener { addInfo() }
+
+
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                search.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val searchText = newText?.lowercase(Locale.getDefault()) ?: ""
+                userList.clear()
+                if (searchText.isNotEmpty()) {
+                    userList.forEach {
+                        if (it.UserNameSubKat.toLowerCase(Locale.getDefault()).contains(searchText)) {
+                            userList.add(it)
+                        }
+                    }
+                    recy.adapter!!.notifyDataSetChanged()
+                } else {
+                    userList.clear()
+                    userList.addAll(userList)
+                    recy.adapter!!.notifyDataSetChanged()
+                }
+                return true
+            }
+        })
+
+        return rootView
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun addInfo() {
+        val inflter = LayoutInflater.from(requireActivity())
+        val v = inflter.inflate(R.layout.add_item_subkategori, null)
+        val namesubkat = v.findViewById<EditText>(R.id.UserNameSubKat)
+        val namesubkategori = v.findViewById<EditText>(R.id.NamaSubKategori)
+        val SatuanSubKategori = v.findViewById<EditText>(R.id.SatuanSubKategori)
+        val HargaSubKategori = v.findViewById<EditText>(R.id.HargaSubKategori)
+        val MasukanKeteranganSubKategori = v.findViewById<EditText>(R.id.MasukanKeteranganSubKategori)
+        val addDialog = AlertDialog.Builder(requireActivity())
+
+
+
+        addDialog.setView(v)
+        addDialog.setPositiveButton("Ok") { dialog, _ ->
+            val namesubkat= namesubkat.text.toString()
+            val namesubkategori= namesubkategori .text.toString()
+            val satuansubkategori= SatuanSubKategori.text.toString()
+            val hargasubkategori= HargaSubKategori.text.toString()
+            val masukanketerangansubkategori= MasukanKeteranganSubKategori.text.toString()
+            userAdapter.notifyDataSetChanged()
+            userList.add(UserDataSubKategori("$namesubkat","$namesubkategori","$satuansubkategori","$hargasubkategori","$masukanketerangansubkategori"))
+            Toast.makeText(requireActivity(),"Adding User Information Success",Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+
+        }
+        addDialog.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.dismiss()
+
+            Toast.makeText(requireActivity(),"Cancel", Toast.LENGTH_SHORT).show()
+
+        }
+        addDialog.create()
+        addDialog.show()
+
+
+    }
+
+
+}
+

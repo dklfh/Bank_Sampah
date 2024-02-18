@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="15dp">
 
     <LinearLayout
@@ -16,11 +17,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/ralewaymedium"
-            android:text="Nama Satuan"
+            android:text="Kategori"
             android:textColor="@color/white"
             android:textSize="16sp"/>
 
-        <Spinner
+        <EditText
+            android:id="@+id/UserNameSubKat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -28,10 +30,10 @@
             android:drawableEnd="@drawable/panah"
             android:fontFamily="@font/ralewaymedium"
             android:gravity="left"
+            android:hint="Kg"
             android:padding="20dp"
-            android:text="Kg"
-            android:textSize="15sp"
-            android:textColor="@color/teks"/>
+            android:textColor="@color/teks"
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -43,7 +45,7 @@
             android:textSize="16sp"/>
 
         <EditText
-            android:id="@+id/button_kg4"
+            android:id="@+id/NamaSubKategori"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -51,7 +53,7 @@
             android:fontFamily="@font/ralewaymedium"
             android:gravity="left"
             android:padding="20dp"
-            android:text="Putihan (HDPE dan jenis lainnya)"
+            android:hint="Putihan (HDPE dan jenis lainnya)"
             android:textSize="15sp"
             android:textColor="@color/teks"/>
 
@@ -77,17 +79,16 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
 
-                <Spinner
-                    android:id="@+id/button_kg3"
+                <EditText
+                    android:id="@+id/SatuanSubKategori"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:background="@drawable/textinput_home"
-                    android:drawableEnd="@drawable/panah"
                     android:fontFamily="@font/ralewaymedium"
                     android:gravity="left"
+                    android:layout_marginRight="10dp"
                     android:padding="20dp"
-                    android:text="Kg"
+                    android:hint="KG"
                     android:textSize="15sp"
                     android:textColor="@color/teks"/>
 
@@ -109,7 +110,7 @@
                     android:textSize="16sp"/>
 
                 <EditText
-                    android:id="@+id/button_kg2"
+                    android:id="@+id/HargaSubKategori"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/textinput_home"
@@ -144,6 +145,7 @@
                 android:background="@drawable/textinput_home"
                 android:fontFamily="@font/ralewaymedium"
                 android:gravity="left"
+                android:id="@+id/MasukanKeteranganSubKategori"
                 android:padding="20dp"
                 android:hint="Masukkan keterangan..."
                 android:textSize="15sp"
