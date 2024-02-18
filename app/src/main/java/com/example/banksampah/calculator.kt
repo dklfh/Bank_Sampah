@@ -66,8 +66,26 @@ class calculator : Fragment() {
         val subkategori: String,
         val jumlah: Double?,
         val hargaSubKategori : Double?,
-        val subtotal : Double?
+        val subtotal : Double?,
+        val layoutDataList: List<LayoutData> = emptyList(),
+        val listDataSampah: List<DataSampah> = emptyList()
+    ) : Serializable {
+
+    data class DataSampah(
+        val kategori: String,
+        val subkategori: String,
+        val jumlah: Double?,
+        val harga: Double?,
+        val subtotal: Double?
     ) : Serializable
+    data class LayoutData(
+        val selectedKategori: String,
+        val selectedSubKategori: String,
+        val jumlah: Double?,
+        val hargaSubKategori: Double?,
+        val subtotal: Double?
+    ) : Serializable
+}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -428,9 +446,18 @@ class calculator : Fragment() {
         layoutContainer?.addView(newLayout)
         val newSelectedSubKategoriList: MutableList<String> = mutableListOf()
         updateSubKategoriSpinner(selectedKategori, newSelectedSubKategoriList, newLayout)
-        val newIndex = currentValueList.size
         val newCurrentValue = BigDecimal("1.0")
         currentValueList.add(newCurrentValue)
+        val newLayoutData = DataTransaksi.LayoutData(
+            selectedKategori = selectedKategori,
+            selectedSubKategori = selectedSubKategori,
+            jumlah = currentValue.toDouble(),
+            hargaSubKategori = hargaSubKategori,
+            subtotal = hargaSubKategori?.times(currentValue.toDouble()) ?: 0.0
+        )
+        dataTransaksi = dataTransaksi.copy(
+            layoutDataList = dataTransaksi.layoutDataList + newLayoutData
+        )
 //        spinner kategori
         val spinnerKategori = newLayout.findViewById<Spinner>(R.id.spinnerData)
         val arrayAdapterKategori = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nKategori)
@@ -459,25 +486,25 @@ class calculator : Fragment() {
                 }
             }
         }
+        val number = newLayout.findViewById<TextView>(R.id.number)
+        val btnPlus = newLayout.findViewById<Button>(R.id.btnPlus)
+        val btnMinus = newLayout.findViewById<Button>(R.id.btnMinus)
+        var currentValue = BigDecimal("1.0")
 
-//        number
-        currentValueList.add(BigDecimal("1.0"))
-        newLayout.findViewById<TextView>(R.id.number).apply {
-            text = newCurrentValue.toString()
+        // Mengatur teks awal untuk number
+        number.text = currentValue.toString()
+
+        // Fungsi untuk btnPlus
+        btnPlus.setOnClickListener {
+            currentValue = currentValue.add(BigDecimal("0.1"))
+            number.text = currentValue.toString()
         }
-        updateTextView()
 
-//        button plus
-        newLayout.findViewById<Button>(R.id.btnPlus).setOnClickListener {
-            currentValueList[newIndex] = currentValueList[newIndex].add(BigDecimal("0.1"))
-            updateTextView(newIndex)
-        }
-
-//        button minus
-        newLayout.findViewById<Button>(R.id.btnMinus).setOnClickListener {
-            if (currentValueList[newIndex] > BigDecimal("0.1")) {
-                currentValueList[newIndex] = currentValueList[newIndex].subtract(BigDecimal("0.1"))
-                updateTextView(newIndex)
+        // Fungsi untuk btnMinus
+        btnMinus.setOnClickListener {
+            if (currentValue > BigDecimal("0.1")) {
+                currentValue = currentValue.subtract(BigDecimal("0.1"))
+                number.text = currentValue.toString()
             }
         }
     }

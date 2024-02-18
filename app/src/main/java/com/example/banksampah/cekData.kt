@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.app.Activity
 import android.content.Intent
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.banksampah.calculator.DataTransaksi
 
@@ -32,6 +34,7 @@ class cekData : AppCompatActivity() {
         setContentView(R.layout.activity_cek_data)
         val submitButton: Button = findViewById(R.id.submitbtn)
         val dataTransaksi = intent.getSerializableExtra("dataTransaksi") as DataTransaksi
+        val containerLayout: LinearLayout = findViewById(R.id.containerDataSampah)
         val metodePembayaran = dataTransaksi.pembayaran
         namaBank = findViewById(R.id.namaBank)
         namaPetugas = findViewById(R.id.namaPetugas)
@@ -63,6 +66,21 @@ class cekData : AppCompatActivity() {
         jumlah.text = "${dataTransaksi.jumlah} kg"
         harga.text = "Rp. " + (dataTransaksi.hargaSubKategori?.toInt() ?: 0) + " /kg"
         subtotal.text = "Rp. ${dataTransaksi.subtotal?.toInt() ?: 0}"
+
+        for (dataSampah in dataTransaksi.listDataSampah) {
+            val dataSampahLayout = layoutInflater.inflate(R.layout.notasampah, null)
+            val kategoriTextView: TextView = dataSampahLayout.findViewById(R.id.kategori)
+            val subkategoriTextView: TextView = dataSampahLayout.findViewById(R.id.subkategori)
+            val jumlahTextView: TextView = dataSampahLayout.findViewById(R.id.jumlah)
+            val hargaTextView: TextView = dataSampahLayout.findViewById(R.id.hargasampah)
+            val subtotalTextView: TextView = dataSampahLayout.findViewById(R.id.subtotalsampah)
+            kategoriTextView.text = dataSampah.kategori
+            subkategoriTextView.text = dataSampah.subkategori
+            jumlahTextView.text = dataSampah.jumlah.toString()
+            hargaTextView.text = dataSampah.harga.toString()
+            subtotalTextView.text = dataSampah.subtotal.toString()
+            containerLayout.addView(dataSampahLayout)
+        }
 
         submitButton.setOnClickListener {
             val intent = Intent(this, nota::class.java)
