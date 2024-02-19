@@ -6,19 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.fragment.findNavController
+import android.content.Intent
 
 class Setting : Fragment() {
-    private lateinit var aboutus: Button
+    private lateinit var aboutusbtn: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_setting, container, false)
-        aboutus = view.findViewById(R.id.aboutus)
-        aboutus.setOnClickListener {
-            findNavController().navigate(R.id.action_setting_to_about_us)
+        aboutusbtn = view.findViewById(R.id.aboutus)
+        aboutusbtn.setOnClickListener {
+            val intent = Intent(activity, aboutus::class.java)
+            startActivity(intent)
         }
         return view
     }
