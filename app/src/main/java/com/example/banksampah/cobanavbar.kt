@@ -69,10 +69,10 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 replaceFragment(datakategorii())
                 toolbarTitle.text = "Data Kategori"
             }
-//            R.id.nav_DatSub -> {
-//                replaceFragment(datasubkategorii())
-//                toolbarTitle.text = "Data Sub-Kategori"
-//            }
+            R.id.nav_DatSub -> {
+                replaceFragment(datasubkategorii())
+                toolbarTitle.text = "Data Sub-Kategori"
+            }
 
         // Laporan
             R.id.nav_LapTransaksi -> {
