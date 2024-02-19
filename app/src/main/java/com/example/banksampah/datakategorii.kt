@@ -17,7 +17,6 @@ import com.example.banksampah.view.UserAdapterKat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.*
 import java.util.Locale
 import android.content.SharedPreferences
 import android.widget.Button
@@ -45,7 +44,7 @@ class datakategorii : Fragment() {
         recy.adapter = userAdapterKat
         addsBtn.setOnClickListener { addInfo() }
 
-        sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        sharedPreferences = requireActivity().getSharedPreferences("user_prefs_datakategori", Context.MODE_PRIVATE)
 
         loadData()
 

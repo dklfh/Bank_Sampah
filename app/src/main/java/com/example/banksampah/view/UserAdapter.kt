@@ -5,23 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.R
 import com.example.banksampah.model.UserData
+import com.google.gson.Gson
 
-class UserAdapter(val c: Context, val userList:ArrayList<UserData>):RecyclerView.Adapter<UserAdapter.UserViewHolder>()
-{
+class UserAdapter(val c: Context, val userList: ArrayList<UserData>) :
+    RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    inner class UserViewHolder(val v:View):RecyclerView.ViewHolder(v){
-        var name:TextView
-        val button_hapus_satuan : Button
-
+    inner class UserViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
+        var name: TextView
+        val button_hapus_satuan: Button
+        val buttonEditSatuan: Button
         init {
             name = v.findViewById<TextView>(R.id.mtitle)
             button_hapus_satuan = v.findViewById<Button>(R.id.button_hapus_satuan)
+            buttonEditSatuan = v.findViewById<Button>(R.id.button_edit)
 
             button_hapus_satuan.setOnClickListener {
                 val position = adapterPosition
@@ -29,7 +32,65 @@ class UserAdapter(val c: Context, val userList:ArrayList<UserData>):RecyclerView
                     showDeleteDialog(position)
                 }
             }
+
+            buttonEditSatuan.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    showEditDialog(position)
+                }
+            }
         }
+    }
+
+    private fun showEditDialog(position: Int) {
+        val builder = AlertDialog.Builder(c, R.style.AppTheme_Dialog)
+        val inflater = LayoutInflater.from(c)
+        val dialogLayout = inflater.inflate(R.layout.edit_satuan, null)
+
+        val editTextNamaSatuan = dialogLayout.findViewById<TextView>(R.id.mtitlesat_edit)
+
+        // Set initial text from the item in the list
+        editTextNamaSatuan.text = userList[position].userName
+
+        val buttonBatal = dialogLayout.findViewById<Button>(R.id.button_batalsat)
+        val buttonSimpan = dialogLayout.findViewById<Button>(R.id.button_simpansat)
+
+        builder.setView(dialogLayout)
+        val dialog = builder.create()
+
+        buttonBatal.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        buttonSimpan.setOnClickListener {
+            // Update the item in the list with the edited text
+            val updatedText = editTextNamaSatuan.text.toString()
+            userList[position].userName = updatedText
+            userList[position].isModified = true
+            userList[position].modifiedText = updatedText
+
+            saveData()
+            notifyItemChanged(position)
+            (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
+            dialog.dismiss()
+            Toast.makeText(c, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
+        }
+        dialog.show()
+    }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+        val view = LayoutInflater.from(c).inflate(R.layout.list_item, parent, false)
+        return UserViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        val user = userList[position]
+        holder.name.text = user.userName
+    }
+
+    override fun getItemCount(): Int {
+        return userList.size
     }
 
     private fun showDeleteDialog(position: Int) {
@@ -48,28 +109,26 @@ class UserAdapter(val c: Context, val userList:ArrayList<UserData>):RecyclerView
         }
 
         buttonYa.setOnClickListener {
-            userList.removeAt(position)
-            notifyItemRemoved(position)
-            (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
+            deleteUser(position)
             dialog.dismiss()
-            Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
         }
         dialog.show()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val v  = inflater.inflate(R.layout.list_item,parent,false)
-        return UserViewHolder(v)
+    private fun deleteUser(position: Int) {
+        userList.removeAt(position)
+        notifyItemRemoved(position)
+        saveData()
+        Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val newList = userList[position]
-        holder.name.text = newList.userName
+    private fun saveData() {
+        val sharedPreferences =
+            c.getSharedPreferences("user_prefs_datasatuann", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(userList)
+        editor.putString("user_list", json)
+        editor.apply()
     }
-
-    override fun getItemCount(): Int {
-        return  userList.size
-    }
-
 }
