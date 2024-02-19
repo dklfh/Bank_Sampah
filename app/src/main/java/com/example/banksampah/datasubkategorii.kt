@@ -88,9 +88,10 @@ class datasubkategorii : Fragment() {
         val SatuanSubKategori = v.findViewById<EditText>(R.id.SatuanSubKategori)
         val HargaSubKategori = v.findViewById<EditText>(R.id.HargaSubKategori)
         val MasukanKeteranganSubKategori = v.findViewById<EditText>(R.id.MasukanKeteranganSubKategori)
-        val addDialog = AlertDialog.Builder(requireActivity())
+        val addDialog = AlertDialog.Builder(requireActivity(),R.style.AppTheme_Dialog)
         val okButton = v.findViewById<Button>(R.id.ok_itemsubkat)
         val cancelButton = v.findViewById<Button>(R.id.cancel_itemsubkat)
+
 
 
 
