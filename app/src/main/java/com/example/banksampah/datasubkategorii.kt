@@ -2,10 +2,12 @@ package com.example.banksampah
 
 import com.example.banksampah.view.UserAdapterSubKategori
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
@@ -22,6 +24,11 @@ import com.example.banksampah.view.UserAdapter
 import com.example.banksampah.view.UserAdapterKat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Locale
+import com.google.gson.Gson
+import android.content.SharedPreferences
+import com.google.gson.reflect.TypeToken
+import java.io.*
+
 
 class datasubkategorii : Fragment() {
     private lateinit var addsBtn: FloatingActionButton
@@ -43,7 +50,6 @@ class datasubkategorii : Fragment() {
         recy.layoutManager = LinearLayoutManager(requireActivity())
         recy.adapter = userAdapter
         addsBtn.setOnClickListener { addInfo() }
-
 
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -83,34 +89,35 @@ class datasubkategorii : Fragment() {
         val HargaSubKategori = v.findViewById<EditText>(R.id.HargaSubKategori)
         val MasukanKeteranganSubKategori = v.findViewById<EditText>(R.id.MasukanKeteranganSubKategori)
         val addDialog = AlertDialog.Builder(requireActivity())
+        val okButton = v.findViewById<Button>(R.id.ok_itemsubkat)
+        val cancelButton = v.findViewById<Button>(R.id.cancel_itemsubkat)
 
 
 
         addDialog.setView(v)
-        addDialog.setPositiveButton("Ok") { dialog, _ ->
+        val alertDialog = addDialog.create()
+        okButton.setOnClickListener {
             val namesubkat= namesubkat.text.toString()
             val namesubkategori= namesubkategori .text.toString()
             val satuansubkategori= SatuanSubKategori.text.toString()
             val hargasubkategori= HargaSubKategori.text.toString()
             val masukanketerangansubkategori= MasukanKeteranganSubKategori.text.toString()
+
+            if (namesubkat.isNotEmpty()) {
             userAdapter.notifyDataSetChanged()
             userList.add(UserDataSubKategori("$namesubkat","$namesubkategori","$satuansubkategori","$hargasubkategori","$masukanketerangansubkategori"))
+                alertDialog.dismiss()
+                Toast.makeText(requireActivity(), "Adding User Information Success", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireActivity(), "Name cannot be empty", Toast.LENGTH_SHORT).show()
+            }
             Toast.makeText(requireActivity(),"Adding User Information Success",Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-
         }
-        addDialog.setNegativeButton("Cancel") { dialog, _ ->
-            dialog.dismiss()
-
-            Toast.makeText(requireActivity(),"Cancel", Toast.LENGTH_SHORT).show()
-
+        cancelButton.setOnClickListener {
+            alertDialog.dismiss()
         }
-        addDialog.create()
-        addDialog.show()
-
+        alertDialog.show()
 
     }
-
-
 }
 

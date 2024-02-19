@@ -160,23 +160,23 @@
             android:layout_marginTop="10dp">
 
             <Button
-                android:id="@+id/button_edit"
-                android:layout_width="match_parent"
+                android:id="@+id/cancel_itemsubkat"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/edit"
-                android:fontFamily="@font/ralewaybold"
-                android:text="edit"
-                android:textColor="@color/white" />
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/batal"
+                android:text="CANCEL"
+                android:textColor="@color/teks"
+                android:fontFamily="@font/ralewaybold"/>
 
             <Button
-                android:id="@+id/button_hapus"
-                android:layout_width="match_parent"
+                android:id="@+id/ok_itemsubkat"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/hapus"
-                android:fontFamily="@font/ralewaybold"
-                android:text="HAPUS"
-                android:textColor="@color/white" />
+                android:background="@drawable/edit"
+                android:text="OK"
+                android:textColor="@color/white"
+                android:fontFamily="@font/ralewaybold"/>
         </LinearLayout>
 
     </LinearLayout>
