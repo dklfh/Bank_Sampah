@@ -30,6 +30,8 @@ class datasatuann : Fragment() {
     private lateinit var search: SearchView
     private lateinit var sharedPreferences: SharedPreferences
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,13 +57,7 @@ class datasatuann : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                val searchText = newText?.lowercase(Locale.getDefault()) ?: ""
-                val filteredList = userList.filter {
-                    it.userName.toLowerCase(Locale.getDefault()).contains(searchText)
-                }
-                userAdapter.userList.clear()
-                userAdapter.userList.addAll(filteredList)
-                userAdapter.notifyDataSetChanged()
+                userAdapter.filter(newText ?: "")
                 return true
             }
         })

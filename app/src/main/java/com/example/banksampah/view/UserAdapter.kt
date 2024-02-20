@@ -12,9 +12,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.R
 import com.example.banksampah.model.UserData
 import com.google.gson.Gson
+import java.util.Locale
 
 class UserAdapter(val c: Context, val userList: ArrayList<UserData>) :
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+
+    var userListFiltered = ArrayList<UserData>()
+
+    init {
+        userListFiltered = userList
+    }
 
     inner class UserViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
         var name: TextView
@@ -128,5 +135,20 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>) :
         val json = gson.toJson(userList)
         editor.putString("user_list", json)
         editor.apply()
+    }
+
+    fun filter(text: String) {
+        val searchText = text.lowercase(Locale.getDefault())
+        userListFiltered.clear()
+        if (searchText.isEmpty()) {
+            userListFiltered.addAll(userList)
+        } else {
+            for (item in userList) {
+                if (item.userName.lowercase(Locale.getDefault()).contains(searchText)) {
+                    userListFiltered.add(item)
+                }
+            }
+        }
+        notifyDataSetChanged()
     }
 }
