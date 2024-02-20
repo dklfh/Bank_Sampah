@@ -4,5 +4,7 @@ class UserDataSubKategori (
     var NamaSubKategori:String,
     var SatuanSubKategori:String,
     var HargaSubKategori:String,
-    var MasukanKeteranganSubKategori:String
+    var MasukanKeteranganSubKategori:String,
+    var isModified: Boolean = false,
+    var modifiedText: String = ""
 )

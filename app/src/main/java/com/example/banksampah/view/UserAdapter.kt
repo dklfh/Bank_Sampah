@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -46,7 +45,6 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>) :
         val builder = AlertDialog.Builder(c, R.style.AppTheme_Dialog)
         val inflater = LayoutInflater.from(c)
         val dialogLayout = inflater.inflate(R.layout.edit_satuan, null)
-
         val editTextNamaSatuan = dialogLayout.findViewById<TextView>(R.id.mtitlesat_edit)
 
         // Set initial text from the item in the list
