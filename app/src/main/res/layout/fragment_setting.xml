@@ -33,7 +33,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="USER 123"
+                android:text="USER123"
+                android:id="@+id/USER123"
                 android:background="@drawable/textinput_home"
                 android:paddingVertical="10dp"
                 android:textAlignment="center"

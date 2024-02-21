@@ -16,10 +16,6 @@ class About_us : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_about_us, container, false)
-        back = view.findViewById(R.id.back)
-        back.setOnClickListener {
-            findNavController().navigate(R.id.action_about_us_to_setting)
-        }
         return view
     }
 

@@ -120,9 +120,9 @@ class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 overlayAlertDialog = alertDialogBuilder.create()
                 overlayAlertDialog?.show()
             }
-            R.id.nav_setting -> {
-                replaceFragment(Setting())
-                toolbarTitle.text = "Setting"
+            R.id.nav_aboutus -> {
+                replaceFragment(About_us())
+                toolbarTitle.text = "App Maker"
             }
         }
         tempat.closeDrawer(GravityCompat.START)
