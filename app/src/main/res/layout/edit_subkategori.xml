@@ -15,7 +15,7 @@
         android:padding="20dp">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/ralewaymedium"
@@ -27,18 +27,18 @@
             android:id="@+id/namaKategori"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/textinput_home"
             android:drawableEnd="@drawable/panah"
             android:fontFamily="@font/ralewaymedium"
             android:gravity="left"
-            android:hint="Kategori"
-            android:padding="20dp"
+            android:hint="Kategori Sampah. . ."
+            android:padding="15dp"
             android:textColor="@color/teks"
             android:textSize="15sp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/ralewaymedium"
@@ -50,12 +50,12 @@
             android:id="@+id/NamaSubKategori"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/textinput_home"
             android:fontFamily="@font/ralewaymedium"
             android:gravity="left"
-            android:padding="20dp"
-            android:hint="Putihan (HDPE dan jenis lainnya)"
+            android:padding="15dp"
+            android:hint="Nama Sub-Kategori Sampah. . ."
             android:textSize="15sp"
             android:textColor="@color/teks"/>
 
@@ -73,7 +73,7 @@
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/ralewaymedium"
@@ -89,8 +89,8 @@
                     android:fontFamily="@font/ralewaymedium"
                     android:gravity="left"
                     android:layout_marginRight="10dp"
-                    android:padding="20dp"
-                    android:hint="KG"
+                    android:padding="15dp"
+                    android:hint="Satuan. . ."
                     android:textSize="15sp"
                     android:textColor="@color/teks"/>
 
@@ -118,8 +118,8 @@
                     android:background="@drawable/textinput_home"
                     android:fontFamily="@font/ralewaymedium"
                     android:gravity="left"
-                    android:padding="20dp"
-                    android:hint="Harga jual..."
+                    android:padding="15dp"
+                    android:hint="Harga Jual. . ."
                     android:textSize="15sp"
                     android:textColor="@color/teks"/>
 
@@ -148,18 +148,18 @@
                 android:background="@drawable/textinput_home"
                 android:fontFamily="@font/ralewaymedium"
                 android:gravity="left"
-                android:padding="20dp"
-                android:hint="Masukkan keterangan..."
+                android:padding="15dp"
+                android:hint="Keterangan. . ."
                 android:textSize="15sp"
                 android:textColor="@color/teks"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="right"
             android:orientation="horizontal"
-            android:gravity="end"
             android:layout_marginTop="20dp">
 
             <Button

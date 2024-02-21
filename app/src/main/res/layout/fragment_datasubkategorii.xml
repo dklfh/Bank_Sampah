@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".datasubkategorii">
 
     <RelativeLayout
@@ -13,10 +14,10 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addingbuttonsubkategori"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:clickable="true"
             android:contentDescription="ini button"
@@ -25,7 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginVertical="20dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.SearchView
@@ -35,11 +36,17 @@
                 android:layout_marginHorizontal="30dp"
                 android:background="@drawable/textinput_home"
                 android:clickable="true"
-                android:focusable="true" />
+                android:focusable="true"
+                app:iconifiedByDefault="false"
+                app:searchHintIcon="@null"
+                app:queryHint="Search. . ."
+                app:closeIcon="@drawable/clear"
+                app:searchIcon="@drawable/search"/>
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -49,16 +56,14 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recylersubkategori"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
-
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </LinearLayout>
             </ScrollView>
 
         </LinearLayout>
-
 
     </RelativeLayout>
 </FrameLayout>
