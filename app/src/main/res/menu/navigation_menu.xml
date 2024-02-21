@@ -5,13 +5,13 @@
 
     <item android:id="@+id/nav_kalkulator"
         android:icon="@drawable/calculator"
-        android:title="Kalkulator"/>
+        android:title="Kalkulator" />
 
     <item android:title="Data">
         <menu>
             <item android:id="@+id/nav_DatSatuan"
                 android:icon="@drawable/data"
-                android:title="Data Satuan"/>
+                android:title="Data Satuan" />
             <item android:id="@+id/nav_DatKategori"
                 android:icon="@drawable/data"
                 android:title="Data Kategori"/>

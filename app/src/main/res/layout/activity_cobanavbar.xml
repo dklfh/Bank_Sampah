@@ -58,6 +58,10 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/navigation_menu"
-        android:theme="@style/Base.Theme.NavigationDrawer"/>
+        android:theme="@style/Base.Theme.NavigationDrawer"
+        style="@style/Widget.Custom.NavigationView"
+        android:clipToPadding="false"
+        android:background="@color/white"
+        />
 
 </androidx.drawerlayout.widget.DrawerLayout>

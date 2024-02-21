@@ -7,12 +7,25 @@
         <item name="colorPrimaryDark">@color/dasar</item>
         <item name="colorAccent">@color/dasar</item>
         <item name="colorPrimaryVariant">@color/dasar</item>
+
+        <item name="colorNavigationItem">@color/menu_item_color_state</item>
+        <item name="colorNavigationItemSelected">@color/dasar</item>
+        <item name="drawableNavigationItemBackground">@drawable/menu_background_color_state</item>
 <!--        <item name="android:windowFullscreen">true</item>-->
         <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="Theme.BankSampah" parent="Base.Theme.BankSampah" />
     <style name="Base.Theme.NavigationDrawer" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/dasar</item>
+        <item name="android:checkable">true</item>
+
+        <item name="android:textColor">@color/teks</item>
+    </style>
+    <style name="Widget.Custom.NavigationView" parent="Widget.Design.NavigationView">
+        <item name="android:textColor">@color/teks</item>
+
+        <item name="itemIconTint">?attr/colorNavigationItem</item>
+        <item name="itemTextColor">?attr/colorNavigationItem</item>
+        <item name="itemBackground">?attr/drawableNavigationItemBackground</item>
     </style>
     <style name="Base.Theme.cekdata" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/dasar</item>
