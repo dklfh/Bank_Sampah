@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.banksampah.calculator.DataTransaksi
-
+import com.google.firebase.database.*
 
 //import android.widget.TextView
 
@@ -32,6 +32,7 @@ class cekData : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cek_data)
+        fetchDataFromFirebase()
         val submitButton: Button = findViewById(R.id.submitbtn)
         val dataTransaksi = intent.getSerializableExtra("dataTransaksi") as DataTransaksi
         val containerLayout: LinearLayout = findViewById(R.id.containerDataSampah)
@@ -54,18 +55,6 @@ class cekData : AppCompatActivity() {
         } else {
             "No Telepon"
         }
-        namaBank.text = dataTransaksi.namaBank
-        namaPetugas.text = dataTransaksi.namaPetugas
-        namaNasabah.text = dataTransaksi.namaNasabah
-        tanggal.text = dataTransaksi.tanggal
-        username.text = dataTransaksi.username
-        noTelp.text = dataTransaksi.rekening
-        pembayaran.text = dataTransaksi.pembayaran
-        kategori.text = dataTransaksi.kategori
-        subkategori.text = dataTransaksi.subkategori
-        jumlah.text = "${dataTransaksi.jumlah} kg"
-        harga.text = "Rp. " + (dataTransaksi.hargaSubKategori?.toInt() ?: 0) + " /kg"
-        subtotal.text = "Rp. ${dataTransaksi.subtotal?.toInt() ?: 0}"
 
         for (dataSampah in dataTransaksi.listDataSampah) {
             val dataSampahLayout = layoutInflater.inflate(R.layout.notasampah, null)
@@ -94,6 +83,42 @@ class cekData : AppCompatActivity() {
             val resultIntent = Intent()
             setResult(Activity.RESULT_OK, resultIntent)
             finish()
+        }
+    }
+    private fun fetchDataFromFirebase() {
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("path_to_your_data") // Sesuaikan dengan path data di Firebase
+
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Proses data yang diambil dari Firebase
+                if (dataSnapshot.exists()) {
+                    // Ambil data dan tampilkan ke halaman cekData
+                    val dataTransaksi = dataSnapshot.getValue(DataTransaksi::class.java)
+                    displayDataOnPage(dataTransaksi)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle kegagalan pengambilan data
+            }
+        })
+    }
+
+    private fun displayDataOnPage(dataTransaksi: DataTransaksi?) {
+        if (dataTransaksi != null) {
+            namaBank.text = dataTransaksi.namaBank
+            namaPetugas.text = dataTransaksi.namaPetugas
+            namaNasabah.text = dataTransaksi.namaNasabah
+            tanggal.text = dataTransaksi.tanggal
+            username.text = dataTransaksi.username
+            noTelp.text = dataTransaksi.rekening
+            pembayaran.text = dataTransaksi.pembayaran
+            kategori.text = dataTransaksi.kategori
+            subkategori.text = dataTransaksi.subkategori
+            jumlah.text = "${dataTransaksi.jumlah} kg"
+            harga.text = "Rp. " + (dataTransaksi.hargaSubKategori?.toInt() ?: 0) + " /kg"
+            subtotal.text = "Rp. ${dataTransaksi.subtotal?.toInt() ?: 0}"
         }
     }
 }

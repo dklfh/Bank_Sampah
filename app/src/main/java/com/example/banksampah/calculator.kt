@@ -9,23 +9,24 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import android.app.Activity
 import android.content.Intent
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
-import android.widget.RadioGroup
 import android.widget.Spinner
+import android.widget.Toast
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.math.BigDecimal
-import android.widget.RadioButton
-
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class calculator : Fragment() {
+    private lateinit var databaseReference: DatabaseReference
     private var currentValue = BigDecimal("1.0")
     private lateinit var number: TextView
     private lateinit var btnPlus : Button
@@ -52,6 +53,7 @@ class calculator : Fragment() {
     private lateinit var plus : Button
     private lateinit var minus : Button
     private var dataSampahLayout: LinearLayout? = null
+
 
 //    kirim data
     data class DataTransaksi(
@@ -89,6 +91,8 @@ class calculator : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(requireActivity())
+        databaseReference = FirebaseDatabase.getInstance().reference
     }
 
     private val hargaSubKategoriMap = mapOf(
@@ -365,6 +369,7 @@ class calculator : Fragment() {
                 } else if (isAllFieldsFilled) {
                     val intent = Intent(activity, cekData::class.java)
                     intent.putExtra("dataTransaksi", dataTransaksi)
+                    saveDataToFirebase(dataTransaksi)
                     startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
                 }
             }
@@ -539,5 +544,21 @@ class calculator : Fragment() {
             }
         }
         updateTextView()
+    }
+
+    private fun saveDataToFirebase(dataTransaksi: DataTransaksi) {
+        // Generate unique key for each transaction
+        val transactionKey = databaseReference.child("transactions").push().key
+
+        // Set the data to the specified database reference
+        databaseReference.child("transactions").child(transactionKey!!).setValue(dataTransaksi)
+            .addOnSuccessListener {
+                // Data berhasil disimpan
+                Toast.makeText(requireContext(), "Data berhasil disimpan di database", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                // Terjadi kesalahan saat menyimpan data
+                Toast.makeText(requireContext(), "Gagal menyimpan data di database", Toast.LENGTH_SHORT).show()
+            }
     }
 }
