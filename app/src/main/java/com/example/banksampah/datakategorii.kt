@@ -20,8 +20,6 @@ import com.google.gson.reflect.TypeToken
 import java.util.Locale
 import android.content.SharedPreferences
 import android.widget.Button
-
-
 class datakategorii : Fragment() {
     private lateinit var addsBtn: FloatingActionButton
     private lateinit var recy: RecyclerView
@@ -29,6 +27,7 @@ class datakategorii : Fragment() {
     private lateinit var userAdapterKat: UserAdapterKat
     private lateinit var search: SearchView
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var backupList: ArrayList<UserDataKat>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +38,8 @@ class datakategorii : Fragment() {
         addsBtn = rootView.findViewById(R.id.addingbuttonkat)
         recy = rootView.findViewById(R.id.recyclerViewKat)
         userList = ArrayList()
-        userAdapterKat = UserAdapterKat(requireActivity(), userList)
+        backupList = ArrayList(userList)
+        userAdapterKat = UserAdapterKat(requireActivity(), userList, backupList)
         recy.layoutManager = LinearLayoutManager(requireActivity())
         recy.adapter = userAdapterKat
         addsBtn.setOnClickListener { addInfo() }
@@ -47,6 +47,8 @@ class datakategorii : Fragment() {
         sharedPreferences = requireActivity().getSharedPreferences("user_prefs_datakategori", Context.MODE_PRIVATE)
 
         loadData()
+
+        backupList = ArrayList(userList)
 
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -56,12 +58,26 @@ class datakategorii : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 val searchText = newText?.lowercase(Locale.getDefault()) ?: ""
-                val filteredList = userList.filter {
-                    it.userNameKat.toLowerCase(Locale.getDefault()).contains(searchText)
+
+                if (searchText.isBlank()) {
+                    // Jika pencarian kosong, tampilkan semua data
+                    userList.clear()
+                    userList.addAll(backupList)
+                } else {
+                    // Filter original list based on the search text
+                    val filteredList = backupList.filter {
+                        it.userNameKat.toLowerCase(Locale.getDefault()).contains(searchText)
+                    }
+
+                    // Clear the current list
+                    userList.clear()
+
+                    // Add only the filtered results to the current list
+                    userList.addAll(filteredList)
                 }
-                userAdapterKat.userList.clear()
-                userAdapterKat.userList.addAll(filteredList)
+
                 userAdapterKat.notifyDataSetChanged()
+
                 return true
             }
         })
@@ -84,12 +100,13 @@ class datakategorii : Fragment() {
 
             if (name.isNotEmpty()) {
                 userList.add(UserDataKat("$name"))
+                backupList.add(UserDataKat("$name"))
                 userAdapterKat.notifyDataSetChanged()
                 saveData()
                 alertDialog.dismiss()
                 Toast.makeText(requireActivity(), "Adding User Information Success", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireActivity(), "Nam  e cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "Name cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
         cancelButton.setOnClickListener {
@@ -114,6 +131,7 @@ class datakategorii : Fragment() {
         if (!json.isNullOrBlank()) {
             userList.addAll(gson.fromJson(json, type))
         }
+        backupList = ArrayList(userList)
         userAdapterKat.notifyDataSetChanged()
     }
 }

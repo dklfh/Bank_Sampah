@@ -14,13 +14,13 @@ import com.example.banksampah.R
 import com.example.banksampah.model.UserDataKat
 import com.google.gson.Gson
 
-class UserAdapterKat(val c: Context, val userList: ArrayList<UserDataKat>) :
+class UserAdapterKat(val c: Context, val userList: ArrayList<UserDataKat>, var backupList: ArrayList<UserDataKat>) :
     RecyclerView.Adapter<UserAdapterKat.UserViewHolder>() {
-
     inner class UserViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
         var name: TextView
         val buttonHapusKat: Button
         val buttonEditKat: Button
+
 
         init {
             name = v.findViewById<TextView>(R.id.mtitlekat)
@@ -111,25 +111,34 @@ class UserAdapterKat(val c: Context, val userList: ArrayList<UserDataKat>) :
 
         buttonYa.setOnClickListener {
             deleteUser(position)
+            backupList = ArrayList(userList) // Perbarui backupList setelah menghapus item
             dialog.dismiss()
         }
+
         dialog.show()
     }
 
     private fun deleteUser(position: Int) {
+        val deletedItem = userList[position]
         userList.removeAt(position)
+        backupList.remove(deletedItem)
         notifyItemRemoved(position)
+
+        // Simpan perubahan ke penyimpanan permanen
         saveData()
+
         Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
     }
 
     private fun saveData() {
-        val sharedPreferences =
-            c.getSharedPreferences("user_prefs_datakategori", Context.MODE_PRIVATE)
+        // Simpan userList dan backupList ke Shared Preferences atau database lokal
+        val sharedPreferences = c.getSharedPreferences("user_prefs_datakategori", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
         val json = gson.toJson(userList)
         editor.putString("user_list", json)
+        val jsonBackup = gson.toJson(backupList)
+        editor.putString("backup_list", jsonBackup)
         editor.apply()
     }
 }
