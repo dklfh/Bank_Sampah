@@ -63,15 +63,10 @@ class MainActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         btngoogle.setOnClickListener {
-            // Logout pengguna saat ini jika ada
-            firebaseAuth.signOut()
-
-            // Minta pengguna untuk memilih akun saat mereka mencoba masuk
-            val signInIntent = googleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+            val signInClient = googleSignInClient.signInIntent
+            startActivityForResult(signInClient, RC_SIGN_IN)
         }
     }
-
 
     private fun isLoggedIn(): Boolean {
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
