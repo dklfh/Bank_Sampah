@@ -13,36 +13,48 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var btngoogle : Button
-    private lateinit var btnfacebook : Button
-    private lateinit var btntwitter : Button
-    private lateinit var googleSignInClient : GoogleSignInClient
-    private lateinit var progressDialog: ProgressDialog
 
+    private lateinit var btngoogle: Button
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var progressDialog: ProgressDialog
     private var firebaseAuth = FirebaseAuth.getInstance()
 
     companion object {
         private const val RC_SIGN_IN = 1001
+        private const val PREFS_NAME = "LoginPrefs"
+        private const val IS_LOGGED_IN = "isLoggedIn"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseApp.initializeApp(this)
         setContentView(R.layout.activity_main)
-        btngoogle = findViewById(R.id.btn_google)
-        btnfacebook = findViewById(R.id.btn_facebook)
-        btntwitter = findViewById(R.id.btn_twitter)
-
-        FirebaseAuth.getInstance()
 
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Logging")
         progressDialog.setMessage("Silahkan Tunggu...")
+
+        // Cek apakah pengguna sudah login sebelumnya
+        if (isLoggedIn()) {
+            // Cek apakah akun masih valid
+            firebaseAuth.currentUser?.reload()?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Jika akun masih valid, arahkan ke halaman kalkulator
+                    navigateToCalculator()
+                } else {
+                    // Jika akun tidak valid, arahkan ke halaman login
+                    navigateToLogin()
+                }
+            }
+        } else {
+            // Jika belum login, arahkan ke halaman login
+            navigateToLogin()
+        }
+
+        btngoogle = findViewById(R.id.btn_google)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -50,45 +62,64 @@ class MainActivity : AppCompatActivity() {
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        btngoogle.setOnClickListener{
-            val signInClient = googleSignInClient.signInIntent
-            startActivityForResult(signInClient, RC_SIGN_IN)
+        btngoogle.setOnClickListener {
+            // Logout pengguna saat ini jika ada
+            firebaseAuth.signOut()
+
+            // Minta pengguna untuk memilih akun saat mereka mencoba masuk
+            val signInIntent = googleSignInClient.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
         }
     }
 
-    @Deprecated("Deprecated in Java")
+
+    private fun isLoggedIn(): Boolean {
+        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        return prefs.getBoolean(IS_LOGGED_IN, false)
+    }
+
+    private fun navigateToCalculator() {
+        startActivity(Intent(this, cobanavbar::class.java))
+        finish()
+    }
+
+    private fun navigateToLogin() {
+        // Mengarahkan pengguna ke halaman login
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == RC_SIGN_IN) {
-            //MENANGANI PROSES LOGIN GOOGLE
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
-                //JIKA BERHASIL
                 val account = task.getResult(ApiException::class.java)!!
-                firebaseAutWithGoogle(account.idToken!!)
-            }catch (e: ApiException) {
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
                 e.printStackTrace()
                 Toast.makeText(applicationContext, e.localizedMessage, LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun firebaseAutWithGoogle(idtoken: String) {
+    private fun firebaseAuthWithGoogle(idToken: String) {
         progressDialog.show()
-        val credential = GoogleAuthProvider.getCredential(idtoken, null)
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(credential)
             .addOnSuccessListener {
-                startActivity(Intent(this, cobanavbar::class.java))
-                startActivity(intent)
-                finish()
+                // Simpan status login
+                val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                prefs.edit().putBoolean(IS_LOGGED_IN, true).apply()
+                navigateToCalculator()
             }
-            .addOnFailureListener{ error ->
+            .addOnFailureListener { error ->
                 Toast.makeText(this, error.localizedMessage, LENGTH_SHORT).show()
             }
-            .addOnCompleteListener{
+            .addOnCompleteListener {
                 progressDialog.dismiss()
             }
     }
-
 }
