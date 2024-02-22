@@ -9,22 +9,25 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.banksampah.calculator.DataTransaksi
 import com.google.firebase.database.*
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class cekData : AppCompatActivity() {
-    private lateinit var btnBatal : Button
-    private lateinit var namaBank : TextView
-    private lateinit var namaPetugas : TextView
-    private lateinit var namaNasabah : TextView
-    private lateinit var username : TextView
-    private lateinit var noTelp : TextView
-    private lateinit var tanggal : TextView
-    private lateinit var pembayaran : TextView
-    private lateinit var judulpembayaran : TextView
+    private lateinit var btnBatal: Button
+    private lateinit var namaBank: TextView
+    private lateinit var namaPetugas: TextView
+    private lateinit var namaNasabah: TextView
+    private lateinit var username: TextView
+    private lateinit var noTelp: TextView
+    private lateinit var tanggal: TextView
+    private lateinit var pembayaran: TextView
+    private lateinit var judulpembayaran: TextView
     private lateinit var kategori: TextView
-    private lateinit var subkategori : TextView
-    private lateinit var jumlah : TextView
-    private lateinit var harga : TextView
-    private lateinit var subtotal : TextView
+    private lateinit var subkategori: TextView
+    private lateinit var jumlah: TextView
+    private lateinit var harga: TextView
+    private lateinit var subtotal: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,11 +85,28 @@ class cekData : AppCompatActivity() {
         }
 
         submitButton.setOnClickListener {
+            val currentDate = Date()
+            val dateFormatForFirebase = SimpleDateFormat("yyyy-MM-dd, HH.mm.ss", Locale.getDefault())
+            val timestamp = dateFormatForFirebase.format(currentDate).replace(".", ",")
+
             val intent = Intent(this, nota::class.java)
+            val formattedDate = dateFormatForFirebase.format(currentDate)
+            dataTransaksi.tanggal = formattedDate
             intent.putExtra("dataTransaksi", dataTransaksi)
-            startActivity(intent)
+
             myRef.push().setValue(dataTransaksi)
+                .addOnSuccessListener {
+                    // Handle success, if needed
+                    myRef.child(timestamp).setValue(dataTransaksi)
+                }
+                .addOnFailureListener {
+                    // Handle failure, if needed
+                }
+
+            startActivity(intent)
         }
+
+
 
         btnBatal = findViewById(R.id.cancelbtn)
 

@@ -61,7 +61,7 @@ class calculator : Fragment() {
         val namaBank: String,
         val namaPetugas: String,
         val namaNasabah: String,
-        val tanggal: String,
+        var tanggal: String,
         val username: String,
         val rekening: String,
         val pembayaran: String,
