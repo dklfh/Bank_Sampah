@@ -9,24 +9,26 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import android.app.Activity
 import android.content.Intent
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
+import android.widget.RadioGroup
 import android.widget.Spinner
-import android.widget.Toast
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.math.BigDecimal
-import com.google.firebase.FirebaseApp
+import android.widget.RadioButton
+import com.example.banksampah.databinding.ActivityMainBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
+
 class calculator : Fragment() {
-    private lateinit var databaseReference: DatabaseReference
     private var currentValue = BigDecimal("1.0")
     private lateinit var number: TextView
     private lateinit var btnPlus : Button
@@ -54,8 +56,7 @@ class calculator : Fragment() {
     private lateinit var minus : Button
     private var dataSampahLayout: LinearLayout? = null
 
-
-//    kirim data
+    //    kirim data
     data class DataTransaksi(
         val namaBank: String,
         val namaPetugas: String,
@@ -73,26 +74,25 @@ class calculator : Fragment() {
         val listDataSampah: List<DataSampah> = emptyList()
     ) : Serializable {
 
-    data class DataSampah(
-        val kategori: String,
-        val subkategori: String,
-        val jumlah: Double?,
-        val harga: Double?,
-        val subtotal: Double?
-    ) : Serializable
-    data class LayoutData(
-        val selectedKategori: String,
-        val selectedSubKategori: String,
-        val jumlah: Double?,
-        val hargaSubKategori: Double?,
-        val subtotal: Double?
-    ) : Serializable
-}
+        data class DataSampah(
+            val kategori: String,
+            val subkategori: String,
+            val jumlah: Double?,
+            val harga: Double?,
+            val subtotal: Double?
+        ) : Serializable
+        data class LayoutData(
+            val selectedKategori: String,
+            val selectedSubKategori: String,
+            val jumlah: Double?,
+            val hargaSubKategori: Double?,
+            val subtotal: Double?
+        ) : Serializable
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseApp.initializeApp(requireActivity())
-        databaseReference = FirebaseDatabase.getInstance().reference
+
     }
 
     private val hargaSubKategoriMap = mapOf(
@@ -363,15 +363,12 @@ class calculator : Fragment() {
             }
             if (!isSwitchActive) {
                 rekening.error = "Pilih Metode Transaksi Terlebih Dahulu"
-            } else {
-                if (isSwitchActive && rekening.text.isNullOrBlank()) {
-                    rekening.error = "Masukkan No Telepon atau No Rekening tergantung dari metode pembayaran"
-                } else if (isAllFieldsFilled) {
-                    val intent = Intent(activity, cekData::class.java)
-                    intent.putExtra("dataTransaksi", dataTransaksi)
-                    saveDataToFirebase(dataTransaksi)
-                    startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
-                }
+            } else if (isSwitchActive && rekening.text.isNullOrBlank()) {
+                rekening.error = "Masukkan No Telepon atau No Rekening tergantung dari metode pembayaran"
+            } else if (isAllFieldsFilled) {
+                val intent = Intent(activity, cekData::class.java)
+                intent.putExtra("dataTransaksi", dataTransaksi)
+                startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
             }
         }
 
@@ -544,21 +541,5 @@ class calculator : Fragment() {
             }
         }
         updateTextView()
-    }
-
-    private fun saveDataToFirebase(dataTransaksi: DataTransaksi) {
-        // Generate unique key for each transaction
-        val transactionKey = databaseReference.child("transactions").push().key
-
-        // Set the data to the specified database reference
-        databaseReference.child("transactions").child(transactionKey!!).setValue(dataTransaksi)
-            .addOnSuccessListener {
-                // Data berhasil disimpan
-                Toast.makeText(requireContext(), "Data berhasil disimpan di database", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener {
-                // Terjadi kesalahan saat menyimpan data
-                Toast.makeText(requireContext(), "Gagal menyimpan data di database", Toast.LENGTH_SHORT).show()
-            }
     }
 }
