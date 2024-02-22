@@ -20,6 +20,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Locale
 import com.google.gson.Gson
 import android.content.SharedPreferences
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import com.example.banksampah.model.UserDataKat
 import com.google.gson.reflect.TypeToken
 import java.io.*
 
@@ -31,6 +34,7 @@ class datasubkategorii : Fragment() {
     private lateinit var userAdapterSubKategori: UserAdapterSubKategori
     private lateinit var search: SearchView
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var backupList: ArrayList<UserDataSubKategori>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +45,8 @@ class datasubkategorii : Fragment() {
         addsBtn = rootView.findViewById(R.id.addingbuttonsubkategori)
         recy = rootView.findViewById(R.id.recylersubkategori)
         userList = ArrayList()
-        userAdapterSubKategori = UserAdapterSubKategori(requireActivity(), userList)
+        backupList = ArrayList(userList)
+        userAdapterSubKategori = UserAdapterSubKategori(requireActivity(), userList, backupList)
         recy.layoutManager = LinearLayoutManager(requireActivity())
         recy.adapter = userAdapterSubKategori
         addsBtn.setOnClickListener { addInfo() }
@@ -49,6 +54,8 @@ class datasubkategorii : Fragment() {
         sharedPreferences = requireActivity().getSharedPreferences("user_prefs_datasubkategori",Context.MODE_PRIVATE)
 
         loadData()
+
+        backupList = ArrayList(userList)
 
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -58,19 +65,26 @@ class datasubkategorii : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 val searchText = newText?.lowercase(Locale.getDefault()) ?: ""
-                userList.clear()
-                if (searchText.isNotEmpty()) {
-                    userList.forEach {
-                        if (it.UserNameSubKat.toLowerCase(Locale.getDefault()).contains(searchText)) {
-                            userList.add(it)
-                        }
-                    }
-                    recy.adapter!!.notifyDataSetChanged()
-                } else {
+
+                if (searchText.isBlank()) {
+                    // Jika pencarian kosong, tampilkan semua data
                     userList.clear()
-                    userList.addAll(userList)
-                    recy.adapter!!.notifyDataSetChanged()
+                    userList.addAll(backupList)
+                } else {
+                    // Filter original list based on the search text
+                    val filteredList = backupList.filter {
+                        it.UserNameSubKat.toLowerCase(Locale.getDefault()).contains(searchText) ||
+                                it.NamaSubKategori.toLowerCase(Locale.getDefault()).contains(searchText)
+                    }
+
+                    // Clear the current list
+                    userList.clear()
+
+                    // Add only the filtered results to the current list
+                    userList.addAll(filteredList)
                 }
+
+                userAdapterSubKategori.notifyDataSetChanged()
                 return true
             }
         })
@@ -82,7 +96,7 @@ class datasubkategorii : Fragment() {
     private fun addInfo() {
         val inflter = LayoutInflater.from(requireActivity())
         val v = inflter.inflate(R.layout.add_item_subkategori, null)
-        val namesubkat = v.findViewById<EditText>(R.id.UserNameSubKat)
+        val namesubkat = v.findViewById<Spinner>(R.id.UserNameSubKat)
         val namesubkategori = v.findViewById<EditText>(R.id.NamaSubKategori)
         val SatuanSubKategori = v.findViewById<EditText>(R.id.SatuanSubKategori)
         val HargaSubKategori = v.findViewById<EditText>(R.id.HargaSubKategori)
@@ -91,20 +105,27 @@ class datasubkategorii : Fragment() {
         val okButton = v.findViewById<Button>(R.id.ok_itemsubkat)
         val cancelButton = v.findViewById<Button>(R.id.cancel_itemsubkat)
 
+        val satuanOptions = arrayOf("Plastik RIGD/Berbentuk", "Gelasan", "Plastik Fleksibel atau Lembaran"
+            ,"Plastik Kerasan", "Kertas" , "Logam" , "Kaca" , "PET" ,"Lainnya")
 
+        val satuanAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, satuanOptions)
 
+        satuanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        namesubkat.adapter = satuanAdapter
 
         addDialog.setView(v)
         val alertDialog = addDialog.create()
         okButton.setOnClickListener {
-            val namesubkat= namesubkat.text.toString()
+            val namesubkat = namesubkat.selectedItem.toString()
             val namesubkategori= namesubkategori .text.toString()
             val satuansubkategori= SatuanSubKategori.text.toString()
             val hargasubkategori= HargaSubKategori.text.toString()
             val masukanketerangansubkategori= MasukanKeteranganSubKategori.text.toString()
 
-            if (namesubkat.isNotEmpty()) {
+            if (namesubkategori.isNotEmpty()) {
                 userList.add(UserDataSubKategori("$namesubkat","$namesubkategori","$satuansubkategori","$hargasubkategori","$masukanketerangansubkategori"))
+                backupList.add(UserDataSubKategori("$namesubkat", "$namesubkategori", "$satuansubkategori", "$hargasubkategori", "$masukanketerangansubkategori"))
                 userAdapterSubKategori.notifyDataSetChanged()
                 saveData()
                 alertDialog.dismiss()
@@ -113,7 +134,6 @@ class datasubkategorii : Fragment() {
             } else {
                 Toast.makeText(requireActivity(), "Name cannot be empty", Toast.LENGTH_SHORT).show()
             }
-            Toast.makeText(requireActivity(),"Adding User Information Success",Toast.LENGTH_SHORT).show()
         }
         cancelButton.setOnClickListener {
             alertDialog.dismiss()
@@ -137,6 +157,7 @@ class datasubkategorii : Fragment() {
         if (!json.isNullOrBlank()) {
             userList.addAll(gson.fromJson(json, type))
         }
+        backupList = ArrayList(userList)
         userAdapterSubKategori.notifyDataSetChanged()
     }
 }

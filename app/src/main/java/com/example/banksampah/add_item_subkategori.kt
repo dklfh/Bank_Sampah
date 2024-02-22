@@ -1,18 +1,18 @@
 package com.example.banksampah
 
-//import android.os.Bundle
-//import android.view.View
-//import android.widget.AdapterView
-//import android.widget.ArrayAdapter
-//import android.widget.Spinner
-//import android.widget.Toast
-//import androidx.appcompat.app.AppCompatActivity
-//class add_item_subkategori : AppCompatActivity() {
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.add_item_subkategori)
-//
+import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+class add_item_subkategori : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.add_item_subkategori)
+
 //        // Mendapatkan referensi Spinner dari layout
 //        val spinner = findViewById<Spinner>(R.id.UserNameSubKat)
 //
@@ -51,5 +51,7 @@ package com.example.banksampah
 //                // Do nothing
 //            }
 //        }
-//    }
-//}
+
+
+    }
+}

@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".add_item_subkategori"
     app:cardBackgroundColor="@color/dasar"
     app:cardCornerRadius="20dp"
     android:layout_marginHorizontal="30dp"
@@ -23,19 +25,25 @@
             android:textColor="@color/white"
             android:textSize="16sp"/>
 
-        <EditText
-            android:id="@+id/UserNameSubKat"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:background="@drawable/textinput_home"
-            android:drawableEnd="@drawable/panah"
-            android:fontFamily="@font/ralewaymedium"
-            android:gravity="left"
-            android:hint="Kategori Sampah. . ."
-            android:padding="15dp"
-            android:textColor="@color/teks"
-            android:textSize="15sp" />
+            android:layout_marginBottom="20dp">
+
+            <Spinner
+                android:id="@+id/UserNameSubKat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/panah"
+                android:fontFamily="@font/ralewayregular"
+                android:gravity="left"
+                android:padding="15dp"
+                android:prompt="@string/prompt_kategori_sampah"
+                android:textColor="@color/teks"
+                android:textSize="15sp" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"

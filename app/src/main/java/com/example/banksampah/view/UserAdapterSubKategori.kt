@@ -4,17 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.R
+import com.example.banksampah.model.UserDataKat
 import com.example.banksampah.model.UserDataSubKategori
 import com.google.gson.Gson
 
-class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSubKategori>) :
+class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSubKategori>, var backupList: ArrayList<UserDataSubKategori>) :
     RecyclerView.Adapter<UserAdapterSubKategori.UserViewHolder>() {
 
     inner class UserViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
@@ -115,7 +118,9 @@ class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSub
     }
 
     private fun deleteUser(position: Int) {
+        val deletedItem = userList[position]
         userList.removeAt(position)
+        backupList.remove(deletedItem)
         notifyItemRemoved(position)
         saveData()
         Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
@@ -141,12 +146,13 @@ class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSub
     }
 
     private fun saveData() {
-        val sharedPreferences =
-            c.getSharedPreferences("user_prefs_datasubkategori", Context.MODE_PRIVATE)
+        val sharedPreferences = c.getSharedPreferences("user_prefs_datasubkategori", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
         val json = gson.toJson(userList)
         editor.putString("user_list", json)
+        val jsonBackup = gson.toJson(backupList)
+        editor.putString("backup_list", jsonBackup)
         editor.apply()
     }
 }
