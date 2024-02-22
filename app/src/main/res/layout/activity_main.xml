@@ -100,6 +100,7 @@
                 android:textColor="@color/black" />
         </LinearLayout>
 
+
         <LinearLayout
             android:id="@+id/textbawah"
             android:layout_width="match_parent"
@@ -117,6 +118,8 @@
                 android:text="Untuk melanjutkan, Google akan membagikan nama, alamat email, pilihan bahasa, dan gambar profil Anda ke BANK SAMPAH. Sebelum menggunakan aplikasi ini, Anda dapat meninjau kebijakan privasi dan persyaratan layanan BANK SAMPAH"
                 android:textAlignment="center"
                 android:textSize="9sp" />
+
+
         </LinearLayout>
 
 

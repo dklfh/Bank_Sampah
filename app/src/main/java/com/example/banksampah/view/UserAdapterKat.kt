@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -46,9 +45,8 @@ class UserAdapterKat(val c: Context, val userList: ArrayList<UserDataKat>, var b
             val builder = AlertDialog.Builder(c, R.style.AppTheme_Dialog)
             val inflater = LayoutInflater.from(c)
             val dialogLayout = inflater.inflate(R.layout.edit_kategori, null)
-
-
             val editTextNamaKategori = dialogLayout.findViewById<TextView>(R.id.mtitlekat_edit)
+
             // Set initial text from the item in the list
             editTextNamaKategori.text = userList[position].userNameKat
 
@@ -123,10 +121,7 @@ class UserAdapterKat(val c: Context, val userList: ArrayList<UserDataKat>, var b
         userList.removeAt(position)
         backupList.remove(deletedItem)
         notifyItemRemoved(position)
-
-        // Simpan perubahan ke penyimpanan permanen
         saveData()
-
         Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
     }
 

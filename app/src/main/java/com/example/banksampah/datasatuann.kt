@@ -29,6 +29,7 @@ class datasatuann : Fragment() {
     private lateinit var userAdapter: UserAdapter
     private lateinit var search: SearchView
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var backupList: ArrayList<UserData>
 
 
 
@@ -41,7 +42,8 @@ class datasatuann : Fragment() {
         addsBtn = rootView.findViewById(R.id.addingbutton)
         recy = rootView.findViewById(R.id.recyler)
         userList = ArrayList()
-        userAdapter = UserAdapter(requireActivity(), userList)
+        backupList = ArrayList(userList)
+        userAdapter = UserAdapter(requireActivity(), userList, backupList)
         recy.layoutManager = LinearLayoutManager(requireActivity())
         recy.adapter = userAdapter
         addsBtn.setOnClickListener { addInfo() }
@@ -50,6 +52,9 @@ class datasatuann : Fragment() {
 
         loadData()
 
+        backupList = ArrayList(userList)
+
+
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 search.clearFocus()
@@ -57,9 +62,30 @@ class datasatuann : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                userAdapter.filter(newText ?: "")
+                val searchText = newText?.lowercase(Locale.getDefault()) ?: ""
+
+                if (searchText.isBlank()) {
+                    // Jika pencarian kosong, tampilkan semua data
+                    userList.clear()
+                    userList.addAll(backupList)
+
+                } else {
+                    // Filter original list basfed on the search text
+                    val filteredList = backupList.filter {
+                        it.userName?.toLowerCase(Locale.getDefault())?.contains(searchText) ?: false
+                    }
+
+                    // Clear the current list
+                    userList.clear()
+
+                    // Add only the filtered results to the current list
+                    userList.addAll(filteredList)
+                }
+
+                userAdapter.notifyDataSetChanged()
                 return true
             }
+
         })
 
         return rootView
@@ -80,6 +106,7 @@ class datasatuann : Fragment() {
 
             if (name.isNotEmpty()) {
                 userList.add(UserData(name))
+                backupList.add(UserData("$name"))
                 userAdapter.notifyDataSetChanged()
                 saveData()
                 alertDialog.dismiss()
@@ -110,6 +137,7 @@ class datasatuann : Fragment() {
         if (!json.isNullOrBlank()) {
             userList.addAll(gson.fromJson(json, type))
         }
+        backupList = ArrayList(userList)
         userAdapter.notifyDataSetChanged()
     }
 }

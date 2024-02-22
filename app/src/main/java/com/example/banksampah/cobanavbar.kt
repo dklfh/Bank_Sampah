@@ -22,12 +22,14 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class
+cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var tempat: DrawerLayout
     private lateinit var toolbarTitle: TextView
     private var overlayAlertDialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cobanavbar)
         tempat = findViewById(R.id.tempat)

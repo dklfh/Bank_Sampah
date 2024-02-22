@@ -1,12 +1,13 @@
 package com.example.banksampah
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.content.Intent
+import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import android.widget.TextView
 
 
@@ -19,10 +20,22 @@ class Setting : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_setting, container, false)
         aboutusbtn = view.findViewById(R.id.aboutus)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         aboutusbtn.setOnClickListener {
             val intent = Intent(activity, aboutus::class.java)
             startActivity(intent)
         }
-        return view
+
+        // Check if user is already logged in
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            // User is already logged in, redirect to calculator activity
+            startActivity(Intent(activity, MainActivity::class.java))
+            activity?.finish()
+        }
     }
 }

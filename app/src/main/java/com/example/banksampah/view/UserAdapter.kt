@@ -12,16 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.R
 import com.example.banksampah.model.UserData
 import com.google.gson.Gson
-import java.util.Locale
+import android.util.Log
 
-class UserAdapter(val c: Context, val userList: ArrayList<UserData>) :
+
+
+class UserAdapter(val c: Context, val userList: ArrayList<UserData>,var backupList: ArrayList<UserData>) :
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    var userListFiltered = ArrayList<UserData>()
-
-    init {
-        userListFiltered = userList
-    }
 
     inner class UserViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
         var name: TextView
@@ -121,34 +118,30 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>) :
     }
 
     private fun deleteUser(position: Int) {
-        userList.removeAt(position)
-        notifyItemRemoved(position)
-        saveData()
-        Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
+        if (position >= 0 && position < userList.size) {
+            val deletedUser = userList[position]
+            userList.removeAt(position)
+            backupList.remove(deletedUser)
+            notifyItemRemoved(position)
+            saveData()
+            Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
+        } else {
+            Log.e("UserAdapter", "Invalid position: $position")
+        }
     }
 
+
+
     private fun saveData() {
-        val sharedPreferences =
-            c.getSharedPreferences("user_prefs_datasatuann", Context.MODE_PRIVATE)
+        val sharedPreferences = c.getSharedPreferences("user_prefs_datasatuann", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
         val json = gson.toJson(userList)
         editor.putString("user_list", json)
+        val jsonBackup = gson.toJson(backupList)
+        editor.putString("backup_list", jsonBackup)
         editor.apply()
     }
 
-    fun filter(text: String) {
-        val searchText = text.lowercase(Locale.getDefault())
-        userListFiltered.clear()
-        if (searchText.isEmpty()) {
-            userListFiltered.addAll(userList)
-        } else {
-            for (item in userList) {
-                if (item.userName.lowercase(Locale.getDefault()).contains(searchText)) {
-                    userListFiltered.add(item)
-                }
-            }
-        }
-        notifyDataSetChanged()
-    }
+
 }
