@@ -20,6 +20,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Locale
 import com.google.gson.Gson
 import android.content.SharedPreferences
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.example.banksampah.model.UserDataKat
 import com.google.gson.reflect.TypeToken
 import java.io.*
@@ -94,7 +96,7 @@ class datasubkategorii : Fragment() {
     private fun addInfo() {
         val inflter = LayoutInflater.from(requireActivity())
         val v = inflter.inflate(R.layout.add_item_subkategori, null)
-        val namesubkat = v.findViewById<EditText>(R.id.UserNameSubKat)
+        val namesubkat = v.findViewById<Spinner>(R.id.UserNameSubKat)
         val namesubkategori = v.findViewById<EditText>(R.id.NamaSubKategori)
         val SatuanSubKategori = v.findViewById<EditText>(R.id.SatuanSubKategori)
         val HargaSubKategori = v.findViewById<EditText>(R.id.HargaSubKategori)
@@ -103,17 +105,25 @@ class datasubkategorii : Fragment() {
         val okButton = v.findViewById<Button>(R.id.ok_itemsubkat)
         val cancelButton = v.findViewById<Button>(R.id.cancel_itemsubkat)
 
+        val satuanOptions = arrayOf("Plastik RIGD/Berbentuk", "Gelasan", "Plastik Fleksibel atau Lembaran"
+            ,"Plastik Kerasan", "Kertas" , "Logam" , "Kaca" , "PET" ,"Lainnya")
+
+        val satuanAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, satuanOptions)
+
+        satuanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        namesubkat.adapter = satuanAdapter
 
         addDialog.setView(v)
         val alertDialog = addDialog.create()
         okButton.setOnClickListener {
-            val namesubkat= namesubkat.text.toString()
+            val namesubkat = namesubkat.selectedItem.toString()
             val namesubkategori= namesubkategori .text.toString()
             val satuansubkategori= SatuanSubKategori.text.toString()
             val hargasubkategori= HargaSubKategori.text.toString()
             val masukanketerangansubkategori= MasukanKeteranganSubKategori.text.toString()
 
-            if (namesubkat.isNotEmpty()) {
+            if (namesubkategori.isNotEmpty()) {
                 userList.add(UserDataSubKategori("$namesubkat","$namesubkategori","$satuansubkategori","$hargasubkategori","$masukanketerangansubkategori"))
                 backupList.add(UserDataSubKategori("$namesubkat", "$namesubkategori", "$satuansubkategori", "$hargasubkategori", "$masukanketerangansubkategori"))
                 userAdapterSubKategori.notifyDataSetChanged()
