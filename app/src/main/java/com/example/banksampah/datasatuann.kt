@@ -55,7 +55,6 @@ class datasatuann : Fragment() {
 
         backupList = ArrayList(userList)
 
-
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 search.clearFocus()
@@ -65,28 +64,20 @@ class datasatuann : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 val searchText = newText?.lowercase(Locale.getDefault()) ?: ""
 
+                userList.clear()
+
                 if (searchText.isBlank()) {
-                    // Jika pencarian kosong, tampilkan semua data
-                    userList.clear()
-                    userList.addAll(backupList)
-
+                    userList.addAll(backupList.filter { !it.isDeleted })
                 } else {
-                    // Filter original list basfed on the search text
                     val filteredList = backupList.filter {
-                        it.userName?.toLowerCase(Locale.getDefault())?.contains(searchText) ?: false
+                        it.userName?.toLowerCase(Locale.getDefault())?.contains(searchText) ?: false && !it.isDeleted
                     }
-
-                    // Clear the current list
-                    userList.clear()
-
-                    // Add only the filtered results to the current list
                     userList.addAll(filteredList)
                 }
 
                 userAdapter.notifyDataSetChanged()
                 return true
             }
-
         })
 
         return rootView

@@ -126,7 +126,7 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>,var backupLi
         if (position >= 0 && position < userList.size) {
             val deletedUser = userList[position]
             userList.removeAt(position)
-            backupList.remove(deletedUser)
+            deletedUser.isDeleted = true
             notifyItemRemoved(position)
             saveData()
             Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
@@ -141,10 +141,19 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>,var backupLi
         val sharedPreferences = c.getSharedPreferences("user_prefs_datasatuann", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
-        val json = gson.toJson(userList)
+
+        val nonDeletedList = userList.filter { !it.isDeleted }
+
+        val json = gson.toJson(nonDeletedList)
         editor.putString("user_list", json)
-        val jsonBackup = gson.toJson(backupList)
-        editor.putString("backup_list", jsonBackup)
+//        val jsonBackup = gson.toJson(backupList)
+//        editor.putString("backup_list", jsonBackup)
+//        editor.apply()
+
+        // Simpan daftar satuan ke dalam file JSON
+        val satuanList = getSatuanList()
+        val satuanJson = gson.toJson(satuanList)
+        editor.putString("satuan_list", satuanJson)
         editor.apply()
     }
 
