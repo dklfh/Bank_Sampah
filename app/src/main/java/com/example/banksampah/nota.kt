@@ -33,7 +33,6 @@ class nota : AppCompatActivity() {
     private lateinit var namaBank : TextView
     private lateinit var namaPetugas : TextView
     private lateinit var namaNasabah : TextView
-    private lateinit var username : TextView
     private lateinit var noTelp : TextView
     private lateinit var tanggal : TextView
     private lateinit var pembayaran : TextView
@@ -57,7 +56,6 @@ class nota : AppCompatActivity() {
         namaPetugas = findViewById(R.id.namaPetugas)
         namaNasabah = findViewById(R.id.namaNasabah)
         tanggal = findViewById(R.id.tanggal)
-        username = findViewById(R.id.username)
         noTelp = findViewById(R.id.noTelp)
         pembayaran = findViewById(R.id.pembayaran)
         judulpembayaran = findViewById(R.id.judulpembayaran)
@@ -75,7 +73,6 @@ class nota : AppCompatActivity() {
         namaPetugas.text = dataTransaksi.namaPetugas
         namaNasabah.text = dataTransaksi.namaNasabah
         tanggal.text = dataTransaksi.tanggal
-        username.text = dataTransaksi.username
         noTelp.text = dataTransaksi.rekening
         pembayaran.text = dataTransaksi.pembayaran
         kategori.text = dataTransaksi.kategori

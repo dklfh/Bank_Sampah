@@ -312,33 +312,13 @@
                     android:orientation="vertical">
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="20dp"
-                    android:gravity="end"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/minus"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:background="@drawable/minus" />
-
-                    <Button
-                        android:id="@+id/plus"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="15dp"
-                        android:background="@drawable/plus" />
-                </LinearLayout>
-
                 <Button
                     android:id="@+id/buttonBersihkan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit"
                     android:fontFamily="@font/ralewaybold"
+                    android:layout_marginVertical="20dp"
                     android:text="Bersihkan"
                     android:textColor="@color/white" />
 
@@ -463,35 +443,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/ralewaymedium"
-                    android:text="Masukan Username"
-                    android:textColor="@color/teks"
-                    android:textSize="16sp" />
-
-                <EditText
-                    android:id="@+id/username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/textinput_home"
-                    android:fontFamily="@font/ralewayregular"
-                    android:hint="Masukan Username. . ."
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="15dp"
-                    android:textColor="@color/teks"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
