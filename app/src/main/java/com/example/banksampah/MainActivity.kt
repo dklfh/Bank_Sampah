@@ -2,13 +2,18 @@
 
 package com.example.banksampah
 
+
 import android.app.ProgressDialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -23,10 +28,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressDialog: ProgressDialog
     private var firebaseAuth = FirebaseAuth.getInstance()
 
+    private var isLoginSuccessReceived = false
+    private var isNotLogin = false
+
     companion object {
         private const val RC_SIGN_IN = 1001
         private const val PREFS_NAME = "LoginPrefs"
         private const val IS_LOGGED_IN = "isLoggedIn"
+        private const val IS_NOT_LOGIN = "isNotLoggedIn"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,22 +46,14 @@ class MainActivity : AppCompatActivity() {
         progressDialog.setTitle("Logging")
         progressDialog.setMessage("Silahkan Tunggu...")
 
-        // Cek apakah pengguna sudah login sebelumnya
-        if (isLoggedIn()) {
-            // Cek apakah akun masih valid
-            firebaseAuth.currentUser?.reload()?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // Jika akun masih valid, arahkan ke halaman kalkulator
-                    navigateToCalculator()
-                } else {
-                    // Jika akun tidak valid, arahkan ke halaman login
-                    navigateToLogin()
-                }
+        LoginCheckService.enqueueWork(this, Intent(this, LoginCheckService::class.java))
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                isLoginSuccessReceived = true
+                navigateToCalculatorOrLogin()
             }
-        } else {
-            // Jika belum login, arahkan ke halaman login
-            navigateToLogin()
-        }
+        }, IntentFilter("com.example.banksampah.LOGIN_SUCCESS"))
 
         btngoogle = findViewById(R.id.btn_google)
 
@@ -63,26 +64,36 @@ class MainActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         btngoogle.setOnClickListener {
-            val signInClient = googleSignInClient.signInIntent
-            startActivityForResult(signInClient, RC_SIGN_IN)
+            firebaseAuth.signOut()
+            val signInIntent = googleSignInClient.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
+        }
+
+        if (isLoggedIn()) {
+            navigateToCalculatorOrLogin()
         }
     }
 
     private fun isLoggedIn(): Boolean {
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-        return prefs.getBoolean(IS_LOGGED_IN, false)
+        return prefs.getBoolean(IS_LOGGED_IN, false) || isLoginSuccessReceived
     }
 
-    private fun navigateToCalculator() {
-        startActivity(Intent(this, cobanavbar::class.java))
-        finish()
+    private fun isNotLogin(): Boolean {
+        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        return prefs.getBoolean(IS_NOT_LOGIN, false) || isNotLogin
     }
 
-    private fun navigateToLogin() {
-        // Mengarahkan pengguna ke halaman login
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+    private fun navigateToCalculatorOrLogin() {
+        if (isLoggedIn()) {
+            val intent = Intent(this, cobanavbar::class.java)
+            startActivity(intent)
+            finish()
+        } else if (isNotLogin()) {
+            val intent = Intent(this, cekData::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -105,10 +116,9 @@ class MainActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(credential)
             .addOnSuccessListener {
-                // Simpan status login
                 val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                 prefs.edit().putBoolean(IS_LOGGED_IN, true).apply()
-                navigateToCalculator()
+                navigateToCalculatorOrLogin()
             }
             .addOnFailureListener { error ->
                 Toast.makeText(this, error.localizedMessage, LENGTH_SHORT).show()
