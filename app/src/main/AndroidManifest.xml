@@ -70,6 +70,11 @@
         <activity
             android:name=".nota"
             android:exported="false"/>
+        <service
+            android:name=".LoginCheckService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
+
+
 
 </manifest>
