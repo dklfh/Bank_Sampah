@@ -22,17 +22,8 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.math.BigDecimal
-import android.widget.RadioButton
-import com.example.banksampah.databinding.ActivityMainBinding
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
-
-
-class
-
-
-calculator : Fragment() {
+class calculator : Fragment() {
     private var currentValue = BigDecimal("1.0")
     private lateinit var number: TextView
     private lateinit var btnPlus : Button
@@ -44,21 +35,16 @@ calculator : Fragment() {
     private lateinit var namaBank : EditText
     private lateinit var namaPetugas : EditText
     private lateinit var namaNasabah : EditText
-    private lateinit var username : EditText
     private lateinit var rekening : EditText
     private var pembayaran: String = ""
     private lateinit var judulRekening : TextView
     private var hargaSubKategori: Double? = null
     private var selectedKategori: String = ""
     private var selectedSubKategori: String = ""
-    private val currentValueList: MutableList<BigDecimal> = mutableListOf(BigDecimal("1.0"))
     private lateinit var spinner2 : Spinner
     private val REQUEST_CODE_SECOND_ACTIVITY = 1
-    private var dataTransaksi = DataTransaksi("", "", "", "", "", "", "", "", "", 0.0, 0.0,0.0)
+    private var dataTransaksi = DataTransaksi("", "", "", "", "", "", "", "", 0.0, 0.0,0.0)
     private var isSwitchActive = false
-    private lateinit var plus : Button
-    private lateinit var minus : Button
-    private var dataSampahLayout: LinearLayout? = null
 
     //    kirim data
     data class DataTransaksi(
@@ -66,7 +52,6 @@ calculator : Fragment() {
         val namaPetugas: String,
         val namaNasabah: String,
         var tanggal: String,
-        val username: String,
         val rekening: String,
         val pembayaran: String,
         val kategori: String,
@@ -74,7 +59,6 @@ calculator : Fragment() {
         val jumlah: Double?,
         val hargaSubKategori : Double?,
         val subtotal : Double?,
-        val layoutDataList: List<LayoutData> = emptyList(),
         val listDataSampah: List<DataSampah> = emptyList()
     ) : Serializable {
 
@@ -83,7 +67,7 @@ calculator : Fragment() {
             val subkategori: String,
             val jumlah: Double?,
             val harga: Double?,
-            val subtotal: Double?
+            val subtotal: Double?,
         ) : Serializable
         data class LayoutData(
             val selectedKategori: String,
@@ -92,6 +76,16 @@ calculator : Fragment() {
             val hargaSubKategori: Double?,
             val subtotal: Double?
         ) : Serializable
+
+        data class Sampah(
+            val kategori: String,
+            val subkategori: String,
+            val jumlah: Double?,
+            val harga: Double?,
+            val subtotal: Double?,
+            val totjum: Double?,
+            val tothar: Double?
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -140,16 +134,12 @@ calculator : Fragment() {
         namaBank = view.findViewById(R.id.namaBank)
         namaPetugas = view.findViewById(R.id.namaPetugas)
         namaNasabah = view.findViewById(R.id.namaNasabah)
-        username = view.findViewById(R.id.username)
         judulRekening = view.findViewById(R.id.judulRekening)
         rekening = view.findViewById(R.id.rekening)
         btnPlus = view.findViewById(R.id.btnPlus)
         btnMinus = view.findViewById(R.id.btnMinus)
         btnBersihkan = view.findViewById(R.id.buttonBersihkan)
         btnKirim = view.findViewById(R.id.btnKirim)
-        plus = view.findViewById(R.id.plus)
-        minus = view.findViewById(R.id.minus)
-        dataSampahLayout = view.findViewById(R.id.list)
 
 
         updateTextView()
@@ -283,8 +273,16 @@ calculator : Fragment() {
         })
 
         btnDatePicker.setOnClickListener {
-            DatePickerDialog(requireActivity(), datePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+            val todayCalendar = Calendar.getInstance()
+            val datePickerDialog = DatePickerDialog(
+                requireActivity(),
+                datePicker,
+                myCalendar.get(Calendar.YEAR),
+                myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)
+            )
+            datePickerDialog.datePicker.maxDate = todayCalendar.timeInMillis
+            datePickerDialog.show()
         }
 
         btnPlus.setOnClickListener {
@@ -306,7 +304,6 @@ calculator : Fragment() {
             namaBank.text = null
             namaPetugas.text = null
             namaNasabah.text = null
-            username.text = null
             rekening.text = null
             isSwitchActive = false
             btnOvo.setBackgroundResource(R.drawable.inactive)
@@ -325,7 +322,6 @@ calculator : Fragment() {
                 namaPetugas = namaPetugas.text.toString().trim(),
                 namaNasabah = namaNasabah.text.toString().trim(),
                 tanggal = tvDatePicker.text.toString().trim(),
-                username = username.text.toString().trim(),
                 rekening = rekening.text.toString().trim(),
                 pembayaran = pembayaran,
                 kategori = selectedKategori,
@@ -338,7 +334,6 @@ calculator : Fragment() {
             val inputText1 = namaBank.text.toString().trim()
             val inputText2 = namaPetugas.text.toString().trim()
             val inputText3 = namaNasabah.text.toString().trim()
-            val inputText4 = username.text.toString().trim()
             val inputText5 = rekening.text.toString().trim()
             val inputDate = tvDatePicker.text.toString().trim()
             if (inputText1.isEmpty()) {
@@ -351,10 +346,6 @@ calculator : Fragment() {
             }
             if (inputText3.isEmpty()) {
                 namaNasabah.error = "Kolom harus diisi!"
-                isAllFieldsFilled = false
-            }
-            if (inputText4.isEmpty()) {
-                username.error = "Kolom harus diisi!"
                 isAllFieldsFilled = false
             }
             if (inputText5.isEmpty()) {
@@ -375,9 +366,6 @@ calculator : Fragment() {
                 startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY)
             }
         }
-
-        plus!!.setOnClickListener{ addLayout() }
-        minus!!.setOnClickListener{ removeLastLayout() }
 
 
         // Dropdown menu
@@ -425,11 +413,7 @@ calculator : Fragment() {
     }
 
     private fun updateTextView(layoutIndex: Int? = null) {
-        val numberTextView = if (layoutIndex != null) {
-            dataSampahLayout?.getChildAt(layoutIndex)?.findViewById<TextView>(R.id.number)
-        } else {
-            number
-        }
+        val numberTextView = number
         numberTextView?.text = currentValue.toString()
     }
 
@@ -438,112 +422,5 @@ calculator : Fragment() {
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
         tvDatePicker.setText(sdf.format(myCalendar.time))
         tvDatePicker.error = null
-    }
-
-    private fun addLayout() {
-        val inflater = layoutInflater
-        val newLayout = inflater.inflate(R.layout.datasampah, null)
-        val layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        newLayout.layoutParams = layoutParams
-        val layoutContainer = view?.findViewById<LinearLayout>(R.id.list)
-        layoutContainer?.addView(newLayout)
-        val newSelectedSubKategoriList: MutableList<String> = mutableListOf()
-        updateSubKategoriSpinner(selectedKategori, newSelectedSubKategoriList, newLayout)
-        val newCurrentValue = BigDecimal("1.0")
-        currentValueList.add(newCurrentValue)
-        val newLayoutData = DataTransaksi.LayoutData(
-            selectedKategori = selectedKategori,
-            selectedSubKategori = selectedSubKategori,
-            jumlah = currentValue.toDouble(),
-            hargaSubKategori = hargaSubKategori,
-            subtotal = hargaSubKategori?.times(currentValue.toDouble()) ?: 0.0
-        )
-        dataTransaksi = dataTransaksi.copy(
-            layoutDataList = dataTransaksi.layoutDataList + newLayoutData
-        )
-//        spinner kategori
-        val spinnerKategori = newLayout.findViewById<Spinner>(R.id.spinnerData)
-        val arrayAdapterKategori = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nKategori)
-        spinnerKategori.adapter = arrayAdapterKategori
-        spinnerKategori.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedKategori = nKategori[position]
-                updateSubKategoriSpinner(selectedKategori, newSelectedSubKategoriList, newLayout)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-        }
-//        spinner sub kategori
-        val spinner2 = newLayout.findViewById<Spinner>(R.id.spinnerSampah)
-        val subKategoriArray = subKategoriMap[selectedKategori]
-        if (subKategoriArray != null) {
-            val arrayAdapterSubKategori = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, subKategoriArray)
-            spinner2.adapter = arrayAdapterSubKategori
-            spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    selectedSubKategori = subKategoriMap[selectedKategori]?.get(position) ?: ""
-                    hargaSubKategori = hargaSubKategoriMap[selectedSubKategori] ?: 0.0
-                }
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                }
-            }
-        }
-        val number = newLayout.findViewById<TextView>(R.id.number)
-        val btnPlus = newLayout.findViewById<Button>(R.id.btnPlus)
-        val btnMinus = newLayout.findViewById<Button>(R.id.btnMinus)
-        var currentValue = BigDecimal("1.0")
-
-        // Mengatur teks awal untuk number
-        number.text = currentValue.toString()
-
-        // Fungsi untuk btnPlus
-        btnPlus.setOnClickListener {
-            currentValue = currentValue.add(BigDecimal("0.1"))
-            number.text = currentValue.toString()
-        }
-
-        // Fungsi untuk btnMinus
-        btnMinus.setOnClickListener {
-            if (currentValue > BigDecimal("0.1")) {
-                currentValue = currentValue.subtract(BigDecimal("0.1"))
-                number.text = currentValue.toString()
-            }
-        }
-    }
-
-    private fun updateSubKategoriSpinner(selectedKategori: String, selectedSubKategoriList: MutableList<String>, newLayout: View) {
-        val spinner2 = newLayout.findViewById<Spinner>(R.id.spinnerSampah)
-        val subKategoriArray = subKategoriMap[selectedKategori]
-
-        if (subKategoriArray != null) {
-            val arrayAdapterSubKategori = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, subKategoriArray)
-            spinner2.adapter = arrayAdapterSubKategori
-            spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    val selectedSubKategori = subKategoriMap[selectedKategori]?.get(position) ?: ""
-                    val hargaSubKategori = hargaSubKategoriMap[selectedSubKategori] ?: 0.0
-                    selectedSubKategoriList.clear()
-                    selectedSubKategoriList.add(selectedSubKategori)
-                }
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                }
-            }
-        }
-    }
-    private fun removeLastLayout() {
-        val layoutContainer = view?.findViewById<LinearLayout>(R.id.list)
-        val childCount = layoutContainer?.childCount
-
-        if (childCount != null && childCount > 0) {
-            layoutContainer.removeViewAt(childCount - 1)
-            if (currentValueList.isNotEmpty()) {
-                currentValueList.removeAt(currentValueList.size - 1)
-            }
-        }
-        updateTextView()
     }
 }

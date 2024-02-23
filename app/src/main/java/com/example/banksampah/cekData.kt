@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.app.Activity
 import android.content.Intent
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.banksampah.calculator.DataTransaksi
 import com.google.firebase.database.*
@@ -18,7 +17,6 @@ class cekData : AppCompatActivity() {
     private lateinit var namaBank: TextView
     private lateinit var namaPetugas: TextView
     private lateinit var namaNasabah: TextView
-    private lateinit var username: TextView
     private lateinit var noTelp: TextView
     private lateinit var tanggal: TextView
     private lateinit var pembayaran: TextView
@@ -36,13 +34,11 @@ class cekData : AppCompatActivity() {
         val myRef = database.getReference("transactions")
         val submitButton: Button = findViewById(R.id.submitbtn)
         val dataTransaksi = intent.getSerializableExtra("dataTransaksi") as DataTransaksi
-        val containerLayout: LinearLayout = findViewById(R.id.containerDataSampah)
         val metodePembayaran = dataTransaksi.pembayaran
         namaBank = findViewById(R.id.namaBank)
         namaPetugas = findViewById(R.id.namaPetugas)
         namaNasabah = findViewById(R.id.namaNasabah)
         tanggal = findViewById(R.id.tanggal)
-        username = findViewById(R.id.username)
         noTelp = findViewById(R.id.noTelp)
         pembayaran = findViewById(R.id.pembayaran)
         judulpembayaran = findViewById(R.id.judulpembayaran)
@@ -60,7 +56,6 @@ class cekData : AppCompatActivity() {
         namaPetugas.text = dataTransaksi.namaPetugas
         namaNasabah.text = dataTransaksi.namaNasabah
         tanggal.text = dataTransaksi.tanggal
-        username.text = dataTransaksi.username
         noTelp.text = dataTransaksi.rekening
         pembayaran.text = dataTransaksi.pembayaran
         kategori.text = dataTransaksi.kategori
@@ -68,6 +63,7 @@ class cekData : AppCompatActivity() {
         jumlah.text = "${dataTransaksi.jumlah} kg"
         harga.text = "Rp. " + (dataTransaksi.hargaSubKategori?.toInt() ?: 0) + " /kg"
         subtotal.text = "Rp. ${dataTransaksi.subtotal?.toInt() ?: 0}"
+
 
         for (dataSampah in dataTransaksi.listDataSampah) {
             val dataSampahLayout = layoutInflater.inflate(R.layout.notasampah, null)
@@ -81,7 +77,6 @@ class cekData : AppCompatActivity() {
             jumlahTextView.text = dataSampah.jumlah.toString()
             hargaTextView.text = dataSampah.harga.toString()
             subtotalTextView.text = dataSampah.subtotal.toString()
-            containerLayout.addView(dataSampahLayout)
         }
 
         submitButton.setOnClickListener {
