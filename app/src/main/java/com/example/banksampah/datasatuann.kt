@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -112,6 +113,8 @@ class datasatuann : Fragment() {
                 alertDialog.dismiss()
                 Toast.makeText(requireActivity(), "Adding User Information Success", Toast.LENGTH_SHORT).show()
             } else {
+                userName.error = "Kolom harus diisi!"
+                okButton.requestLayout()
                 Toast.makeText(requireActivity(), "Name cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
@@ -126,6 +129,12 @@ class datasatuann : Fragment() {
         val gson = Gson()
         val json = gson.toJson(userList)
         editor.putString("user_list", json)
+        editor.apply()
+
+        // Simpan daftar satuan ke dalam file JSON
+        val satuanList = userAdapter.getSatuanList()
+        val satuanJson = gson.toJson(satuanList)
+        editor.putString("satuan_list", satuanJson)
         editor.apply()
     }
 

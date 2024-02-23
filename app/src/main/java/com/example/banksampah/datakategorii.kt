@@ -106,6 +106,8 @@ class datakategorii : Fragment() {
                 alertDialog.dismiss()
                 Toast.makeText(requireActivity(), "Adding User Information Success", Toast.LENGTH_SHORT).show()
             } else {
+                userNameKat.error = "Kolom harus diisi!"
+                okButton.requestLayout()
                 Toast.makeText(requireActivity(), "Name cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
