@@ -97,7 +97,7 @@ class datasubkategorii : Fragment() {
         val inflter = LayoutInflater.from(requireActivity())
         val v = inflter.inflate(R.layout.add_item_subkategori, null)
         val namesubkat = v.findViewById<Spinner>(R.id.UserNameSubKat)
-        val namesubkategori = v.findViewById<EditText>(R.id.NamaSubKategori)
+        val namesubkategorii = v.findViewById<EditText>(R.id.NamaSubKategori)
         val SatuanSubKategori = v.findViewById<EditText>(R.id.SatuanSubKategori)
         val HargaSubKategori = v.findViewById<EditText>(R.id.HargaSubKategori)
         val MasukanKeteranganSubKategori = v.findViewById<EditText>(R.id.MasukanKeteranganSubKategori)
@@ -118,21 +118,40 @@ class datasubkategorii : Fragment() {
         val alertDialog = addDialog.create()
         okButton.setOnClickListener {
             val namesubkat = namesubkat.selectedItem.toString()
-            val namesubkategori= namesubkategori .text.toString()
+            val namesubkategori= namesubkategorii .text.toString()
             val satuansubkategori= SatuanSubKategori.text.toString()
             val hargasubkategori= HargaSubKategori.text.toString()
             val masukanketerangansubkategori= MasukanKeteranganSubKategori.text.toString()
 
-            if (namesubkategori.isNotEmpty()) {
+            var isError = false
+
+            if (namesubkategori.isEmpty()) {
+                namesubkategorii.error = "Kolom harus diisi!"
+                isError = true
+            }
+
+            if (satuansubkategori.isEmpty()) {
+                SatuanSubKategori.error = "Kolom harus diisi!"
+                isError = true
+            }
+
+            if (hargasubkategori.isEmpty()) {
+                HargaSubKategori.error = "Kolom harus diisi!"
+                isError = true
+            }
+
+            if (masukanketerangansubkategori.isEmpty()) {
+                MasukanKeteranganSubKategori.error = "Kolom harus diisi!"
+                isError = true
+            }
+
+            if (!isError) {
                 userList.add(UserDataSubKategori("$namesubkat","$namesubkategori","$satuansubkategori","$hargasubkategori","$masukanketerangansubkategori"))
                 backupList.add(UserDataSubKategori("$namesubkat", "$namesubkategori", "$satuansubkategori", "$hargasubkategori", "$masukanketerangansubkategori"))
                 userAdapterSubKategori.notifyDataSetChanged()
                 saveData()
                 alertDialog.dismiss()
                 Toast.makeText(requireActivity(), "Adding User Information Success", Toast.LENGTH_SHORT).show()
-
-            } else {
-                Toast.makeText(requireActivity(), "Name cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
         cancelButton.setOnClickListener {

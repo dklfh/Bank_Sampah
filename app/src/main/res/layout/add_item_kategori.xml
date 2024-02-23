@@ -30,7 +30,7 @@
             android:fontFamily="@font/ralewaymedium"
             android:gravity="left"
             android:padding="15dp"
-            android:hint="Nama Kategori..."
+            android:hint="Nama Kategori. . ."
             android:textSize="15sp"
             android:textColor="@color/teks"/>
 

@@ -79,17 +79,42 @@ class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSub
                 val updatedHarga = editTextHarga.text.toString()
                 val updatedKeterangan = editTextKeterangan.text.toString()
 
-                userList[position].UserNameSubKat = updatedNamaKategori
-                userList[position].NamaSubKategori = updatedNamaSubKategori
-                userList[position].SatuanSubKategori = updatedSatuan
-                userList[position].HargaSubKategori = updatedHarga
-                userList[position].MasukanKeteranganSubKategori = updatedKeterangan
+                if (updatedNamaKategori.isNotEmpty() &&
+                    updatedNamaSubKategori.isNotEmpty() &&
+                    updatedSatuan.isNotEmpty() &&
+                    updatedHarga.isNotEmpty() &&
+                    updatedKeterangan.isNotEmpty()
+                ) {
+                    // Update the item in the list with the edited text
+                    userList[position].UserNameSubKat = updatedNamaKategori
+                    userList[position].NamaSubKategori = updatedNamaSubKategori
+                    userList[position].SatuanSubKategori = updatedSatuan
+                    userList[position].HargaSubKategori = updatedHarga
+                    userList[position].MasukanKeteranganSubKategori = updatedKeterangan
 
-                saveData()
-                notifyItemChanged(position)
-                (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
-                dialog.dismiss()
-                Toast.makeText(c, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
+                    saveData()
+                    notifyItemChanged(position)
+                    (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
+                    dialog.dismiss()
+                    Toast.makeText(c, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Set error for each field that is empty
+                    if (updatedNamaKategori.isEmpty()) {
+                        editTextNamaKategori.error = "Nama Kategori tidak boleh kosong"
+                    }
+                    if (updatedNamaSubKategori.isEmpty()) {
+                        editTextNamaSubKategori.error = "Nama Subkategori tidak boleh kosong"
+                    }
+                    if (updatedSatuan.isEmpty()) {
+                        editTextSatuan.error = "Satuan tidak boleh kosong"
+                    }
+                    if (updatedHarga.isEmpty()) {
+                        editTextHarga.error = "Harga tidak boleh kosong"
+                    }
+                    if (updatedKeterangan.isEmpty()) {
+                        editTextKeterangan.error = "Keterangan tidak boleh kosong"
+                    }
+                }
             }
             dialog.show()
         }

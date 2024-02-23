@@ -63,15 +63,21 @@ class UserAdapterKat(val c: Context, val userList: ArrayList<UserDataKat>, var b
             buttonSimpan.setOnClickListener {
                 // Update the item in the list with the edited text
                 val updatedText = editTextNamaKategori.text.toString()
-                userList[position].userNameKat = updatedText
-                userList[position].isModified = true
-                userList[position].modifiedText = updatedText
+                if (updatedText.isNotEmpty()) {
+                    userList[position].userNameKat = updatedText
+                    userList[position].isModified = true
+                    userList[position].modifiedText = updatedText
 
-                saveData()
-                notifyItemChanged(position)
-                (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
-                dialog.dismiss()
-                Toast.makeText(c, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
+                    saveData()
+                    notifyItemChanged(position)
+                    (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
+                    dialog.dismiss()
+                    Toast.makeText(c, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Menampilkan pesan error jika input kosong
+                    editTextNamaKategori.error = "Kolom harus diisi!"
+                    buttonSimpan.requestLayout()
+                }
             }
             dialog.show()
         }

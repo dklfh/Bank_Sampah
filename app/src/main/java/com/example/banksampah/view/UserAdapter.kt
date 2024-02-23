@@ -67,15 +67,20 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>,var backupLi
         buttonSimpan.setOnClickListener {
             // Update the item in the list with the edited text
             val updatedText = editTextNamaSatuan.text.toString()
-            userList[position].userName = updatedText
-            userList[position].isModified = true
-            userList[position].modifiedText = updatedText
+            if (updatedText.isNotEmpty()) {
+                userList[position].userName = updatedText
+                userList[position].isModified = true
+                userList[position].modifiedText = updatedText
 
-            saveData()
-            notifyItemChanged(position)
-            (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
-            dialog.dismiss()
-            Toast.makeText(c, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
+                saveData()
+                notifyItemChanged(position)
+                (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
+                dialog.dismiss()
+                Toast.makeText(c, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
+            } else {
+                editTextNamaSatuan.error = "Kolom harus diisi!"
+                buttonSimpan.requestLayout()
+            }
         }
         dialog.show()
     }
@@ -143,5 +148,14 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>,var backupLi
         editor.apply()
     }
 
+    fun getSatuanList(): ArrayList<String> {
+        val satuanList = ArrayList<String>()
+        for (userData in userList) {
+            userData.userName?.let {
+                satuanList.add(it)
+            }
+        }
+        return satuanList
+    }
 
 }
