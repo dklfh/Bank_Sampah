@@ -77,9 +77,9 @@ cobanavbar : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             }
 
         // Laporan
-            R.id.nav_LapTransaksi -> {
-                replaceFragment(laporanTransaksii())
-                toolbarTitle.text = "Laporan Transaksi"
+            R.id.nav_HisTransaksi -> {
+                replaceFragment(HistoriTransaksi())
+                toolbarTitle.text = "Histori Transaksi"
             }
             R.id.nav_LapKategori -> {
                 replaceFragment(laporanKategori())
