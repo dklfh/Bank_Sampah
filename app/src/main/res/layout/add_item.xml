@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/ralewaymedium"
-            android:text="Nama Satuah"
+            android:text="Nama Satuan"
             android:textColor="@color/white"
             android:textSize="16sp" />
 

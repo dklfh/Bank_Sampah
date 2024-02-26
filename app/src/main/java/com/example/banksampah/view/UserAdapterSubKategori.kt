@@ -145,7 +145,7 @@ class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSub
     private fun deleteUser(position: Int) {
         val deletedItem = userList[position]
         userList.removeAt(position)
-        backupList.remove(deletedItem)
+        deletedItem.isDeleted = true
         notifyItemRemoved(position)
         saveData()
         Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
@@ -174,10 +174,25 @@ class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSub
         val sharedPreferences = c.getSharedPreferences("user_prefs_datasubkategori", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
-        val json = gson.toJson(userList)
+
+        val nonDeletedList = userList.filter { !it.isDeleted }
+
+        val json = gson.toJson(nonDeletedList)
         editor.putString("user_list", json)
-        val jsonBackup = gson.toJson(backupList)
-        editor.putString("backup_list", jsonBackup)
+
+        val satuanList = getSatuanList()
+        val satuanJson = gson.toJson(satuanList)
+        editor.putString("satuan_list", satuanJson)
         editor.apply()
+    }
+
+    fun getSatuanList(): ArrayList<String> {
+        val satuanList = ArrayList<String>()
+        for (userData in userList) {
+            userData.NamaSubKategori?.let {
+                satuanList.add(it)
+            }
+        }
+        return satuanList
     }
 }
