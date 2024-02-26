@@ -1,6 +1,5 @@
 package com.example.banksampah
 
-
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.JobIntentService

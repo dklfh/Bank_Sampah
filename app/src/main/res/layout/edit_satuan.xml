@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/ralewaymedium"
-            android:text="Nama Kategori"
+            android:text="Nama Satuan"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -32,7 +32,7 @@
             android:fontFamily="@font/ralewaymedium"
             android:gravity="left"
             android:padding="15dp"
-            android:hint="Nama Kategori. . ."
+            android:hint="Nama Satuan. . ."
             android:textSize="15sp"
             android:textColor="@color/teks"/>
 

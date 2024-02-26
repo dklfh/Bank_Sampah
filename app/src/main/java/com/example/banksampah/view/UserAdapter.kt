@@ -65,7 +65,7 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>,var backupLi
         }
 
         buttonSimpan.setOnClickListener {
-            // Update the item in the list with the edited text
+//          Update data yang sudah diedit
             val updatedText = editTextNamaSatuan.text.toString()
             if (updatedText.isNotEmpty()) {
                 userList[position].userName = updatedText

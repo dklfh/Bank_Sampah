@@ -1,7 +1,4 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.banksampah
-
 
 import android.app.ProgressDialog
 import android.content.BroadcastReceiver
@@ -27,15 +24,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var progressDialog: ProgressDialog
     private var firebaseAuth = FirebaseAuth.getInstance()
-
     private var isLoginSuccessReceived = false
-    private var isNotLogin = false
 
     companion object {
         private const val RC_SIGN_IN = 1001
         private const val PREFS_NAME = "LoginPrefs"
         private const val IS_LOGGED_IN = "isLoggedIn"
-        private const val IS_NOT_LOGIN = "isNotLoggedIn"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,21 +73,14 @@ class MainActivity : AppCompatActivity() {
         return prefs.getBoolean(IS_LOGGED_IN, false) || isLoginSuccessReceived
     }
 
-    private fun isNotLogin(): Boolean {
-        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-        return prefs.getBoolean(IS_NOT_LOGIN, false) || isNotLogin
-    }
-
     private fun navigateToCalculatorOrLogin() {
-        if (isLoggedIn()) {
-            val intent = Intent(this, cobanavbar::class.java)
-            startActivity(intent)
-            finish()
-        } else if (isNotLogin()) {
-            val intent = Intent(this, cekData::class.java)
-            startActivity(intent)
-            finish()
+        val intent = if (isLoggedIn()) {
+            Intent(this, cobanavbar::class.java)
+        } else {
+            Intent(this, MainActivity::class.java)
         }
+        startActivity(intent)
+        finish()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
