@@ -97,7 +97,8 @@ class datasatuann : Fragment() {
 
             if (name.isNotEmpty()) {
                 userList.add(UserData(name))
-                backupList.add(UserData("$name"))
+//                backupList.add(UserData("$name"))
+                backupList = ArrayList(userList)
                 userAdapter.notifyDataSetChanged()
                 saveData()
                 alertDialog.dismiss()

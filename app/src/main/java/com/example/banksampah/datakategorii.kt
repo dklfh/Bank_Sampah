@@ -94,7 +94,8 @@ class datakategorii : Fragment() {
 
             if (name.isNotEmpty()) {
                 userList.add(UserDataKat("$name"))
-                backupList.add(UserDataKat("$name"))
+//                backupList.add(UserDataKat("$name"))
+                backupList = ArrayList(userList)
                 userAdapterKat.notifyDataSetChanged()
                 saveData()
                 alertDialog.dismiss()

@@ -126,6 +126,7 @@ class UserAdapterKat(val c: Context, val userList: ArrayList<UserDataKat>, var b
         val deletedItem = userList[position]
         userList.removeAt(position)
         deletedItem.isDeleted = true
+        backupList = ArrayList(userList)
         notifyItemRemoved(position)
         saveData()
         Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()

@@ -141,7 +141,8 @@ class datasubkategorii : Fragment() {
 
             if (!isError) {
                 userList.add(UserDataSubKategori("$namesubkat","$namesubkategori","$satuansubkategori","$hargasubkategori","$masukanketerangansubkategori"))
-                backupList.add(UserDataSubKategori("$namesubkat", "$namesubkategori", "$satuansubkategori", "$hargasubkategori", "$masukanketerangansubkategori"))
+//                backupList.add(UserDataSubKategori("$namesubkat", "$namesubkategori", "$satuansubkategori", "$hargasubkategori", "$masukanketerangansubkategori"))
+                backupList = ArrayList(userList)
                 userAdapterSubKategori.notifyDataSetChanged()
                 saveData()
                 alertDialog.dismiss()

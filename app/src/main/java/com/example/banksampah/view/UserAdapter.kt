@@ -117,6 +117,7 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>,var backupLi
 
         buttonYa.setOnClickListener {
             deleteUser(position)
+            backupList = ArrayList(userList)
             dialog.dismiss()
         }
         dialog.show()
@@ -127,6 +128,7 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>,var backupLi
             val deletedUser = userList[position]
             userList.removeAt(position)
             deletedUser.isDeleted = true
+            backupList = ArrayList(userList)
             notifyItemRemoved(position)
             saveData()
             Toast.makeText(c, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
