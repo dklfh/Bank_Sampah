@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.banksampah
 
 import android.app.ProgressDialog
@@ -19,31 +21,38 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btngoogle: Button
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var progressDialog: ProgressDialog
-    private lateinit var sessionManager: SessionManager
     private var firebaseAuth = FirebaseAuth.getInstance()
 
     companion object {
         private const val RC_SIGN_IN = 1001
+        private const val PREFS_NAME = "LoginPrefs"
+        private const val IS_LOGGED_IN = "isLoggedIn"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        sessionManager = SessionManager(this)
-
-        if (sessionManager.isLoggedIn()) {
-            navigateToCalculator()
-            finish()
-        } else {
-            setupLoginButton()
-        }
-    }
-
-    private fun setupLoginButton() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Logging")
         progressDialog.setMessage("Silahkan Tunggu...")
+
+        // Lakukan pengecekan data tanpa memunculkan halaman login pertama
+        if (isLoggedIn()) {
+            // Cek apakah akun masih valid
+            firebaseAuth.currentUser?.reload()?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Jika akun masih valid, arahkan ke halaman kalkulator
+                    navigateToCalculator()
+                } else {
+                    // Jika akun tidak valid, arahkan ke halaman login
+                    navigateToLogin()
+                }
+            }
+        } else {
+            // Jika belum login, arahkan ke halaman login
+            navigateToLogin()
+        }
 
         btngoogle = findViewById(R.id.btn_google)
 
@@ -54,14 +63,28 @@ class MainActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         btngoogle.setOnClickListener {
+            // Logout pengguna saat ini jika ada
             firebaseAuth.signOut()
+
+            // Minta pengguna untuk memilih akun saat mereka mencoba masuk
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
     }
 
+    private fun isLoggedIn(): Boolean {
+        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        return prefs.getBoolean(IS_LOGGED_IN, false)
+    }
+
     private fun navigateToCalculator() {
-        val intent = Intent(this, cobanavbar::class.java)
+        startActivity(Intent(this, cobanavbar::class.java))
+        finish()
+    }
+
+    private fun navigateToLogin() {
+        // Mengarahkan pengguna ke halaman login
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -85,8 +108,10 @@ class MainActivity : AppCompatActivity() {
         progressDialog.show()
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(credential)
-            .addOnSuccessListener { authResult ->
-                sessionManager.setLoggedIn(true)
+            .addOnSuccessListener {
+                // Simpan status login
+                val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                prefs.edit().putBoolean(IS_LOGGED_IN, true).apply()
                 navigateToCalculator()
             }
             .addOnFailureListener { error ->

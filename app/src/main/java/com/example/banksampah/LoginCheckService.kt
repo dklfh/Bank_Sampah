@@ -19,7 +19,12 @@ class LoginCheckService : JobIntentService() {
     }
 
     override fun onHandleWork(intent: Intent) {
-        if (mAuth.currentUser != null) {
+        if (mAuth.currentUser == null) {
+            // User is not logged in or the account has been deleted
+            // Send a broadcast to MainActivity to handle the case
+            LocalBroadcastManager.getInstance(this)
+                .sendBroadcast(Intent("com.example.banksampah.ACCOUNT_DELETED"))
+        } else {
             // User is already logged in, send a broadcast to the MainActivity
             LocalBroadcastManager.getInstance(this)
                 .sendBroadcast(Intent("com.example.banksampah.LOGIN_SUCCESS"))
