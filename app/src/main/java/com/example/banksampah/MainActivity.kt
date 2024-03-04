@@ -37,23 +37,6 @@ class MainActivity : AppCompatActivity() {
         progressDialog.setTitle("Logging")
         progressDialog.setMessage("Silahkan Tunggu...")
 
-        // Lakukan pengecekan data tanpa memunculkan halaman login pertama
-        if (isLoggedIn()) {
-            // Cek apakah akun masih valid
-            firebaseAuth.currentUser?.reload()?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // Jika akun masih valid, arahkan ke halaman kalkulator
-                    navigateToCalculator()
-                } else {
-                    // Jika akun tidak valid, arahkan ke halaman login
-                    navigateToLogin()
-                }
-            }
-        } else {
-            // Jika belum login, arahkan ke halaman login
-            navigateToLogin()
-        }
-
         btngoogle = findViewById(R.id.btn_google)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -71,6 +54,7 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
     }
+
 
     private fun isLoggedIn(): Boolean {
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
@@ -101,6 +85,9 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
                 Toast.makeText(applicationContext, e.localizedMessage, LENGTH_SHORT).show()
             }
+        }
+        if (firebaseAuth.currentUser != null) {
+            finish()
         }
     }
 
