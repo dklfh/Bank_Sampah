@@ -11,6 +11,8 @@ import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.google.firebase.auth.FirebaseAuth
+
 
 class cekData : AppCompatActivity() {
     private lateinit var btnBatal: Button
@@ -80,26 +82,39 @@ class cekData : AppCompatActivity() {
         }
 
         submitButton.setOnClickListener {
-            val currentDate = Date()
-            val dateFormatForFirebase = SimpleDateFormat("yyyy-MM-dd, HH.mm.ss", Locale.getDefault())
-            val timestamp = dateFormatForFirebase.format(currentDate).replace(".", ",")
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val userID = currentUser?.uid
 
-            val intent = Intent(this, nota::class.java)
-            val formattedDate = dateFormatForFirebase.format(currentDate)
-            dataTransaksi.tanggal = formattedDate
-            intent.putExtra("dataTransaksi", dataTransaksi)
+            // Pastikan userID tidak null sebelum melanjutkan
+            userID?.let { uid ->
+                val userTransactionsRef = myRef.child("users").child(uid).child("transactions")
 
-            myRef.push().setValue(dataTransaksi)
-                .addOnSuccessListener {
-                    // Handle success, if needed
-                    myRef.child(timestamp).setValue(dataTransaksi)
-                }
-                .addOnFailureListener {
-                    // Handle failure, if needed
-                }
+                val currentDate = Date()
+                val dateFormatForFirebase = SimpleDateFormat("yyyy-MM-dd, HH.mm.ss", Locale.getDefault())
+                val timestamp = dateFormatForFirebase.format(currentDate).replace(".", ",")
 
-            startActivity(intent)
+                val formattedDate = dateFormatForFirebase.format(currentDate)
+                dataTransaksi.tanggal = formattedDate
+
+                // Simpan data transaksi di bawah node pengguna yang sesuai
+                userTransactionsRef.push().setValue(dataTransaksi)
+                    .addOnSuccessListener {
+                        // Handle success, if needed
+                        myRef.child(timestamp).setValue(dataTransaksi)
+                    }
+                    .addOnFailureListener {
+                        // Handle failure, if needed
+                    }
+
+                val intent = Intent(this, nota::class.java)
+                intent.putExtra("dataTransaksi", dataTransaksi)
+                startActivity(intent)
+            } ?: run {
+                // Handle case when userID is null
+                // This might happen if the user is not authenticated properly
+            }
         }
+
 
 
 

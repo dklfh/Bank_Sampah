@@ -77,7 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginRight="5dp">
 
                 <TextView
                     android:id="@+id/textView5"
@@ -89,18 +90,23 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
 
-                <EditText
-                    android:id="@+id/SatuanSubKategori"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/textinput_home"
-                    android:fontFamily="@font/ralewaymedium"
-                    android:gravity="left"
-                    android:layout_marginRight="10dp"
-                    android:padding="15dp"
-                    android:hint="Satuan. . ."
-                    android:textSize="15sp"
-                    android:textColor="@color/teks"/>
+                    android:layout_marginBottom="20dp">
+                    <Spinner
+                        android:id="@+id/SatuanSubKategori"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/panah"
+                        android:fontFamily="@font/ralewayregular"
+                        android:gravity="left"
+                        android:padding="15dp"
+                        android:prompt="@string/prompt_kategori_sampah"
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
+                </LinearLayout>
 
             </LinearLayout>
 

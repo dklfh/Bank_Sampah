@@ -16,8 +16,13 @@ import com.example.banksampah.R
 import com.example.banksampah.model.UserDataKat
 import com.example.banksampah.model.UserDataSubKategori
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
-class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSubKategori>, var backupList: ArrayList<UserDataSubKategori>) :
+class UserAdapterSubKategori(
+    val c: Context,
+    val userList: ArrayList<UserDataSubKategori>,
+    var backupList: ArrayList<UserDataSubKategori>
+) :
     RecyclerView.Adapter<UserAdapterSubKategori.UserViewHolder>() {
 
     inner class UserViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
@@ -48,16 +53,30 @@ class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSub
             val builder = AlertDialog.Builder(c, R.style.AppTheme_Dialog)
             val inflater = LayoutInflater.from(c)
             val dialogLayout = inflater.inflate(R.layout.edit_subkategori, null)
-            val editTextNamaKategori = dialogLayout.findViewById<EditText>(R.id.namaKategori)
             val editTextNamaSubKategori = dialogLayout.findViewById<EditText>(R.id.NamaSubKategori)
-            val editTextSatuan = dialogLayout.findViewById<EditText>(R.id.Satuan)
-            val editTextHarga = dialogLayout.findViewById<EditText>(R.id.Harga)
-            val editTextKeterangan = dialogLayout.findViewById<EditText>(R.id.Keterangan)
+            val spinnerKategori = dialogLayout.findViewById<Spinner>(R.id.UserNameSubKat)
+            val spinnerSatuan = dialogLayout.findViewById<Spinner>(R.id.SatuanSubKategori)
+            val editTextHarga = dialogLayout.findViewById<EditText>(R.id.HargaSubKategori)
+            val editTextKeterangan = dialogLayout.findViewById<EditText>(R.id.MasukanKeteranganSubKategori)
+
+            // Load data kategori dan satuan dari SharedPreferences
+            val kategoriList = loadKategoriFromSharedPreferences()
+            val satuanList = getSatuanList()
+
+            // Inisialisasi adapter untuk spinner kategori dan satuan
+            val kategoriAdapter = ArrayAdapter(c, android.R.layout.simple_spinner_item, kategoriList)
+            val satuanAdapter = ArrayAdapter(c, android.R.layout.simple_spinner_item, satuanList)
+
+            // Set dropdown style untuk adapter
+            kategoriAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            satuanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+            // Set adapter ke spinner
+            spinnerKategori.adapter = kategoriAdapter
+            spinnerSatuan.adapter = satuanAdapter
 
             // Set initial text from the item in the list
-            editTextNamaKategori.setText(userList[position].UserNameSubKat)
             editTextNamaSubKategori.setText(userList[position].NamaSubKategori)
-            editTextSatuan.setText(userList[position].SatuanSubKategori)
             editTextHarga.setText(userList[position].HargaSubKategori)
             editTextKeterangan.setText(userList[position].MasukanKeteranganSubKategori)
 
@@ -72,41 +91,35 @@ class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSub
             }
 
             buttonSimpan.setOnClickListener {
-                // Update the item in the list with the edited text
-                val updatedNamaKategori = editTextNamaKategori.text.toString()
                 val updatedNamaSubKategori = editTextNamaSubKategori.text.toString()
-                val updatedSatuan = editTextSatuan.text.toString()
+                val updatedKategori = spinnerKategori.selectedItem.toString()
+                val updatedSatuan = spinnerSatuan.selectedItem.toString()
                 val updatedHarga = editTextHarga.text.toString()
                 val updatedKeterangan = editTextKeterangan.text.toString()
 
-                if (updatedNamaKategori.isNotEmpty() &&
-                    updatedNamaSubKategori.isNotEmpty() &&
-                    updatedSatuan.isNotEmpty() &&
-                    updatedHarga.isNotEmpty() &&
-                    updatedKeterangan.isNotEmpty()
-                ) {
-                    // Update the item in the list with the edited text
-                    userList[position].UserNameSubKat = updatedNamaKategori
+                if (updatedNamaSubKategori.isNotEmpty() && updatedHarga.isNotEmpty() && updatedKeterangan.isNotEmpty()) {
+                    // Update data subkategori
                     userList[position].NamaSubKategori = updatedNamaSubKategori
+                    userList[position].UserNameSubKat = updatedKategori
                     userList[position].SatuanSubKategori = updatedSatuan
                     userList[position].HargaSubKategori = updatedHarga
                     userList[position].MasukanKeteranganSubKategori = updatedKeterangan
 
+                    // Simpan perubahan data ke SharedPreferences
                     saveData()
+
+                    // Perbarui tampilan RecyclerView
                     notifyItemChanged(position)
-                    (dialogLayout.parent as? ViewGroup)?.removeView(dialogLayout)
+
+                    // Tutup dialog
                     dialog.dismiss()
+
+                    // Tampilkan pesan berhasil
                     Toast.makeText(c, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
                 } else {
-                    // Set error for each field that is empty
-                    if (updatedNamaKategori.isEmpty()) {
-                        editTextNamaKategori.error = "Nama Kategori tidak boleh kosong"
-                    }
+                    // Set error jika ada field yang kosong
                     if (updatedNamaSubKategori.isEmpty()) {
-                        editTextNamaSubKategori.error = "Nama Subkategori tidak boleh kosong"
-                    }
-                    if (updatedSatuan.isEmpty()) {
-                        editTextSatuan.error = "Satuan tidak boleh kosong"
+                        editTextNamaSubKategori.error = "Nama subkategori tidak boleh kosong"
                     }
                     if (updatedHarga.isEmpty()) {
                         editTextHarga.error = "Harga tidak boleh kosong"
@@ -118,6 +131,7 @@ class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSub
             }
             dialog.show()
         }
+
     }
 
     private fun showDeleteDialog(position: Int) {
@@ -188,7 +202,7 @@ class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSub
         editor.apply()
     }
 
-    fun getSatuanList(): ArrayList<String> {
+    private fun getSatuanList(): ArrayList<String> {
         val satuanList = ArrayList<String>()
         for (userData in userList) {
             userData.NamaSubKategori?.let {
@@ -196,5 +210,23 @@ class UserAdapterSubKategori(val c: Context, val userList: ArrayList<UserDataSub
             }
         }
         return satuanList
+    }
+
+    private fun loadKategoriFromSharedPreferences(): ArrayList<String> {
+        val sharedPreferences = c.getSharedPreferences("user_prefs_datakategori", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPreferences.getString("user_list", null)
+        val type = object : TypeToken<ArrayList<UserDataKat>>() {}.type
+        val userList = ArrayList<String>()
+
+        if (!json.isNullOrBlank()) {
+            val kategoriList = gson.fromJson<ArrayList<UserDataKat>>(json, type)
+            kategoriList.forEach { userDataKat ->
+                userDataKat.userNameKat?.let {
+                    userList.add(it)
+                }
+            }
+        }
+        return userList
     }
 }

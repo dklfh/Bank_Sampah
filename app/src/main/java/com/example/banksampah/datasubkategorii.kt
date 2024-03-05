@@ -22,6 +22,7 @@ import com.google.gson.Gson
 import android.content.SharedPreferences
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import com.example.banksampah.model.UserData
 import com.example.banksampah.model.UserDataKat
 import com.google.gson.reflect.TypeToken
 import java.io.*
@@ -35,6 +36,7 @@ class datasubkategorii : Fragment() {
     private lateinit var search: SearchView
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var backupList: ArrayList<UserDataSubKategori>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,28 +94,35 @@ class datasubkategorii : Fragment() {
         val v = inflter.inflate(R.layout.add_item_subkategori, null)
         val namesubkat = v.findViewById<Spinner>(R.id.UserNameSubKat)
         val namesubkategorii = v.findViewById<EditText>(R.id.NamaSubKategori)
-        val SatuanSubKategori = v.findViewById<EditText>(R.id.SatuanSubKategori)
+        val SatuanSubKategori = v.findViewById<Spinner>(R.id.SatuanSubKategori)
         val HargaSubKategori = v.findViewById<EditText>(R.id.HargaSubKategori)
         val MasukanKeteranganSubKategori = v.findViewById<EditText>(R.id.MasukanKeteranganSubKategori)
         val addDialog = AlertDialog.Builder(requireActivity(),R.style.AppTheme_Dialog)
         val okButton = v.findViewById<Button>(R.id.ok_itemsubkat)
         val cancelButton = v.findViewById<Button>(R.id.cancel_itemsubkat)
 
-        val satuanOptions = arrayOf("Plastik RIGD/Berbentuk", "Gelasan", "Plastik Fleksibel atau Lembaran"
-            ,"Plastik Kerasan", "Kertas" , "Logam" , "Kaca" , "PET" ,"Lainnya")
+//Spinner kategori
+        val kategoriOptions = loadKategoriFromSharedPreferences()
+        val kategoriAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, kategoriOptions)
+        kategoriAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        namesubkat.adapter = kategoriAdapter
+        kategoriAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
+// Spinner Satuan
+        val satuanOptions = loadsatuanFromSharedPreferences ()
         val satuanAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, satuanOptions)
-
+        satuanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        SatuanSubKategori.adapter = satuanAdapter
         satuanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        namesubkat.adapter = satuanAdapter
-
+        namesubkat.adapter = kategoriAdapter
+        SatuanSubKategori.adapter = satuanAdapter
         addDialog.setView(v)
         val alertDialog = addDialog.create()
         okButton.setOnClickListener {
             val namesubkat = namesubkat.selectedItem.toString()
             val namesubkategori= namesubkategorii .text.toString()
-            val satuansubkategori= SatuanSubKategori.text.toString()
+            val satuansubkategori= SatuanSubKategori.selectedItem.toString()
             val hargasubkategori= HargaSubKategori.text.toString()
             val masukanketerangansubkategori= MasukanKeteranganSubKategori.text.toString()
 
@@ -121,11 +130,6 @@ class datasubkategorii : Fragment() {
 
             if (namesubkategori.isEmpty()) {
                 namesubkategorii.error = "Kolom harus diisi!"
-                isError = true
-            }
-
-            if (satuansubkategori.isEmpty()) {
-                SatuanSubKategori.error = "Kolom harus diisi!"
                 isError = true
             }
 
@@ -174,5 +178,41 @@ class datasubkategorii : Fragment() {
         backupList = ArrayList(userList)
         userAdapterSubKategori.notifyDataSetChanged()
     }
+    private fun loadKategoriFromSharedPreferences(): ArrayList<String> {
+        val sharedPreferences = requireActivity().getSharedPreferences("user_prefs_datakategori", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPreferences.getString("user_list", null)
+        val type = object : TypeToken<ArrayList<UserDataKat>>() {}.type
+        val userList = ArrayList<String>()
+
+        if (!json.isNullOrBlank()) {
+            val kategoriList = gson.fromJson<ArrayList<UserDataKat>>(json, type)
+            kategoriList.forEach { userDataKat ->
+                userDataKat.userNameKat?.let {
+                    userList.add(it)
+                }
+            }
+        }
+        return userList
+    }
+
+    private fun loadsatuanFromSharedPreferences(): ArrayList<String> {
+        val sharedPreferences = requireActivity().getSharedPreferences("user_prefs_datasatuann", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPreferences.getString("user_list", null)
+        val type = object : TypeToken<ArrayList<UserData>>() {}.type
+        val userList = ArrayList<String>()
+
+        if (!json.isNullOrBlank()) {
+            val satuanList = gson.fromJson<ArrayList<UserData>>(json, type)
+            satuanList.forEach { UserData ->
+                UserData.userName?.let {
+                    userList.add(it)
+                }
+            }
+        }
+        return userList
+    }
+
 }
 
