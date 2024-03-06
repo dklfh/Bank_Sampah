@@ -32,8 +32,6 @@ class cekData : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cek_data)
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("transactions")
         val submitButton: Button = findViewById(R.id.submitbtn)
         val dataTransaksi = intent.getSerializableExtra("dataTransaksi") as DataTransaksi
         val metodePembayaran = dataTransaksi.pembayaran
@@ -87,20 +85,19 @@ class cekData : AppCompatActivity() {
 
             // Pastikan userID tidak null sebelum melanjutkan
             userID?.let { uid ->
-                val userTransactionsRef = myRef.child("users").child(uid).child("transactions")
-
+                val userTransactionsRef = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("Data transaksi")
                 val currentDate = Date()
-                val dateFormatForFirebase = SimpleDateFormat("yyyy-MM-dd, HH.mm.ss", Locale.getDefault())
-                val timestamp = dateFormatForFirebase.format(currentDate).replace(".", ",")
+                val dateFormatForFirebase = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.getDefault())
 
                 val formattedDate = dateFormatForFirebase.format(currentDate)
                 dataTransaksi.tanggal = formattedDate
 
+                val dataTransaksiID = dateFormatForFirebase.format(currentDate)
+
                 // Simpan data transaksi di bawah node pengguna yang sesuai
-                userTransactionsRef.push().setValue(dataTransaksi)
+                userTransactionsRef.child(dataTransaksiID).setValue(dataTransaksi)
                     .addOnSuccessListener {
                         // Handle success, if needed
-                        myRef.child(timestamp).setValue(dataTransaksi)
                     }
                     .addOnFailureListener {
                         // Handle failure, if needed
@@ -114,9 +111,6 @@ class cekData : AppCompatActivity() {
                 // This might happen if the user is not authenticated properly
             }
         }
-
-
-
 
         btnBatal = findViewById(R.id.cancelbtn)
 
