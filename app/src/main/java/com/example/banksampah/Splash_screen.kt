@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.content.Intent
 import android.os.Handler
 import com.google.firebase.auth.FirebaseAuth
+import androidx.constraintlayout.motion.widget.MotionLayout
 
 class Splash_screen : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
@@ -37,11 +38,11 @@ class Splash_screen : AppCompatActivity() {
             navigateToLogin()
         }
 
-        // You can optionally add a delay before moving to the next screen
-//        Handler(mainLooper).postDelayed({
-//            startMainActivity()
-//            finish()
-//        }, 2000) // Delay for 2 seconds
+//         You can optionally add a delay before moving to the next screen
+        Handler(mainLooper).postDelayed({
+            val motionLayout = findViewById<MotionLayout>(R.id.motion_layout)
+            motionLayout.transitionToEnd() //
+        }, 5000) // Delay for 2 seconds
     }
 
     private fun startMainActivity() {
