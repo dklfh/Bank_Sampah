@@ -38,10 +38,10 @@ class Splash_screen : AppCompatActivity() {
         }
 
         // You can optionally add a delay before moving to the next screen
-        Handler(mainLooper).postDelayed({
-            startMainActivity()
-            finish()
-        }, 2000) // Delay for 2 seconds
+//        Handler(mainLooper).postDelayed({
+//            startMainActivity()
+//            finish()
+//        }, 2000) // Delay for 2 seconds
     }
 
     private fun startMainActivity() {
