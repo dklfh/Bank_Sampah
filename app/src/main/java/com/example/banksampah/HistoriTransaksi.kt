@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.model.UserHistori
 import com.example.banksampah.view.historiadapter
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -35,37 +36,39 @@ class HistoriTransaksi : Fragment() {
         userRecyclerView.layoutManager = LinearLayoutManager(activity)
         userRecyclerView.setHasFixedSize(true)
 
-        userArrayList = arrayListOf<UserHistori>()
+        userArrayList = arrayListOf()
         getUserData()
     }
 
     private fun getUserData() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val uid = currentUser?.uid
 
-        dbref = FirebaseDatabase.getInstance().getReference("transactions")
+        uid?.let { userId ->
+            dbref = FirebaseDatabase.getInstance().getReference("Users").child(userId).child("Data transaksi")
+            dbref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val newDataList = ArrayList<UserHistori>()
 
-        dbref.addValueEventListener(object : ValueEventListener {
+                        for (userSnapshot in snapshot.children) {
+                            val user = userSnapshot.getValue(UserHistori::class.java)
+                            if (user != null && !userArrayList.contains(user)) {
+                                newDataList.add(user)
+                            }
+                        }
+                        userArrayList.clear()
+                        userArrayList.addAll(newDataList)
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                if (snapshot.exists()) {
-
-                    for (userSnapshot in snapshot.children) {
-
-                        val user = userSnapshot.getValue(UserHistori::class.java)
-                        userArrayList.add(user!!)
-
+                        userRecyclerView.adapter = historiadapter(userArrayList)
                     }
-
-                    userRecyclerView.adapter = historiadapter(userArrayList)
-
                 }
 
-            }
-
-            override fun onCancelled(error: DatabaseError){
-            }
-
-        })
-
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle error
+                }
+            })
+        }
     }
+
 }

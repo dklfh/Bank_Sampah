@@ -24,7 +24,7 @@ class historiadapter (private val userList : ArrayList<UserHistori>) : RecyclerV
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentitem=userList[position]
-        holder.Tanggalhistori.text=currentitem.tanggalhistori
+        holder.Tanggal.text= currentitem.tanggal
         holder.NamaBank.text=currentitem.namaBank
         holder.NamaNasabah.text=currentitem.namaNasabah
         holder.NamaPetugas.text=currentitem.namaPetugas
@@ -32,13 +32,13 @@ class historiadapter (private val userList : ArrayList<UserHistori>) : RecyclerV
         holder.Rekening.text=currentitem.rekening
         holder.Kategori.text=currentitem.kategori
         holder.SubKategori.text=currentitem.subkategori
-        holder.HargaSubKategori.text=currentitem.hargaSubKategori
-        holder.Jumlah.text=currentitem.jumlah
-        holder.SubTotal.text=currentitem.subtotal
+        holder.HargaSubKategori.text = currentitem.hargaSubKategori!!.toString()
+        holder.Jumlah.text=currentitem.jumlah!!.toString()
+        holder.SubTotal.text=currentitem.subtotal!!.toString()
     }
 
     class MyViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
-        val Tanggalhistori : TextView = itemView.findViewById(R.id.Tanggalhistori)
+        val Tanggal : TextView = itemView.findViewById(R.id.Tanggalhistori)
         val NamaBank : TextView = itemView.findViewById(R.id.NamaBank)
         val NamaNasabah : TextView = itemView.findViewById(R.id.NamaNasabah)
         val NamaPetugas : TextView = itemView.findViewById(R.id.NamaPetugas)
@@ -49,6 +49,5 @@ class historiadapter (private val userList : ArrayList<UserHistori>) : RecyclerV
         val HargaSubKategori : TextView = itemView.findViewById(R.id.HargaSubKategori)
         val Jumlah : TextView = itemView.findViewById(R.id.Jumlah)
         val SubTotal : TextView = itemView.findViewById(R.id.SubTotal)
-
     }
 }
