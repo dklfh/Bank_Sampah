@@ -141,6 +141,9 @@ class UserAdapterSubKategori(
 
         val buttonTidak = dialogLayout.findViewById<Button>(R.id.tidak)
         val buttonYa = dialogLayout.findViewById<Button>(R.id.ya)
+        val textViewConfirmation = dialogLayout.findViewById<TextView>(R.id.dataHapus)
+
+        textViewConfirmation.text = "Apakah yakin untuk menghapus data ${userList[position].NamaSubKategori} ini?"
 
         builder.setView(dialogLayout)
         val dialog = builder.create()

@@ -130,7 +130,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/textinput_home"
-                    android:fontFamily="@font/ralewaymedium"
+                    android:fontFamily="@font/robotoregular"
                     android:gravity="left"
                     android:padding="15dp"
                     android:inputType="number"

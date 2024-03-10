@@ -28,9 +28,10 @@
             android:layout_marginVertical="10dp"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/dataHapus"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apakah yakin untuk menghapus data ini?"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="15sp"
             android:fontFamily="@font/ralewaymedium"/>

@@ -105,8 +105,11 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>,var backupLi
         val inflater = LayoutInflater.from(c)
         val dialogLayout = inflater.inflate(R.layout.metodehapus, null)
 
+        val textViewConfirmation = dialogLayout.findViewById<TextView>(R.id.dataHapus)
         val buttonTidak = dialogLayout.findViewById<Button>(R.id.tidak)
         val buttonYa = dialogLayout.findViewById<Button>(R.id.ya)
+
+        textViewConfirmation.text = "Apakah yakin untuk menghapus data ${userList[position].userName} ini?"
 
         builder.setView(dialogLayout)
         val dialog = builder.create()

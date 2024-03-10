@@ -105,6 +105,9 @@ class UserAdapterKat(val c: Context, val userList: ArrayList<UserDataKat>, var b
 
         val buttonTidak = dialogLayout.findViewById<Button>(R.id.tidak)
         val buttonYa = dialogLayout.findViewById<Button>(R.id.ya)
+        val textViewConfirmation = dialogLayout.findViewById<TextView>(R.id.dataHapus)
+
+        textViewConfirmation.text = "Apakah yakin untuk menghapus data ${userList[position].userNameKat} ini?"
 
         builder.setView(dialogLayout)
         val dialog = builder.create()

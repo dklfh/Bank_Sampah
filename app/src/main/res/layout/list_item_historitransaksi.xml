@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,13 +20,14 @@
             android:orientation="vertical"
             android:paddingHorizontal="30dp"
             android:paddingVertical="5dp"
-            android:layout_marginBottom="9dp"
             android:background="@drawable/buttonlogin">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center"
+                tools:ignore="UselessParent">
 
                 <TextView
                     android:id="@+id/textView9"
@@ -34,7 +36,8 @@
                     android:fontFamily="@font/robotobold"
                     android:paddingVertical="5dp"
                     android:text="Tanggal:"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/Tanggalhistori"
@@ -43,9 +46,9 @@
                     android:fontFamily="@font/robotobold"
                     android:paddingVertical="5dp"
                     android:text="28-2-2024"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="3dp"
                     android:textColor="@color/white"
-                     />
+                    android:textSize="16sp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -70,15 +73,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/robotomedium"
-                        android:text="Nama Bank:"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:text="Nama Bank Sampah:"
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -87,8 +90,8 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/robotomedium"
                         android:text="BANK LESTARI"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -106,14 +109,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Nama Nasabah:"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -122,8 +125,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Angga"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -141,14 +144,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Nama Petugas:"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -157,8 +160,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Ahmad"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -175,15 +178,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
-                        android:text="Metode Pembayaran:"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:text="Metode Transaksi:"
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -192,8 +195,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="BCA"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -207,18 +210,19 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/telepon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Rekening:"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -227,8 +231,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="0007"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -245,15 +249,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
-                        android:text="Kategori"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:text="Kategori:"
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -262,15 +266,16 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Plastik RIGD/Berbentuk"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center|left">
+                android:gravity="center|left"
+                tools:ignore="RtlHardcoded">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -282,14 +287,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Sub-Kategori:"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -298,8 +303,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Putihan (HDPE Dan Jenis Lainnya)"
-                        android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -317,14 +322,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Harga Sub-Kategori:"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -333,8 +338,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="1000"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -352,14 +357,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Jumlah:"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -367,9 +372,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
-                        android:text="1"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:text="1 kg"
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -387,15 +392,15 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="Sub Total:"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginStart="5dp">
 
                     <TextView
                         android:id="@+id/SubTotal"
@@ -403,8 +408,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:text="1000"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textColor="@color/teks"
+                        android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
 

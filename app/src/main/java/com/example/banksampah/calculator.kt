@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.math.BigDecimal
+import java.util.Date
 
 class calculator : Fragment() {
     private var currentValue = BigDecimal("1.0")
@@ -418,8 +419,8 @@ class calculator : Fragment() {
     }
 
     private fun updateLable(myCalendar: Calendar) {
-        val myFormat = "dd-MM-yyyy"
-        val sdf = SimpleDateFormat(myFormat, Locale.UK)
+        val myFormat = "dd MMMM yyyy"
+        val sdf = SimpleDateFormat(myFormat, Locale("id")).format(Date())
         tvDatePicker.setText(sdf.format(myCalendar.time))
         tvDatePicker.error = null
     }

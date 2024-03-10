@@ -1,5 +1,6 @@
 package com.example.banksampah.view
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.R
 import com.example.banksampah.model.UserHistori
+import java.math.BigDecimal
 import kotlin.contracts.Returns
 
 class historiadapter (private val userList : ArrayList<UserHistori>) : RecyclerView.Adapter<historiadapter.MyViewHolder>() {
@@ -22,8 +24,10 @@ class historiadapter (private val userList : ArrayList<UserHistori>) : RecyclerV
         return userList.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentitem=userList[position]
+        val teleponTextView: TextView = holder.itemView.findViewById(R.id.telepon)
         holder.Tanggal.text= currentitem.tanggal
         holder.NamaBank.text=currentitem.namaBank
         holder.NamaNasabah.text=currentitem.namaNasabah
@@ -33,8 +37,14 @@ class historiadapter (private val userList : ArrayList<UserHistori>) : RecyclerV
         holder.Kategori.text=currentitem.kategori
         holder.SubKategori.text=currentitem.subkategori
         holder.HargaSubKategori.text = currentitem.hargaSubKategori!!.toString()
-        holder.Jumlah.text=currentitem.jumlah!!.toString()
+        holder.Jumlah.text= currentitem.jumlah!!.toString()
         holder.SubTotal.text=currentitem.subtotal!!.toString()
+
+        when (currentitem.pembayaran) {
+            "Ovo", "Dana", "Gopay" -> {
+                teleponTextView.text = "No Telepon:"
+            }
+        }
     }
 
     class MyViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){

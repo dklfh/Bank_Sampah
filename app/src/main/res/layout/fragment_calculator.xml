@@ -141,7 +141,7 @@
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotoregular"
-                        android:hint="Tanggal"
+                        android:hint="Tanggal..."
                         android:textColor="@color/teks"
                         android:textSize="16sp" />
 
@@ -466,13 +466,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/textinput_home"
-                    android:fontFamily="@font/ralewayregular"
+                    android:fontFamily="@font/robotoregular"
                     android:hint="Masukan No Telepon. . ."
                     android:inputType="number"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp"
                     android:textColor="@color/teks"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

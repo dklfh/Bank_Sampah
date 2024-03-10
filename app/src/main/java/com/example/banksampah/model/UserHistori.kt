@@ -2,7 +2,7 @@ package com.example.banksampah.model
 
 data class UserHistori (
     var hargaSubKategori: Long ?= 0,
-    var jumlah: Long?=null,
+    var jumlah: Double?=null,
     var kategori:String?=null,
     var namaBank:String?=null,
     var namaNasabah:String?=null,

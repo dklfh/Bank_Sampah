@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.banksampah.model.UserHistori
@@ -21,6 +23,8 @@ class HistoriTransaksi : Fragment() {
     private lateinit var dbref: DatabaseReference
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<UserHistori>
+    private lateinit var loadingProgressBar: ProgressBar
+    private lateinit var loadingText: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,12 +39,17 @@ class HistoriTransaksi : Fragment() {
         userRecyclerView = view.findViewById(R.id.userList)
         userRecyclerView.layoutManager = LinearLayoutManager(activity)
         userRecyclerView.setHasFixedSize(true)
+        loadingProgressBar = view.findViewById(R.id.loadingProgressBar)
+        loadingText = view.findViewById(R.id.loadingText)
 
         userArrayList = arrayListOf()
         getUserData()
     }
 
     private fun getUserData() {
+        loadingProgressBar.visibility = View.VISIBLE
+        loadingText.visibility = View.VISIBLE
+
         val currentUser = FirebaseAuth.getInstance().currentUser
         val uid = currentUser?.uid
 
@@ -61,11 +70,15 @@ class HistoriTransaksi : Fragment() {
                         userArrayList.addAll(newDataList)
 
                         userRecyclerView.adapter = historiadapter(userArrayList)
+
+                        loadingProgressBar.visibility = View.GONE
+                        loadingText.visibility = View.GONE
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    // Handle error
+                    loadingProgressBar.visibility = View.GONE
+                    loadingText.visibility = View.GONE
                 }
             })
         }
