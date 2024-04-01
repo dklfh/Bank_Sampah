@@ -106,6 +106,11 @@ class HistoriTransaksi : Fragment() {
 
                         loadingProgressBar.visibility = View.GONE
                         loadingText.visibility = View.GONE
+                    } else {
+                        // No transaction history data, so hide the loading animation and display a message
+                        loadingProgressBar.visibility = View.GONE
+                        loadingText.visibility = View.GONE
+                        Toast.makeText(activity, "Tidak ada data histori transaksi", Toast.LENGTH_SHORT).show()
                     }
                 }
 

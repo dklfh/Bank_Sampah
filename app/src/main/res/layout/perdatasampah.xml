@@ -54,7 +54,7 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ralewaymedium"
-                android:text="Data akan dihapus terhitung tanggal:"
+                android:text="Data akan dihapus dalam   "
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 

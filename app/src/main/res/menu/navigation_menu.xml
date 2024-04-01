@@ -25,12 +25,6 @@
             <item android:id="@+id/nav_HisTransaksi"
                 android:icon="@drawable/laporan"
                 android:title="Histori Transaksi"/>
-            <item android:id="@+id/nav_LapKategori"
-                android:icon="@drawable/laporan"
-                android:title="Laporan Kategori"/>
-            <item android:id="@+id/nav_LapSub"
-                android:icon="@drawable/laporan"
-                android:title="Laporan Sub Kategori"/>
         </menu>
     </item>
     <item android:title="Pengaturan">
